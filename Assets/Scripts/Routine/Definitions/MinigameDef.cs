@@ -1,0 +1,79 @@
+using UnityEngine;
+
+namespace DreamOfMilitary.Routine
+{
+    [CreateAssetMenu(
+        fileName = "MinigameDef",
+        menuName = "Dream Of Military/Minigame Definition")]
+    public sealed class MinigameDef : ScriptableObject
+    {
+        [Header("식별")]
+        [SerializeField]
+        private string _id;
+
+        [SerializeField]
+        private GameObject _prefab;
+
+        [Header("일과 등장 조건")]
+        [SerializeField]
+        private RoutineStageMask _availableStages =
+            RoutineStageMask.All;
+
+        [SerializeField]
+        private bool _isExamMinigame;
+
+        [Header("기본 설정")]
+        [SerializeField, Min(0)]
+        private int _basePoints;
+
+        [SerializeField, Min(0)]
+        private int _difficultyTier;
+
+        [SerializeField, Min(0.1f)]
+        private float _timeLimitSeconds = 5f;
+
+        public string Id => _id;
+        public GameObject Prefab => _prefab;
+        public RoutineStageMask AvailableStages => _availableStages;
+        public bool IsExamMinigame => _isExamMinigame;
+        public int BasePoints => _basePoints;
+        public int DifficultyTier => _difficultyTier;
+        public float TimeLimitSeconds => _timeLimitSeconds;
+
+        public bool SupportsStage(RoutineStage stage)
+        {
+            return (_availableStages & ToMask(stage)) != 0;
+        }
+
+        private static RoutineStageMask ToMask(RoutineStage stage)
+        {
+            switch (stage)
+            {
+                case RoutineStage.PromoteToPrivateFirstClass:
+                    return RoutineStageMask.PromoteToPrivateFirstClass;
+
+                case RoutineStage.PromoteToCorporal:
+                    return RoutineStageMask.PromoteToCorporal;
+
+                case RoutineStage.PromoteToSergeant:
+                    return RoutineStageMask.PromoteToSergeant;
+
+                case RoutineStage.Discharge:
+                    return RoutineStageMask.Discharge;
+
+                default:
+                    return RoutineStageMask.None;
+            }
+        }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            _id = _id?.Trim() ?? string.Empty;
+            _basePoints = Mathf.Max(0, _basePoints);
+            _difficultyTier = Mathf.Max(0, _difficultyTier);
+            _timeLimitSeconds = Mathf.Max(0.1f, _timeLimitSeconds);
+        }
+#endif
+    }
+}
