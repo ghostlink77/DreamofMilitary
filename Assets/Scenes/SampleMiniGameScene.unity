@@ -501,8 +501,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExampleMiniGame
   timeLimit: 10
-  currentTime: 0
-  isRunning: 0
   target: {fileID: 93905553}
 --- !u!1 &1636183398
 GameObject:
@@ -535,8 +533,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MiniGameManager
   miniGames:
   - {fileID: 1617536520}
-  currentMiniGame: {fileID: 0}
-  currentIndex: -1
 --- !u!4 &1636183400
 Transform:
   m_ObjectHideFlags: 0
