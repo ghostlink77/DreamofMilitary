@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: 6529c9881f2cf864da6052d1d5bc6732
   - enabled: 1
-    path: Assets/Scenes/SampleLobby.unity
+    path: Assets/Scenes/Lobby.unity
     guid: a5ee700a219bbbb47b3ebef2e5e41e41
   - enabled: 1
     path: Assets/Scenes/SampleMiniGameScene.unity
