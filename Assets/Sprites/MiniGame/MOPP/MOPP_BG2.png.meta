@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: d03ce529d4f3abf4f99b46e57759e1c3
+guid: 521a441c23fb74241bb91000cc1f8169
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4693899530701601753
-    second: MOPP_Shoes_0
-  - first:
-      213: -3850017555587549573
-    second: MOPP_Shoes_1
+      213: -8556848763143837285
+    second: MOPP_BG2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MOPP_Shoes_0
+      name: MOPP_BG2_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 49
-        width: 1419
-        height: 955
+        x: 0
+        y: 0
+        width: 1672
+        height: 941
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9db77daf0c4142140800000000000000
-      internalID: 4693899530701601753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MOPP_Shoes_1
-      rect:
-        serializedVersion: 2
-        x: 570
-        y: 67
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b76bf247e6df19ac0800000000000000
-      internalID: -3850017555587549573
+      spriteID: b992214d267ff3980800000000000000
+      internalID: -8556848763143837285
       vertices: []
       indices: 
       edges: []
@@ -163,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MOPP_Shoes_0: 4693899530701601753
-      MOPP_Shoes_1: -3850017555587549573
+      MOPP_BG2_0: -8556848763143837285
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

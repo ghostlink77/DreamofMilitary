@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: b1a65fad59852b948be1f1c386fcd784
+guid: 838b03e17c2376d499ec4f3dba63c066
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1522722371991582263
-    second: "\uBCF4\uD638\uC758 \uBC29\uB3C5_\uBE68\uAC04\uBCF4\uD638\uC7A5\uAC11_0"
-  - first:
-      213: -6702112250250309111
-    second: "\uBCF4\uD638\uC758 \uBC29\uB3C5_\uBE68\uAC04\uBCF4\uD638\uC7A5\uAC11_1"
+      213: 5519902904311956877
+    second: MOPP_Char_0_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uBCF4\uD638\uC758 \uBC29\uB3C5_\uBE68\uAC04\uBCF4\uD638\uC7A5\uAC11_0"
+      name: MOPP_Char_0_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 0
-        width: 925
-        height: 1536
+        x: 0
+        y: 19
+        width: 973
+        height: 1488
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9c9c6e502143edae0800000000000000
-      internalID: -1522722371991582263
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uBCF4\uD638\uC758 \uBC29\uB3C5_\uBE68\uAC04\uBCF4\uD638\uC7A5\uAC11_1"
-      rect:
-        serializedVersion: 2
-        x: 934
-        y: 213
-        width: 27
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 902590fea605df2a0800000000000000
-      internalID: -6702112250250309111
+      spriteID: d85492e1272aa9c40800000000000000
+      internalID: 5519902904311956877
       vertices: []
       indices: 
       edges: []
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uBCF4\uD638\uC758 \uBC29\uB3C5_\uBE68\uAC04\uBCF4\uD638\uC7A5\uAC11_0": -1522722371991582263
-      "\uBCF4\uD638\uC758 \uBC29\uB3C5_\uBE68\uAC04\uBCF4\uD638\uC7A5\uAC11_1": -6702112250250309111
+      MOPP_Char_0_0: 5519902904311956877
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

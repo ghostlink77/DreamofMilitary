@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8f898f2716d60014b9c546d15bab47c0
+guid: 3f30389fb38d49c46a75f3bbe71b9eb2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2449114761932423996
-    second: "\uBC29\uB3C5_0"
+      213: -7949917757146102728
+    second: MOPP_Char_a_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uBC29\uB3C5_0"
+      name: MOPP_Char_a_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1031
-        height: 1525
+        y: 19
+        width: 973
+        height: 1488
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c33c52766e00df120800000000000000
-      internalID: 2449114761932423996
+      spriteID: 8348cbb9be73ca190800000000000000
+      internalID: -7949917757146102728
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uBC29\uB3C5_0": 2449114761932423996
+      MOPP_Char_a_0: -7949917757146102728
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
