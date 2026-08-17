@@ -821,6 +821,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Calander
       objectReference: {fileID: 0}
+    - target: {fileID: 9112274524913183412, guid: 8d325582536ef4c43971cce29eea0a3e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
