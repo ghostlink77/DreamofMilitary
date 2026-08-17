@@ -1,3 +1,8 @@
+// ========================
+// 현재 게임 상황을 관리하는 싱글톤 클래스
+// 현재 계급, 복무 개월 수, 전체 상점 등은 여기서 관리한다.
+// ========================
+
 using System;
 using DreamOfMilitary.Routine;
 using UnityEngine;
@@ -11,8 +16,7 @@ namespace DreamOfMilitary.Progression
 
         [Header("새 게임 초기값")]
         [SerializeField]
-        private MilitaryRank _startingRank =
-            MilitaryRank.PrivateSecondClass;
+        private MilitaryRank _startingRank = MilitaryRank.PrivateSecondClass;
 
         [SerializeField, Min(0)]
         private int _startingServiceMonths;
@@ -26,9 +30,7 @@ namespace DreamOfMilitary.Progression
 
         public event Action<GameStateSnapshot> StateChanged;
 
-        public event Action<
-            MonthAdvanceReason,
-            GameStateSnapshot> MonthAdvanced;
+        public event Action<MonthAdvanceReason, GameStateSnapshot> MonthAdvanced;
 
         private void Awake()
         {
@@ -54,10 +56,7 @@ namespace DreamOfMilitary.Progression
 
         public GameStateSnapshot CaptureSnapshot()
         {
-            return new GameStateSnapshot(
-                CurrentRank,
-                ServiceMonths,
-                TotalPoints);
+            return new GameStateSnapshot(CurrentRank, ServiceMonths, TotalPoints);
         }
 
         /// <summary>
@@ -129,13 +128,9 @@ namespace DreamOfMilitary.Progression
         private void InitializeFromStartingValues()
         {
             CurrentRank = _startingRank;
-            ServiceMonths = Mathf.Max(
-                0,
-                _startingServiceMonths);
+            ServiceMonths = Mathf.Max(0, _startingServiceMonths);
 
-            TotalPoints = Mathf.Max(
-                0,
-                _startingTotalPoints);
+            TotalPoints = Mathf.Max(0, _startingTotalPoints);
         }
 
 #if UNITY_EDITOR

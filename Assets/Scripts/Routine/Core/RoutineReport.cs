@@ -1,3 +1,9 @@
+// ====================
+// 미니게임 하나의 결과를 담는 플레인 클래스
+// 미니게임 종류(Id), 판정(성공, 실패, 퍼펙트),
+// 종료 컨디션(성공, 시간종료(실패), 중지, 에러), 점수 등 관리
+// ====================
+
 using System;
 using System.Collections.Generic;
 
@@ -11,18 +17,11 @@ namespace DreamOfMilitary.Routine
         public ScoreBreakdown Score { get; }
         public float ElapsedSeconds { get; }
 
-        public RoutineEntry(
-            string minigameId,
-            MinigameJudgement judgement,
-            MinigameEndReason endReason,
-            ScoreBreakdown score,
-            float elapsedSeconds)
+        public RoutineEntry(string minigameId, MinigameJudgement judgement, MinigameEndReason endReason, ScoreBreakdown score, float elapsedSeconds)
         {
             if (string.IsNullOrWhiteSpace(minigameId))
             {
-                throw new ArgumentException(
-                    "미니게임 ID가 필요합니다.",
-                    nameof(minigameId));
+                throw new ArgumentException("미니게임 ID가 필요합니다.", nameof(minigameId));
             }
 
             if (elapsedSeconds < 0f)
@@ -58,9 +57,7 @@ namespace DreamOfMilitary.Routine
             _entries.Length > 0
             && PerfectCount == _entries.Length;
 
-        public RoutineReport(
-            IReadOnlyList<RoutineEntry> entries,
-            int routinePerfectBonus)
+        public RoutineReport(IReadOnlyList<RoutineEntry> entries, int routinePerfectBonus)
         {
             if (entries == null)
             {
@@ -69,8 +66,7 @@ namespace DreamOfMilitary.Routine
 
             if (routinePerfectBonus < 0)
             {
-                throw new ArgumentOutOfRangeException(
-                    nameof(routinePerfectBonus));
+                throw new ArgumentOutOfRangeException(nameof(routinePerfectBonus));
             }
 
             _entries = new RoutineEntry[entries.Count];
@@ -136,10 +132,7 @@ namespace DreamOfMilitary.Routine
             PerfectBonusTotal = perfectBonusTotal;
             RoutinePerfectBonus = routinePerfectBonus;
 
-            TotalPoints = checked(
-                basePointsTotal
-                + perfectBonusTotal
-                + routinePerfectBonus);
+            TotalPoints = checked(basePointsTotal + perfectBonusTotal + routinePerfectBonus);
         }
     }
 }

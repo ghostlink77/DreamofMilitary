@@ -9,10 +9,8 @@ namespace DreamOfMilitary.Routine
     public sealed class MinigameCatalog : ScriptableObject
     {
         [SerializeField]
-        private List<MinigameDef> _definitions =
-            new List<MinigameDef>();
+        private List<MinigameDef> _definitions = new List<MinigameDef>();
 
-        public IReadOnlyList<MinigameDef> Definitions =>
-            _definitions;
+        public IReadOnlyList<MinigameDef> Definitions => _definitions;
     }
 }

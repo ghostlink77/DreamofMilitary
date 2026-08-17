@@ -1,3 +1,8 @@
+// =================================
+// 진급 심사에 필요한 상점을 정의하고
+// 현재 진급 구간과진급 심사 가능 여부를 판단하는 스크립터블 오브젝트 
+// =================================
+
 using System;
 using DreamOfMilitary.Routine;
 using UnityEngine;
@@ -67,15 +72,13 @@ namespace DreamOfMilitary.Progression
                     return RoutineStage.Discharge;
 
                 default:
-                    throw new ArgumentOutOfRangeException(
-                        nameof(currentRank));
+                    throw new ArgumentOutOfRangeException(nameof(currentRank));
             }
         }
 
         public bool CanTakeExam(GameStateSnapshot state)
         {
-            return state.TotalPoints
-                >= GetRequiredCumulativePoints(state.Rank);
+            return state.TotalPoints >= GetRequiredCumulativePoints(state.Rank);
         }
 
         public bool IsDischargeExam(GameStateSnapshot state)
@@ -86,25 +89,13 @@ namespace DreamOfMilitary.Progression
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            _privateSecondClassToPrivateFirstClassPoints =
-                Mathf.Max(
-                    0,
-                    _privateSecondClassToPrivateFirstClassPoints);
+            _privateSecondClassToPrivateFirstClassPoints = Mathf.Max(0, _privateSecondClassToPrivateFirstClassPoints);
 
-            _privateFirstClassToCorporalPoints =
-                Mathf.Max(
-                    0,
-                    _privateFirstClassToCorporalPoints);
+            _privateFirstClassToCorporalPoints = Mathf.Max(0, _privateFirstClassToCorporalPoints);
 
-            _corporalToSergeantPoints =
-                Mathf.Max(
-                    0,
-                    _corporalToSergeantPoints);
+            _corporalToSergeantPoints = Mathf.Max(0, _corporalToSergeantPoints);
 
-            _sergeantToDischargePoints =
-                Mathf.Max(
-                    0,
-                    _sergeantToDischargePoints);
+            _sergeantToDischargePoints = Mathf.Max(0, _sergeantToDischargePoints);
         }
 #endif
     }

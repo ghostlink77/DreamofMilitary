@@ -49,16 +49,14 @@ namespace DreamOfMilitary.Routine
         PromotionFailed = 1
     }
 
+    // 미니게임 한 번의 설정 값
     public readonly struct MinigameContext
     {
         public int DifficultyTier { get; }
         public float TimeLimitSeconds { get; }
         public int RandomSeed { get; }
 
-        public MinigameContext(
-            int difficultyTier,
-            float timeLimitSeconds,
-            int randomSeed)
+        public MinigameContext(int difficultyTier, float timeLimitSeconds, int randomSeed)
         {
             if (difficultyTier < 0)
             {
@@ -80,6 +78,7 @@ namespace DreamOfMilitary.Routine
         }
     }
 
+    // 미니게임 한 번의 결과(성공 여부)
     public readonly struct MinigameOutcome
     {
         public MinigameJudgement Judgement { get; }
@@ -102,9 +101,7 @@ namespace DreamOfMilitary.Routine
         /// 완료 콜백은 최대 한 번 호출해야 한다.
         /// 최종 흐름 제어와 제한시간 판정은 RoutineRunner가 담당한다.
         /// </summary>
-        void Begin(
-            MinigameContext context,
-            Action<MinigameOutcome> onCompleted);
+        void Begin(MinigameContext context, Action<MinigameOutcome> onCompleted);
 
         /// <summary>
         /// 입력과 내부 진행을 즉시 중단한다.

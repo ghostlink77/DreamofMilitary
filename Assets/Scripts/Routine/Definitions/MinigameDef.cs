@@ -1,3 +1,8 @@
+// ========================
+// 일과 미니게임 하나의 데이터를 담는 스크립터블 오브젝트
+// id, 미니게임 프리팹, 등장 조건 등을 설정 및 관리한다.
+// ========================
+
 using UnityEngine;
 
 namespace DreamOfMilitary.Routine
@@ -11,13 +16,14 @@ namespace DreamOfMilitary.Routine
         [SerializeField]
         private string _id;
 
+        [SerializeField] private string _commandText;
+
         [SerializeField]
         private GameObject _prefab;
 
         [Header("일과 등장 조건")]
         [SerializeField]
-        private RoutineStageMask _availableStages =
-            RoutineStageMask.All;
+        private RoutineStageMask _availableStages = RoutineStageMask.All;
 
         [SerializeField]
         private bool _isExamMinigame;
@@ -32,7 +38,10 @@ namespace DreamOfMilitary.Routine
         [SerializeField, Min(0.1f)]
         private float _timeLimitSeconds = 5f;
 
+
+        // ---- Properties ----
         public string Id => _id;
+        public string CommandText => _commandText;
         public GameObject Prefab => _prefab;
         public RoutineStageMask AvailableStages => _availableStages;
         public bool IsExamMinigame => _isExamMinigame;
@@ -70,6 +79,7 @@ namespace DreamOfMilitary.Routine
         private void OnValidate()
         {
             _id = _id?.Trim() ?? string.Empty;
+            _commandText = _commandText?.Trim() ?? string.Empty;
             _basePoints = Mathf.Max(0, _basePoints);
             _difficultyTier = Mathf.Max(0, _difficultyTier);
             _timeLimitSeconds = Mathf.Max(0.1f, _timeLimitSeconds);
