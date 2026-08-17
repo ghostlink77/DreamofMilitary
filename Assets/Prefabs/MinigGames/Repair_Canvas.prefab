@@ -1665,7 +1665,7 @@ GameObject:
   - component: {fileID: 8837392492604918601}
   - component: {fileID: 6400221929216091519}
   m_Layer: 5
-  m_Name: Repair_Canvas 1
+  m_Name: Repair_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
