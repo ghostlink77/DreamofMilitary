@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 74f960a5372b39e408ad11133ed7379b
+guid: d4c3b05c6e43f334e99100db983405fe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3610122220650270293
-    second: 1image (28) - background only 1280x720_0
+      213: -40557364070426817
+    second: DangJik_Char_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1image (28) - background only 1280x720_0
+      name: DangJik_Char_1_0
       rect:
         serializedVersion: 2
         x: 77
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ba17562b7f446edc0800000000000000
-      internalID: -3610122220650270293
+      spriteID: f375e81da49ef6ff0800000000000000
+      internalID: -40557364070426817
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      1image (28) - background only 1280x720_0: -3610122220650270293
+      DangJik_Char_1_0: -40557364070426817
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
