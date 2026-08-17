@@ -474,7 +474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1455951626707669063
 RectTransform:
   m_ObjectHideFlags: 0
@@ -549,7 +549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7595324803227137155
 RectTransform:
   m_ObjectHideFlags: 0
@@ -624,7 +624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6529812618371547835
 RectTransform:
   m_ObjectHideFlags: 0
@@ -740,7 +740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5360041179787772565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -999,7 +999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4693656165299598685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1367,16 +1367,20 @@ PrefabInstance:
       value: ToDo_Text
       objectReference: {fileID: 0}
     - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+      propertyPath: m_text
+      value: "\uAD6C\uB839\uC5D0 \uB9DE\uCDB0 \uCC29\uC6A9\uD574\uB77C!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
       propertyPath: m_fontSize
-      value: 90
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
       propertyPath: m_margin.z
-      value: 3.397766
+      value: -32.271423
       objectReference: {fileID: 0}
     - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
       propertyPath: m_fontSizeBase
-      value: 90
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
       propertyPath: m_Pivot.x

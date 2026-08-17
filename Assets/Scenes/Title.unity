@@ -366,7 +366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &669060101
 RectTransform:
   m_ObjectHideFlags: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
   - {fileID: 1724054529}
   - {fileID: 1135685905}
   - {fileID: 672522923}
-  nextSceneName: Prologue
+  nextSceneName: Lobby
   panelFadeDuration: 0.5
   cutFadeDuration: 0.5
 --- !u!1 &1294063170
