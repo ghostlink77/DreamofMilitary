@@ -12,48 +12,32 @@ namespace DreamOfMilitary.Routine
         private readonly MinigameCatalog _catalog;
         private readonly IRoutineSelectionStrategy _strategy;
 
-        public RoutineSelector(
-            MinigameCatalog catalog,
-            IRoutineSelectionStrategy strategy = null)
+        public RoutineSelector(MinigameCatalog catalog, IRoutineSelectionStrategy strategy = null)
         {
-            _catalog = catalog
-                ?? throw new ArgumentNullException(nameof(catalog));
+            _catalog = catalog ?? throw new ArgumentNullException(nameof(catalog));
 
-            _strategy = strategy
-                ?? new ShuffleBagRoutineSelectionStrategy();
+            _strategy = strategy ?? new ShuffleBagRoutineSelectionStrategy();
         }
 
-        public IReadOnlyList<MinigameDef> SelectRoutine(
-            RoutineStage stage,
-            int count,
-            int randomSeed)
+        public IReadOnlyList<MinigameDef> SelectRoutine(RoutineStage stage, int count, int randomSeed)
         {
             var candidates = BuildCandidateList(stage);
 
-            var request = new RoutineSelectionRequest(
-                stage,
-                count,
-                randomSeed);
+            var request = new RoutineSelectionRequest(stage, count, randomSeed);
 
             return _strategy.Select(request, candidates);
         }
 
-        private List<MinigameDef> BuildCandidateList(
-            RoutineStage stage)
+        private List<MinigameDef> BuildCandidateList(RoutineStage stage)
         {
             var candidates = new List<MinigameDef>();
-            var knownIds = new HashSet<string>(
-                StringComparer.Ordinal);
+            var knownIds = new HashSet<string>(StringComparer.Ordinal);
 
-            for (var index = 0;
-                 index < _catalog.Definitions.Count;
-                 index++)
+            for (var index = 0; index < _catalog.Definitions.Count; index++)
             {
                 var definition = _catalog.Definitions[index];
 
-                if (definition == null
-                    || definition.IsExamMinigame
-                    || !definition.SupportsStage(stage))
+                if (definition == null || definition.IsExamMinigame || !definition.SupportsStage(stage))
                 {
                     continue;
                 }

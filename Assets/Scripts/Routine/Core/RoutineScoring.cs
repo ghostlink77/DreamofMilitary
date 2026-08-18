@@ -27,9 +27,7 @@ namespace DreamOfMilitary.Routine
 
     public static class RoutineScoring
     {
-        public static ScoreBreakdown Calculate(
-            int minigameBasePoints,
-            MinigameJudgement judgement)
+        public static ScoreBreakdown Calculate(int minigameBasePoints, MinigameJudgement judgement)
         {
             if (minigameBasePoints < 0)
             {
@@ -41,13 +39,9 @@ namespace DreamOfMilitary.Routine
             return judgement switch
             {
                 MinigameJudgement.Failure => new ScoreBreakdown(0, 0),
-                MinigameJudgement.Clear => new ScoreBreakdown(
-                    minigameBasePoints,
-                    0),
-                MinigameJudgement.Perfect => CalculatePerfect(
-                    minigameBasePoints),
-                _ => throw new ArgumentOutOfRangeException(
-                    nameof(judgement))
+                MinigameJudgement.Clear => new ScoreBreakdown(minigameBasePoints,0),
+                MinigameJudgement.Perfect => CalculatePerfect(minigameBasePoints),
+                _ => throw new ArgumentOutOfRangeException(nameof(judgement))
             };
         }
 
@@ -60,9 +54,7 @@ namespace DreamOfMilitary.Routine
                     + "기본 상점을 짝수로 설정해야 합니다.");
             }
 
-            return new ScoreBreakdown(
-                basePoints,
-                basePoints / 2);
+            return new ScoreBreakdown(basePoints, basePoints / 2);
         }
     }
 }

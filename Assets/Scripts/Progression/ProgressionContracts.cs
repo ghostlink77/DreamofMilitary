@@ -14,10 +14,7 @@ namespace DreamOfMilitary.Progression
         public int ServiceMonths { get; }
         public int TotalPoints { get; }
 
-        public GameStateSnapshot(
-            MilitaryRank rank,
-            int serviceMonths,
-            int totalPoints)
+        public GameStateSnapshot(MilitaryRank rank, int serviceMonths, int totalPoints)
         {
             Rank = rank;
             ServiceMonths = serviceMonths;

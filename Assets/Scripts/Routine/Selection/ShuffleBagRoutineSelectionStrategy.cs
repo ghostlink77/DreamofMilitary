@@ -7,15 +7,11 @@ namespace DreamOfMilitary.Routine
     /// 각 일과 구간별 후보를 한 번씩 모두 사용한 뒤 다시 섞는다.
     /// 후보가 일과 진행 개수보다 적어도 정상적으로 반복 선정된다.
     /// </summary>
-    public sealed class ShuffleBagRoutineSelectionStrategy
-        : IRoutineSelectionStrategy
+    public sealed class ShuffleBagRoutineSelectionStrategy: IRoutineSelectionStrategy
     {
-        private readonly Dictionary<RoutineStage, BagState> _bags =
-            new Dictionary<RoutineStage, BagState>();
+        private readonly Dictionary<RoutineStage, BagState> _bags = new Dictionary<RoutineStage, BagState>();
 
-        public IReadOnlyList<MinigameDef> Select(
-            RoutineSelectionRequest request,
-            IReadOnlyList<MinigameDef> candidates)
+        public IReadOnlyList<MinigameDef> Select(RoutineSelectionRequest request, IReadOnlyList<MinigameDef> candidates)
         {
             ValidateCandidates(candidates);
 
@@ -50,8 +46,7 @@ namespace DreamOfMilitary.Routine
             return selected;
         }
 
-        private static void ValidateCandidates(
-            IReadOnlyList<MinigameDef> candidates)
+        private static void ValidateCandidates(IReadOnlyList<MinigameDef> candidates)
         {
             if (candidates == null)
             {
@@ -75,9 +70,7 @@ namespace DreamOfMilitary.Routine
             }
         }
 
-        private static void RefillBag(
-            BagState bag,
-            Random random)
+        private static void RefillBag(BagState bag, Random random)
         {
             bag.Remaining.Clear();
 
@@ -86,27 +79,21 @@ namespace DreamOfMilitary.Routine
                 bag.Remaining.Add(bag.Pool[index]);
             }
 
-            for (var index = bag.Remaining.Count - 1;
-                 index > 0;
-                 index--)
+            for (var index = bag.Remaining.Count - 1; index > 0; index--)
             {
                 var swapIndex = random.Next(index + 1);
 
-                (bag.Remaining[index], bag.Remaining[swapIndex]) =
-                    (bag.Remaining[swapIndex], bag.Remaining[index]);
+                (bag.Remaining[index], bag.Remaining[swapIndex]) = (bag.Remaining[swapIndex], bag.Remaining[index]);
             }
         }
 
         private sealed class BagState
         {
-            public List<MinigameDef> Pool { get; } =
-                new List<MinigameDef>();
+            public List<MinigameDef> Pool { get; } = new List<MinigameDef>();
 
-            public List<MinigameDef> Remaining { get; } =
-                new List<MinigameDef>();
+            public List<MinigameDef> Remaining { get; } = new List<MinigameDef>();
 
-            public bool MatchesPool(
-                IReadOnlyList<MinigameDef> candidates)
+            public bool MatchesPool(IReadOnlyList<MinigameDef> candidates)
             {
                 if (Pool.Count != candidates.Count)
                 {
@@ -124,8 +111,7 @@ namespace DreamOfMilitary.Routine
                 return true;
             }
 
-            public void ResetPool(
-                IReadOnlyList<MinigameDef> candidates)
+            public void ResetPool(IReadOnlyList<MinigameDef> candidates)
             {
                 Pool.Clear();
                 Remaining.Clear();
