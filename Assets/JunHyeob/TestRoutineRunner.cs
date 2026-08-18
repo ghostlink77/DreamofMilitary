@@ -1,36 +1,36 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace DreamOfMilitary.Routine
 {
     /// <summary>
-    /// ·çÆ¾¿¡¼­ ¹Ì´Ï°ÔÀÓÀÇ ½ÇÇà Èå¸§À» °ü¸®ÇÑ´Ù.
+    /// ë£¨í‹´ì—ì„œ ë¯¸ë‹ˆê²Œì„ì˜ ì‹¤í–‰ íë¦„ì„ ê´€ë¦¬í•œë‹¤.
     ///
-    /// ´ã´ç:
-    /// - MinigameDef¿¡¼­ ½ÇÇàÇÒ ¹Ì´Ï°ÔÀÓ ¼±ÅÃ
-    /// - Prefab »ı¼º
-    /// - IMinigame.Begin È£Ãâ
-    /// - Á¦ÇÑ½Ã°£ °ü¸®
-    /// - Timeout ¹ß»ı ½Ã Abort È£Ãâ
-    /// - MinigameOutcome ¼ö½Å
-    /// - ´ÙÀ½ ¹Ì´Ï°ÔÀÓ ½ÇÇà
+    /// ë‹´ë‹¹:
+    /// - MinigameDefì—ì„œ ì‹¤í–‰í•  ë¯¸ë‹ˆê²Œì„ ì„ íƒ
+    /// - Prefab ìƒì„±
+    /// - IMinigame.Begin í˜¸ì¶œ
+    /// - ì œí•œì‹œê°„ ê´€ë¦¬
+    /// - Timeout ë°œìƒ ì‹œ Abort í˜¸ì¶œ
+    /// - MinigameOutcome ìˆ˜ì‹ 
+    /// - ë‹¤ìŒ ë¯¸ë‹ˆê²Œì„ ì‹¤í–‰
     ///
-    /// ´ã´çÇÏÁö ¾ÊÀ½:
-    /// - GameState Á÷Á¢ ¼öÁ¤
-    /// - °è±Ş º¯°æ
-    /// - º¹¹« °³¿ù Áõ°¡
-    /// - ÃÖÁ¾ Á¡¼ö ÀúÀå
-    /// - ·Îºñ ÀÌµ¿
+    /// ë‹´ë‹¹í•˜ì§€ ì•ŠìŒ:
+    /// - GameState ì§ì ‘ ìˆ˜ì •
+    /// - ê³„ê¸‰ ë³€ê²½
+    /// - ë³µë¬´ ê°œì›” ì¦ê°€
+    /// - ìµœì¢… ì ìˆ˜ ì €ì¥
+    /// - ë¡œë¹„ ì´ë™
     /// </summary>
-    public sealed class RoutineRunner : MonoBehaviour
+    public sealed class TestRoutineRunner : MonoBehaviour
     {
-        [Header("¹Ì´Ï°ÔÀÓ Á¤ÀÇ")]
+        [Header("ë¯¸ë‹ˆê²Œì„ ì •ì˜")]
         [SerializeField]
         private List<MinigameDef> _minigameDefinitions =
             new List<MinigameDef>();
 
-        [Header("·çÆ¾ ¼³Á¤")]
+        [Header("ë£¨í‹´ ì„¤ì •")]
         [SerializeField]
         private RoutineStage _currentStage =
             RoutineStage.PromoteToPrivateFirstClass;
@@ -38,14 +38,14 @@ namespace DreamOfMilitary.Routine
         [SerializeField, Min(1)]
         private int _minigamesPerRoutine = 3;
 
-        [Header("·£´ı")]
+        [Header("ëœë¤")]
         [SerializeField]
         private int _randomSeed = 0;
 
         [SerializeField]
         private bool _useRandomSeed = true;
 
-        [Header("½ÇÇà À§Ä¡")]
+        [Header("ì‹¤í–‰ ìœ„ì¹˜")]
         [SerializeField]
         private Transform _minigameRoot;
 
@@ -70,46 +70,46 @@ namespace DreamOfMilitary.Routine
         private System.Random _random;
 
         /// <summary>
-        /// ÇöÀç ·çÆ¾ÀÌ ½ÇÇà ÁßÀÎÁö ¿©ºÎ.
+        /// í˜„ì¬ ë£¨í‹´ì´ ì‹¤í–‰ ì¤‘ì¸ì§€ ì—¬ë¶€.
         /// </summary>
         public bool IsRoutineRunning =>
             _isRoutineRunning;
 
         /// <summary>
-        /// ÇöÀç ¹Ì´Ï°ÔÀÓÀÌ ½ÇÇà ÁßÀÎÁö ¿©ºÎ.
+        /// í˜„ì¬ ë¯¸ë‹ˆê²Œì„ì´ ì‹¤í–‰ ì¤‘ì¸ì§€ ì—¬ë¶€.
         /// </summary>
         public bool IsMinigameRunning =>
             _isMinigameRunning;
 
         /// <summary>
-        /// ÇöÀç ½ÇÇà ÁßÀÎ ¹Ì´Ï°ÔÀÓ Á¤ÀÇ.
+        /// í˜„ì¬ ì‹¤í–‰ ì¤‘ì¸ ë¯¸ë‹ˆê²Œì„ ì •ì˜.
         /// </summary>
         public MinigameDef CurrentMinigameDef =>
             _currentMinigameDef;
 
         /// <summary>
-        /// ÇöÀç ·çÆ¾ÀÇ ÁøÇà ¹øÈ£.
+        /// í˜„ì¬ ë£¨í‹´ì˜ ì§„í–‰ ë²ˆí˜¸.
         /// </summary>
         public int CurrentMinigameIndex =>
             _currentMinigameIndex;
 
         /// <summary>
-        /// ÇöÀç ·çÆ¾¿¡¼­ ½ÇÇàÇÒ ¹Ì´Ï°ÔÀÓ °³¼ö.
+        /// í˜„ì¬ ë£¨í‹´ì—ì„œ ì‹¤í–‰í•  ë¯¸ë‹ˆê²Œì„ ê°œìˆ˜.
         /// </summary>
         public int MinigamesPerRoutine =>
             _minigamesPerRoutine;
 
         /// <summary>
-        /// ·çÆ¾ ÀüÃ¼°¡ ³¡³µÀ» ¶§ ¹ß»ıÇÑ´Ù.
+        /// ë£¨í‹´ ì „ì²´ê°€ ëë‚¬ì„ ë•Œ ë°œìƒí•œë‹¤.
         ///
         /// bool:
-        /// true  = Á¤»óÀûÀ¸·Î ¸ğµç ¹Ì´Ï°ÔÀÓ ¿Ï·á
-        /// false = ·çÆ¾ Áß´Ü/½ÇÆĞ
+        /// true  = ì •ìƒì ìœ¼ë¡œ ëª¨ë“  ë¯¸ë‹ˆê²Œì„ ì™„ë£Œ
+        /// false = ë£¨í‹´ ì¤‘ë‹¨/ì‹¤íŒ¨
         /// </summary>
         public event Action<bool> RoutineCompleted;
 
         /// <summary>
-        /// ¹Ì´Ï°ÔÀÓ ÇÏ³ª°¡ ³¡³µÀ» ¶§ ¹ß»ıÇÑ´Ù.
+        /// ë¯¸ë‹ˆê²Œì„ í•˜ë‚˜ê°€ ëë‚¬ì„ ë•Œ ë°œìƒí•œë‹¤.
         /// </summary>
         public event Action<
             MinigameDef,
@@ -125,7 +125,7 @@ namespace DreamOfMilitary.Routine
 
             InitializeRandom();
         }
-        //ÀÓ½Ã Å×½ºÆ®¿ë
+        //ì„ì‹œ í…ŒìŠ¤íŠ¸ìš©
         private void Start()
         {
             StartRoutine();
@@ -141,14 +141,14 @@ namespace DreamOfMilitary.Routine
         }
 
         /// <summary>
-        /// ·çÆ¾À» ½ÃÀÛÇÑ´Ù.
+        /// ë£¨í‹´ì„ ì‹œì‘í•œë‹¤.
         /// </summary>
         public void StartRoutine()
         {
             if (_isRoutineRunning)
             {
                 Debug.LogWarning(
-                    "RoutineRunner: ÀÌ¹Ì ·çÆ¾ÀÌ ½ÇÇà ÁßÀÔ´Ï´Ù.");
+                    "RoutineRunner: ì´ë¯¸ ë£¨í‹´ì´ ì‹¤í–‰ ì¤‘ì…ë‹ˆë‹¤.");
 
                 return;
             }
@@ -157,7 +157,7 @@ namespace DreamOfMilitary.Routine
                 _minigameDefinitions.Count == 0)
             {
                 Debug.LogError(
-                    "RoutineRunner: µî·ÏµÈ ¹Ì´Ï°ÔÀÓÀÌ ¾ø½À´Ï´Ù.");
+                    "RoutineRunner: ë“±ë¡ëœ ë¯¸ë‹ˆê²Œì„ì´ ì—†ìŠµë‹ˆë‹¤.");
 
                 return;
             }
@@ -165,7 +165,7 @@ namespace DreamOfMilitary.Routine
             if (_minigamesPerRoutine <= 0)
             {
                 Debug.LogError(
-                    "RoutineRunner: ·çÆ¾ ¹Ì´Ï°ÔÀÓ °³¼ö°¡ 1 ÀÌ»óÀÌ¾î¾ß ÇÕ´Ï´Ù.");
+                    "RoutineRunner: ë£¨í‹´ ë¯¸ë‹ˆê²Œì„ ê°œìˆ˜ê°€ 1 ì´ìƒì´ì–´ì•¼ í•©ë‹ˆë‹¤.");
 
                 return;
             }
@@ -183,7 +183,7 @@ namespace DreamOfMilitary.Routine
             {
                 Debug.LogError(
                     $"RoutineRunner: " +
-                    $"{_currentStage}¿¡¼­ ½ÇÇà °¡´ÉÇÑ ¹Ì´Ï°ÔÀÓÀÌ ¾ø½À´Ï´Ù.");
+                    $"{_currentStage}ì—ì„œ ì‹¤í–‰ ê°€ëŠ¥í•œ ë¯¸ë‹ˆê²Œì„ì´ ì—†ìŠµë‹ˆë‹¤.");
 
                 EndRoutine(false);
                 return;
@@ -193,7 +193,7 @@ namespace DreamOfMilitary.Routine
         }
 
         /// <summary>
-        /// ÇöÀç ½ÇÇà ÁßÀÎ ·çÆ¾À» °­Á¦·Î Áß´ÜÇÑ´Ù.
+        /// í˜„ì¬ ì‹¤í–‰ ì¤‘ì¸ ë£¨í‹´ì„ ê°•ì œë¡œ ì¤‘ë‹¨í•œë‹¤.
         /// </summary>
         public void AbortRoutine()
         {
@@ -268,7 +268,7 @@ namespace DreamOfMilitary.Routine
             if (definition == null)
             {
                 Debug.LogError(
-                    "RoutineRunner: ½ÇÇàÇÒ ¹Ì´Ï°ÔÀÓÀ» ¼±ÅÃÇÏÁö ¸øÇß½À´Ï´Ù.");
+                    "RoutineRunner: ì‹¤í–‰í•  ë¯¸ë‹ˆê²Œì„ì„ ì„ íƒí•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
 
                 EndRoutine(false);
                 return;
@@ -298,7 +298,7 @@ namespace DreamOfMilitary.Routine
             {
                 Debug.LogError(
                     $"RoutineRunner: " +
-                    $"¹Ì´Ï°ÔÀÓ '{definition.Id}'¿¡ PrefabÀÌ ¾ø½À´Ï´Ù.");
+                    $"ë¯¸ë‹ˆê²Œì„ '{definition.Id}'ì— Prefabì´ ì—†ìŠµë‹ˆë‹¤.");
 
                 EndRoutine(false);
                 return;
@@ -315,7 +315,7 @@ namespace DreamOfMilitary.Routine
             {
                 Debug.LogError(
                     $"RoutineRunner: " +
-                    $"¹Ì´Ï°ÔÀÓ '{definition.Id}' »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
+                    $"ë¯¸ë‹ˆê²Œì„ '{definition.Id}' ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 
                 EndRoutine(false);
                 return;
@@ -329,8 +329,8 @@ namespace DreamOfMilitary.Routine
             {
                 Debug.LogError(
                     $"RoutineRunner: " +
-                    $"Prefab '{definition.Prefab.name}'¿¡ " +
-                    $"IMinigame ±¸ÇöÃ¼°¡ ¾ø½À´Ï´Ù.");
+                    $"Prefab '{definition.Prefab.name}'ì— " +
+                    $"IMinigame êµ¬í˜„ì²´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 
                 CleanupCurrentMinigame();
 
@@ -347,8 +347,8 @@ namespace DreamOfMilitary.Routine
             {
                 Debug.LogError(
                     $"RoutineRunner: " +
-                    $"¹Ì´Ï°ÔÀÓ '{definition.Id}'ÀÇ " +
-                    $"Á¦ÇÑ½Ã°£ÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.");
+                    $"ë¯¸ë‹ˆê²Œì„ '{definition.Id}'ì˜ " +
+                    $"ì œí•œì‹œê°„ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 
                 CleanupCurrentMinigame();
 
