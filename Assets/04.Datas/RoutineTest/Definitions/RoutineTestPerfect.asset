@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: RoutineTestPerfect
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: routine-test-perfect
-  _commandText: "\uD37C\uD399\uD2B8!"
+  _id: routine-test-survive
+  _commandText: "\uBC84\uD168!"
   _prefab: {fileID: 4300876594690414676, guid: 0549ac1f03455bc4fb89eb0f171fa5d2, type: 3}
   _availableStages: -1
   _isExamMinigame: 0
   _basePoints: 10
   _difficultyTier: 0
   _timeLimitSeconds: 0.2
+  _timeLimitRule: 1

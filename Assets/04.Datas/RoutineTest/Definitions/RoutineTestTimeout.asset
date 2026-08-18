@@ -20,3 +20,4 @@ MonoBehaviour:
   _basePoints: 10
   _difficultyTier: 0
   _timeLimitSeconds: 0.1
+  _timeLimitRule: 0
