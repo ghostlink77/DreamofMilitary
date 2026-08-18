@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: routine-test-perfect
   _commandText: "\uD37C\uD399\uD2B8!"
   _prefab: {fileID: 4300876594690414676, guid: 0549ac1f03455bc4fb89eb0f171fa5d2, type: 3}
-  _availableStages: 15
+  _availableStages: -1
   _isExamMinigame: 0
   _basePoints: 10
   _difficultyTier: 0

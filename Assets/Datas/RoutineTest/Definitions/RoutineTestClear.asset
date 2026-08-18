@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: routine-test-clear
   _commandText: "\uD074\uB9AC\uC5B4!"
   _prefab: {fileID: 8043824386195338083, guid: 577334e0df70e7c45a6c4907845214e4, type: 3}
-  _availableStages: 15
+  _availableStages: -1
   _isExamMinigame: 0
   _basePoints: 10
   _difficultyTier: 0

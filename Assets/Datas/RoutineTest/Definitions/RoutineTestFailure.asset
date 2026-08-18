@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: routine-test-failure
   _commandText: "\uC2E4\uD328!"
   _prefab: {fileID: 3065939942822101770, guid: ae660248a93a0664eb988fa9dc187a2c, type: 3}
-  _availableStages: 15
+  _availableStages: -1
   _isExamMinigame: 0
   _basePoints: 10
   _difficultyTier: 0

@@ -27,8 +27,7 @@ namespace DreamOfMilitary.Progression
         [SerializeField, Min(0)]
         private int _sergeantToDischargePoints;
 
-        public int GetRequiredCumulativePoints(
-            MilitaryRank currentRank)
+        public int GetRequiredCumulativePoints(MilitaryRank currentRank)
         {
             switch (currentRank)
             {
@@ -54,8 +53,7 @@ namespace DreamOfMilitary.Progression
         /// 현재 계급을 기준으로 준비 중인 심사 구간을 반환한다.
         /// 예를 들어 이병은 일병 진급 구간이다.
         /// </summary>
-        public RoutineStage GetRoutineStage(
-            MilitaryRank currentRank)
+        public RoutineStage GetRoutineStage(MilitaryRank currentRank)
         {
             switch (currentRank)
             {

@@ -13,30 +13,23 @@ namespace DreamOfMilitary.Routine
     public sealed class MinigameDef : ScriptableObject
     {
         [Header("식별")]
-        [SerializeField]
-        private string _id;
+        [SerializeField] private string _id;
 
         [SerializeField] private string _commandText;
 
-        [SerializeField]
-        private GameObject _prefab;
+        [SerializeField] private GameObject _prefab;
 
         [Header("일과 등장 조건")]
-        [SerializeField]
-        private RoutineStageMask _availableStages = RoutineStageMask.All;
+        [SerializeField] private RoutineStageMask _availableStages = RoutineStageMask.All;
 
-        [SerializeField]
-        private bool _isExamMinigame;
+        [SerializeField] private bool _isExamMinigame;
 
         [Header("기본 설정")]
-        [SerializeField, Min(0)]
-        private int _basePoints;
+        [SerializeField, Min(0)] private int _basePoints;
 
-        [SerializeField, Min(0)]
-        private int _difficultyTier;
+        [SerializeField, Min(0)] private int _difficultyTier;
 
-        [SerializeField, Min(0.1f)]
-        private float _timeLimitSeconds = 5f;
+        [SerializeField, Min(0.1f)] private float _timeLimitSeconds = 5f;
 
 
         // ---- Properties ----

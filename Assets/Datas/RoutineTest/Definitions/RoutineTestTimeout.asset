@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: routine-test-timeout
   _commandText: "\uC2DC\uAC04 \uCD08\uACFC!"
   _prefab: {fileID: 4812231925095315055, guid: 80c9a11686bbfe3438a90811ff1dc3de, type: 3}
-  _availableStages: 15
+  _availableStages: -1
   _isExamMinigame: 0
   _basePoints: 10
   _difficultyTier: 0

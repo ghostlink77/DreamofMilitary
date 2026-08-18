@@ -8,8 +8,7 @@ namespace DreamOfMilitary.Routine
         menuName = "Dream Of Military/Minigame Catalog")]
     public sealed class MinigameCatalog : ScriptableObject
     {
-        [SerializeField]
-        private List<MinigameDef> _definitions = new List<MinigameDef>();
+        [SerializeField] private List<MinigameDef> _definitions = new List<MinigameDef>();
 
         public IReadOnlyList<MinigameDef> Definitions => _definitions;
     }
