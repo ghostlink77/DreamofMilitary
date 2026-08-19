@@ -44,6 +44,7 @@ public class PushUp : MonoBehaviour, IMinigame
     public void Begin(MinigameContext context, Action<MinigameOutcome> onCompleted)
     {
         _onCompleted = onCompleted;
+        _pushUpCount = 0;
         _successCount = context.DifficultyTier switch
         {
             0 => 20,
@@ -51,6 +52,9 @@ public class PushUp : MonoBehaviour, IMinigame
             2 => 40,
             _ => throw new ArgumentOutOfRangeException(nameof(_successCount))
         };
+        pushUpCountSlider.minValue = 0;
+        pushUpCountSlider.maxValue = _successCount;
+
         _isPlaying = true;
         _isPushingDown = false;
 
