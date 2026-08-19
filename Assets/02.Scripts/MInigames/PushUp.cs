@@ -23,8 +23,12 @@ public class PushUp : MonoBehaviour, IMinigame
     private bool _isPushingDown;
     private Coroutine _currentCoroutine;
 
+    // 미니게임 성공을 RoutineRunner에게 알리기 위한 이벤트
+    // Begin에서 RoutineRunner에게 참조를 받아온다.
+    // 미니게임 성공 시 Success 에서 이벤트 실행
     private Action<MinigameOutcome> _onCompleted;
 
+    // 중지시 호출되는 메서드
     public void Abort()
     {
         _isPlaying = false;
@@ -44,6 +48,7 @@ public class PushUp : MonoBehaviour, IMinigame
     public void Begin(MinigameContext context, Action<MinigameOutcome> onCompleted)
     {
         _onCompleted = onCompleted;
+
         _pushUpCount = 0;
         _successCount = context.DifficultyTier switch
         {
@@ -104,15 +109,16 @@ public class PushUp : MonoBehaviour, IMinigame
 
         if (_pushUpCount >= _successCount)
         {
-            Sucess();
+            Success();
         }
     }
 
-    private void Sucess()
+    private void Success()
     {
         _isPlaying = false;
         _isPushingDown = false;
 
+        // onCompleted를 비우고 호출하기 위해 복사본을 생성한다.
         var callback = _onCompleted;
         _onCompleted = null;
 
