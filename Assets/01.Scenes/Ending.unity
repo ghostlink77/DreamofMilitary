@@ -362,14 +362,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 757834961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b9d7e4cd0a2461ebd6dd5cccaef7593, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f27b14d9c6a4e52b8f03d719ea46c80, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EndingSequenceController
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSequenceController
+  startButton: {fileID: 0}
+  sequencePanel: {fileID: 0}
+  openingGraphic: {fileID: 0}
   cuts:
-  - {fileID: 1475196107}
-  - {fileID: 211447176}
-  - {fileID: 1757902918}
-  scoreboard: {fileID: 2056377226}
+  - graphic: {fileID: 1475196109}
+    hidePreviousCuts: 0
+  - graphic: {fileID: 211447178}
+    hidePreviousCuts: 0
+  - graphic: {fileID: 1757902920}
+    hidePreviousCuts: 0
+  - graphic: {fileID: 2056377228}
+    hidePreviousCuts: 1
+  openingFadeDuration: 0.5
+  cutFadeDuration: 0
+  nextSceneName: Title
 --- !u!1 &1196560249
 GameObject:
   m_ObjectHideFlags: 0

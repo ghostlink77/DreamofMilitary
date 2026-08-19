@@ -359,9 +359,8 @@ GameObject:
   - component: {fileID: 669060101}
   - component: {fileID: 669060103}
   - component: {fileID: 669060102}
-  - component: {fileID: 669060104}
   m_Layer: 5
-  m_Name: PL_Back
+  m_Name: PL_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,19 +427,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669060100}
   m_CullTransparentMesh: 1
---- !u!114 &669060104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 669060100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c171612de6b47fb4c94ef5119fe1d796, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProloguePanelClickForwarder
-  sequenceController: {fileID: 1196560255}
 --- !u!1 &672522921
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,20 +787,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1196560249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b089b01c81ec43549a88f74461bda26e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f27b14d9c6a4e52b8f03d719ea46c80, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PrologueSequenceController
-  titleButton: {fileID: 2036539688}
-  prologuePanel: {fileID: 669060100}
-  prologueBackground: {fileID: 669060102}
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSequenceController
+  startButton: {fileID: 2036539688}
+  sequencePanel: {fileID: 669060100}
+  openingGraphic: {fileID: 669060102}
   cuts:
-  - {fileID: 543601165}
-  - {fileID: 1724054529}
-  - {fileID: 1135685905}
-  - {fileID: 672522923}
-  nextSceneName: Lobby
-  panelFadeDuration: 0.5
+  - graphic: {fileID: 543601165}
+    hidePreviousCuts: 0
+  - graphic: {fileID: 1724054529}
+    hidePreviousCuts: 0
+  - graphic: {fileID: 1135685905}
+    hidePreviousCuts: 0
+  - graphic: {fileID: 672522923}
+    hidePreviousCuts: 0
+  openingFadeDuration: 0.5
   cutFadeDuration: 0.5
+  nextSceneName: Lobby
+  isSkipped: 1
+  viewingStateKey: Title
 --- !u!1 &1294063170
 GameObject:
   m_ObjectHideFlags: 0
