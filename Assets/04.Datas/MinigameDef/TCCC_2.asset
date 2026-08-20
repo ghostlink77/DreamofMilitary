@@ -15,9 +15,9 @@ MonoBehaviour:
   _id: TCCC
   _commandText: "\uC9C0\uD608\uD574\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 1bb6ee7a1e02ac04a9c9568b21aecad4, type: 3}
-  _availableStages: 11
+  _availableStages: 10
   _isExamMinigame: 0
-  _basePoints: 1
+  _basePoints: 2
   _difficultyTier: 1
   _timeLimitSeconds: 5
   _timeLimitRule: 0

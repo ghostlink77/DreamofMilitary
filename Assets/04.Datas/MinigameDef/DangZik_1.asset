@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: Dang_Zik
   _commandText: "\uB208\uCE58\uAECF \uC878\uC544\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 2ea58930ac47c0447adc4d92af8adadf, type: 3}
-  _availableStages: 12
+  _availableStages: 4
   _isExamMinigame: 0
   _basePoints: 1
   _difficultyTier: 1
