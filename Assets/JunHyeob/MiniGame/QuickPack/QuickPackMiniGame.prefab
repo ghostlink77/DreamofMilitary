@@ -931,8 +931,6 @@ MonoBehaviour:
   _progressText: {fileID: 2652607937612292813}
   _mistakeText: {fileID: 0}
   _baseItemCount: 4
-  _perfectTimeRatio: 0.5
-  _perfectMaxMistakes: 0
 --- !u!1 &7532498372725783210
 GameObject:
   m_ObjectHideFlags: 0

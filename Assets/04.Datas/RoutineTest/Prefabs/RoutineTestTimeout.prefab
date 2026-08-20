@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.Tests.RoutineTestMinigame
   _judgement: 0
+  _timeLimitJudgement: 0
   _completeAfterSeconds: 0
   _neverComplete: 1

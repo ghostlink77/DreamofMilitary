@@ -9,9 +9,10 @@ using UnityEngine;
 
 namespace DreamOfMilitary.Routine.Tests
 {
-    public sealed class RoutineTestMinigame : MonoBehaviour, IMinigame
+    public sealed class RoutineTestMinigame : MonoBehaviour, IMinigame, ITimeLimitResolver
     {
-        [SerializeField] private MinigameJudgement _judgement = MinigameJudgement.Clear;
+        [SerializeField] private MinigameJudgement _judgement = MinigameJudgement.Success;
+        [SerializeField] private MinigameJudgement _timeLimitJudgement = MinigameJudgement.Failure;
         [SerializeField, Min(0f)] private float _completeAfterSeconds = 0.02f;
         [SerializeField] private bool _neverComplete;
 
@@ -49,6 +50,12 @@ namespace DreamOfMilitary.Routine.Tests
 
             _onCompleted = null;
             Debug.Log($"[RoutineTest][Minigame] Abort: {name}");
+        }
+
+        public MinigameOutcome ResolveAtTimeLimit()
+        {
+            Debug.Log($"[RoutineTest][Minigame] ResolveAtTimeLimit: {name}, Judgement={_timeLimitJudgement}");
+            return new MinigameOutcome(_timeLimitJudgement);
         }
 
         private IEnumerator CompleteAfterDelay()

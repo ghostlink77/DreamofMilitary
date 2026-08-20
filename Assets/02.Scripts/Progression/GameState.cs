@@ -70,8 +70,7 @@ namespace DreamOfMilitary.Progression
                 throw new ArgumentNullException(nameof(report));
             }
 
-            var nextTotalPoints = checked(
-                TotalPoints + report.TotalPoints);
+            var nextTotalPoints = checked(TotalPoints + report.TotalPoints);
 
             // 상점만 반영된 중간 상태가 남지 않도록
             // 개월 수 오버플로도 변경 전에 검사한다.
@@ -112,8 +111,7 @@ namespace DreamOfMilitary.Progression
                 return false;
             }
 
-            CurrentRank =
-                (MilitaryRank)((int)CurrentRank + 1);
+            CurrentRank = (MilitaryRank)((int)CurrentRank + 1);
 
             StateChanged?.Invoke(CaptureSnapshot());
             return true;
@@ -136,13 +134,9 @@ namespace DreamOfMilitary.Progression
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            _startingServiceMonths = Mathf.Max(
-                0,
-                _startingServiceMonths);
+            _startingServiceMonths = Mathf.Max(0, _startingServiceMonths);
 
-            _startingTotalPoints = Mathf.Max(
-                0,
-                _startingTotalPoints);
+            _startingTotalPoints = Mathf.Max(0, _startingTotalPoints);
         }
 #endif
     }

@@ -133,18 +133,18 @@ namespace DreamOfMilitary.Routine
                 yield return RunSingleMinigame(definition, index, sequence.Count, sessionSeed, runToken, entries);
             }
 
-            var allPerfect = entries.Count > 0;
+            var allSuccessful = entries.Count > 0;
 
             for (var index = 0; index < entries.Count; index++)
             {
-                if (entries[index].Judgement != MinigameJudgement.Perfect)
+                if (entries[index].Judgement != MinigameJudgement.Success)
                 {
-                    allPerfect = false;
+                    allSuccessful = false;
                     break;
                 }
             }
 
-            var routineBonus = allPerfect ? _config.AllPerfectBonusPoints : 0;
+            var routineBonus = allSuccessful ? _config.AllSuccessBonusPoints : 0;
             var report = new RoutineReport(entries, routineBonus);
 
             _routineCoroutine = null;
@@ -250,8 +250,9 @@ namespace DreamOfMilitary.Routine
             _acceptingCompletion = false;
 
             var judgement = MinigameJudgement.Failure;
-            var endReason = MinigameEndReason.Timeout;
+            var endReason = MinigameEndReason.TimeLimitReached;
             var feedbackSeconds = _config.FeedbackDisplaySeconds;
+            Exception timeLimitError = null;
 
             if (_hasOutcome)
             {
@@ -261,8 +262,25 @@ namespace DreamOfMilitary.Routine
             else
             {
                 TimeNormalizedChanged?.Invoke(0f);
+
+                try
+                {
+                    judgement = ResolveTimeLimitJudgement(definition);
+                }
+                catch (Exception exception)
+                {
+                    timeLimitError = exception;
+                    judgement = MinigameJudgement.Failure;
+                    endReason = MinigameEndReason.Error;
+                }
+
                 AbortActiveMinigame();
                 feedbackSeconds = Mathf.Max(feedbackSeconds, _config.AbortCleanupGraceSeconds);
+            }
+
+            if (timeLimitError != null)
+            {
+                Debug.LogException(timeLimitError, this);
             }
 
             ScoreBreakdown score;
@@ -277,7 +295,7 @@ namespace DreamOfMilitary.Routine
                 scoringError = exception;
                 judgement = MinigameJudgement.Failure;
                 endReason = MinigameEndReason.Error;
-                score = new ScoreBreakdown(0, 0);
+                score = new ScoreBreakdown(0);
             }
 
             if (scoringError != null)
@@ -310,11 +328,35 @@ namespace DreamOfMilitary.Routine
             _hasOutcome = true;
         }
 
+        private MinigameJudgement ResolveTimeLimitJudgement(MinigameDef definition)
+        {
+            switch (definition.TimeLimitRule)
+            {
+                case MinigameTimeLimitRule.MustCompleteBeforeLimit:
+                    return MinigameJudgement.Failure;
+
+                case MinigameTimeLimitRule.SurviveUntilLimit:
+                    return MinigameJudgement.Success;
+
+                case MinigameTimeLimitRule.EvaluateAtLimit:
+                    if (_activeMinigame is not ITimeLimitResolver resolver)
+                    {
+                        throw new InvalidOperationException(
+                            $"[{definition.Id}] 제한시간 종료 판정을 제공하는 ITimeLimitResolver가 필요합니다.");
+                    }
+
+                    return resolver.ResolveAtTimeLimit().Judgement;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(definition.TimeLimitRule));
+            }
+        }
+
         private IEnumerator RecordError(string minigameId, string message, List<RoutineEntry> entries)
         {
             Debug.LogError($"[{minigameId}] {message}", this);
 
-            var score = new ScoreBreakdown(0, 0);
+            var score = new ScoreBreakdown(0);
             entries.Add(new RoutineEntry(minigameId, MinigameJudgement.Failure, MinigameEndReason.Error, score, 0f));
 
             SetState(RoutineRunState.ShowingFeedback);

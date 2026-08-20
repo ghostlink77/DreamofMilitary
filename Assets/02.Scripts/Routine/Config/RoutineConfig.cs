@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DreamOfMilitary.Routine
 {
@@ -8,8 +9,7 @@ namespace DreamOfMilitary.Routine
     public sealed class RoutineConfig : ScriptableObject
     {
         [Header("일과 구성")]
-        [SerializeField, Min(1)]
-        private int _minigameCount = 10;
+        [SerializeField, Min(1)] private int _minigameCount = 9;
 
         [Header("화면 표시 시간")]
         [SerializeField, Min(0f)]
@@ -26,8 +26,8 @@ namespace DreamOfMilitary.Routine
         private float _abortCleanupGraceSeconds = 0.5f;
 
         [Header("일과 퍼펙트 보너스")]
-        [SerializeField, Min(0)]
-        private int _allPerfectBonusPoints;
+        [FormerlySerializedAs("_allPerfectBonusPoints")]
+        [SerializeField, Min(0)] private int _allSuccessBonusPoints;
 
         public int MinigameCount => _minigameCount;
 
@@ -40,8 +40,7 @@ namespace DreamOfMilitary.Routine
         public float AbortCleanupGraceSeconds =>
             _abortCleanupGraceSeconds;
 
-        public int AllPerfectBonusPoints =>
-            _allPerfectBonusPoints;
+        public int AllSuccessBonusPoints => _allSuccessBonusPoints;
 
 #if UNITY_EDITOR
         private void OnValidate()
@@ -60,9 +59,7 @@ namespace DreamOfMilitary.Routine
                 0f,
                 _abortCleanupGraceSeconds);
 
-            _allPerfectBonusPoints = Mathf.Max(
-                0,
-                _allPerfectBonusPoints);
+            _allSuccessBonusPoints = Mathf.Max(0, _allSuccessBonusPoints);
         }
 #endif
     }
