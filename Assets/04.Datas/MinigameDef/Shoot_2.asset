@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
-  m_Name: PushUp
+  m_Name: Shoot_2
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: push-up
-  _commandText: PushUp
-  _prefab: {fileID: 7013333293897079636, guid: 852b98cfc21c9384e879caf2f82f4636, type: 3}
-  _availableStages: -1
+  _id: Shoot
+  _commandText: "\uB9DE\uCDB0\uB77C!"
+  _prefab: {fileID: 7013333293897079636, guid: 22518421607dcb442a5764ff4b559f4f, type: 3}
+  _availableStages: 14
   _isExamMinigame: 0
   _basePoints: 1
   _difficultyTier: 1
   _timeLimitSeconds: 5
-  _timeLimitRule: 0
+  _timeLimitRule: 1
