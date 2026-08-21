@@ -17,7 +17,7 @@ MonoBehaviour:
   _prefab: {fileID: 7013333293897079636, guid: 2b8bd9c53c3dd8c48bb0e883ade073ec, type: 3}
   _availableStages: 8
   _isExamMinigame: 0
-  _basePoints: 2
-  _difficultyTier: 1
+  _basePoints: 1
+  _difficultyTier: 2
   _timeLimitSeconds: 5
   _timeLimitRule: 0
