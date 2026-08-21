@@ -49,7 +49,7 @@ public class MOPP : MonoBehaviour, IMinigame
     private bool _isAlphaMaskFirst;
 
     // 미니게임 성공을 RoutineRunner에게 알리기 위한 이벤트
-    private Action<MinigameOutcome> _onCompleted;
+    private Action<MinigameJudgement> _onCompleted;
 
 
     // ========================
@@ -58,7 +58,7 @@ public class MOPP : MonoBehaviour, IMinigame
 
     public void Begin(
         MinigameContext context,
-        Action<MinigameOutcome> onCompleted)
+        Action<MinigameJudgement> onCompleted)
     {
         _onCompleted = onCompleted;
 
@@ -606,9 +606,7 @@ public class MOPP : MonoBehaviour, IMinigame
         var callback = _onCompleted;
         _onCompleted = null;
 
-        callback?.Invoke(
-            new MinigameOutcome(
-                MinigameJudgement.Success));
+        callback?.Invoke(MinigameJudgement.Success);
     }
 
 

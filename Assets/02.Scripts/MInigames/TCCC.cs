@@ -34,9 +34,9 @@ public class TCCC : MonoBehaviour, IMinigame
     private float _successRotation;
     private bool _isStickInitialized;
 
-    private Action<MinigameOutcome> _onCompleted;
+    private Action<MinigameJudgement> _onCompleted;
 
-    public void Begin(MinigameContext context, Action<MinigameOutcome> onCompleted)
+    public void Begin(MinigameContext context, Action<MinigameJudgement> onCompleted)
     {
         _onCompleted = onCompleted;
 
@@ -215,7 +215,7 @@ public class TCCC : MonoBehaviour, IMinigame
 
         var callback = _onCompleted;
         _onCompleted = null;
-        callback?.Invoke(new MinigameOutcome(MinigameJudgement.Success));
+        callback?.Invoke(MinigameJudgement.Success);
     }
 
     private void SetAlpha(GameObject target, float alpha)
