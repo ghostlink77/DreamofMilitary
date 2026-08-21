@@ -70,8 +70,6 @@ namespace DreamOfMilitary.Routine
         {
             _id = _id?.Trim() ?? string.Empty;
             _commandText = _commandText?.Trim() ?? string.Empty;
-            _difficultyTier = Mathf.Max(0, _difficultyTier);
-            _timeLimitSeconds = Mathf.Max(0.1f, _timeLimitSeconds);
         }
 #endif
     }

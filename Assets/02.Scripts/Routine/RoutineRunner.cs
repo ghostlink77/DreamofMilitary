@@ -72,7 +72,14 @@ namespace DreamOfMilitary.Routine
 
             for (var index = 0; index < sequence.Count; index++)
             {
-                copiedSequence.Add(sequence[index]);
+                var definition = sequence[index];
+
+                if (definition == null)
+                {
+                    throw new ArgumentException($"{index + 1}번째 미니게임 정의가 null입니다.", nameof(sequence));
+                }
+
+                copiedSequence.Add(definition);
             }
 
             _runToken++;
@@ -122,14 +129,14 @@ namespace DreamOfMilitary.Routine
                 var definition = sequence[index];
 
                 SetState(RoutineRunState.ShowingCommand);
-                CommandShown?.Invoke(definition != null ? definition.CommandText : string.Empty, index + 1, sequence.Count);
+                CommandShown?.Invoke(definition.CommandText, index + 1, sequence.Count);
 
                 if (_config.CommandDisplaySeconds > 0f)
                 {
                     yield return new WaitForSeconds(_config.CommandDisplaySeconds);
                 }
 
-                yield return RunSingleMinigame(definition, index, sequence.Count, sessionSeed, runToken, entries, runMode);
+                yield return RunSingleMinigame(definition, index, sessionSeed, runToken, entries, runMode);
             }
 
             var allSuccessful = entries.Count > 0;
@@ -153,14 +160,9 @@ namespace DreamOfMilitary.Routine
             RoutineCompleted?.Invoke(report);
         }
 
-        private IEnumerator RunSingleMinigame(MinigameDef definition, int index, int totalCount,
+        private IEnumerator RunSingleMinigame(MinigameDef definition, int index,
             int sessionSeed, int runToken, List<RoutineEntry> entries, RoutineRunMode runMode)
         {
-            if (definition == null)
-            {
-                throw new InvalidOperationException($"{index + 1}번째 미니게임 정의가 null입니다.");
-            }
-
             if (definition.Prefab == null)
             {
                 throw new InvalidOperationException($"[{definition.Id}] 미니게임 프리팹이 연결되지 않았습니다.");

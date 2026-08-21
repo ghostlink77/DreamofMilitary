@@ -41,26 +41,5 @@ namespace DreamOfMilitary.Routine
             _abortCleanupGraceSeconds;
 
         public int AllSuccessBonusPoints => _allSuccessBonusPoints;
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            _minigameCount = Mathf.Max(1, _minigameCount);
-
-            _commandDisplaySeconds = Mathf.Max(
-                0f,
-                _commandDisplaySeconds);
-
-            _feedbackDisplaySeconds = Mathf.Max(
-                0f,
-                _feedbackDisplaySeconds);
-
-            _abortCleanupGraceSeconds = Mathf.Max(
-                0f,
-                _abortCleanupGraceSeconds);
-
-            _allSuccessBonusPoints = Mathf.Max(0, _allSuccessBonusPoints);
-        }
-#endif
     }
 }
