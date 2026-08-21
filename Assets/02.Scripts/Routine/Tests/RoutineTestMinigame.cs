@@ -17,10 +17,10 @@ namespace DreamOfMilitary.Routine.Tests
         [SerializeField] private bool _neverComplete;
 
         private Coroutine _completeCoroutine;
-        private Action<MinigameOutcome> _onCompleted;
+        private Action<MinigameJudgement> _onCompleted;
         private bool _aborted;
 
-        public void Begin(MinigameContext context, Action<MinigameOutcome> onCompleted)
+        public void Begin(MinigameContext context, Action<MinigameJudgement> onCompleted)
         {
             _onCompleted = onCompleted ?? throw new ArgumentNullException(nameof(onCompleted));
             _aborted = false;
@@ -52,10 +52,10 @@ namespace DreamOfMilitary.Routine.Tests
             Debug.Log($"[RoutineTest][Minigame] Abort: {name}");
         }
 
-        public MinigameOutcome ResolveAtTimeLimit()
+        public MinigameJudgement ResolveAtTimeLimit()
         {
             Debug.Log($"[RoutineTest][Minigame] ResolveAtTimeLimit: {name}, Judgement={_timeLimitJudgement}");
-            return new MinigameOutcome(_timeLimitJudgement);
+            return _timeLimitJudgement;
         }
 
         private IEnumerator CompleteAfterDelay()
@@ -75,7 +75,7 @@ namespace DreamOfMilitary.Routine.Tests
             _completeCoroutine = null;
 
             Debug.Log($"[RoutineTest][Minigame] Complete: {name}, Judgement={_judgement}");
-            callback?.Invoke(new MinigameOutcome(_judgement));
+            callback?.Invoke(_judgement);
         }
     }
 }

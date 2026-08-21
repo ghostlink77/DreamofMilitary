@@ -37,7 +37,7 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
 
         private MinigameContext _context;
 
-        private Action<MinigameOutcome> _onCompleted;
+        private Action<MinigameJudgement> _onCompleted;
 
         private readonly List<QuickPackItem> _sequence =
             new List<QuickPackItem>();
@@ -50,7 +50,7 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
 
         public void Begin(
             MinigameContext context,
-            Action<MinigameOutcome> onCompleted)
+            Action<MinigameJudgement> onCompleted)
         {
             if (_isPlaying)
             {
@@ -325,14 +325,12 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
             _hasFinished = true;
             _isPlaying = false;
 
-            var outcome = new MinigameOutcome(MinigameJudgement.Success);
-
-            Action<MinigameOutcome> callback =
+            Action<MinigameJudgement> callback =
                 _onCompleted;
 
             _onCompleted = null;
 
-            callback?.Invoke(outcome);
+            callback?.Invoke(MinigameJudgement.Success);
         }
 
         private void UpdateUI()

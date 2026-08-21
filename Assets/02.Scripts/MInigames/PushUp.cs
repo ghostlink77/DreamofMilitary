@@ -26,7 +26,7 @@ public class PushUp : MonoBehaviour, IMinigame
     // 미니게임 성공을 RoutineRunner에게 알리기 위한 이벤트
     // Begin에서 RoutineRunner에게 참조를 받아온다.
     // 미니게임 성공 시 Success 에서 이벤트 실행
-    private Action<MinigameOutcome> _onCompleted;
+    private Action<MinigameJudgement> _onCompleted;
 
     // 중지시 호출되는 메서드
     public void Abort()
@@ -45,7 +45,7 @@ public class PushUp : MonoBehaviour, IMinigame
         downSprite.SetActive(false);
     }
 
-    public void Begin(MinigameContext context, Action<MinigameOutcome> onCompleted)
+    public void Begin(MinigameContext context, Action<MinigameJudgement> onCompleted)
     {
         _onCompleted = onCompleted;
 
@@ -122,7 +122,7 @@ public class PushUp : MonoBehaviour, IMinigame
         var callback = _onCompleted;
         _onCompleted = null;
 
-        callback?.Invoke(new MinigameOutcome(MinigameJudgement.Success));
+        callback?.Invoke(MinigameJudgement.Success);
     }
 
     private void UpdateUI(bool isPushingDown)

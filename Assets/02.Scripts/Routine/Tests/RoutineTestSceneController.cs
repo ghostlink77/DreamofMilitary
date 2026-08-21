@@ -14,8 +14,8 @@ namespace DreamOfMilitary.Routine.Tests
     {
         private const int MixedSeed = 12345;
         private const int AllSuccessSeed = 67890;
-        private const int BasePoints = 10;
-        private const int RoutinePerfectBonus = 25;
+        private const int PointsPerSuccess = RoutineScoring.PointsPerSuccess;
+        private const int RoutinePerfectBonus = 2;
 
         [SerializeField] private RoutineRunner _runner;
         [SerializeField] private RoutineConfig _config;
@@ -127,13 +127,13 @@ namespace DreamOfMilitary.Routine.Tests
                 var entry = report.Entries[index];
                 seenIds.Add(entry.MinigameId);
 
-                if (!TryGetExpectedResult(entry.MinigameId, out var judgement, out var endReason, out var basePoints))
+                if (!TryGetExpectedResult(entry.MinigameId, out var judgement, out var basePoints))
                 {
                     passed &= Expect(false, $"알 수 없는 미니게임 ID입니다: {entry.MinigameId}");
                     continue;
                 }
 
-                passed &= ValidateEntry(entry, judgement, endReason, basePoints);
+                passed &= ValidateEntry(entry, judgement, basePoints);
                 expectedBaseTotal += basePoints;
             }
 
@@ -148,42 +148,39 @@ namespace DreamOfMilitary.Routine.Tests
 
         private bool ValidateAllSuccessReport(RoutineReport report)
         {
-            var expectedBaseTotal = _config.MinigameCount * BasePoints;
+            var expectedBaseTotal = _config.MinigameCount * PointsPerSuccess;
             var passed = Expect(report.Entries.Count == _config.MinigameCount, "전체 성공 결과 개수가 설정값과 다릅니다.");
             passed &= Expect(report.FailureCount == 0, "전체 성공 결과에 실패가 포함되었습니다.");
             passed &= Expect(report.SuccessCount == _config.MinigameCount, "성공 횟수가 설정값과 다릅니다.");
             passed &= Expect(report.IsAllSuccessful, "전체 성공 판정이 false입니다.");
             passed &= Expect(report.BasePointsTotal == expectedBaseTotal, "전체 성공 기본 상점이 다릅니다.");
-            passed &= Expect(report.RoutinePerfectBonus == RoutinePerfectBonus, "일과 퍼펙트 보너스가 25점이 아닙니다.");
+            passed &= Expect(report.RoutinePerfectBonus == RoutinePerfectBonus, "일과 전체 성공 보너스가 2점이 아닙니다.");
             passed &= Expect(report.TotalPoints == expectedBaseTotal + RoutinePerfectBonus, "전체 성공 최종 상점이 다릅니다.");
 
             return passed;
         }
 
-        private static bool TryGetExpectedResult(string id, out MinigameJudgement judgement, out MinigameEndReason endReason, out int basePoints)
+        private static bool TryGetExpectedResult(string id, out MinigameJudgement judgement, out int basePoints)
         {
             judgement = MinigameJudgement.Failure;
-            endReason = MinigameEndReason.Completed;
             basePoints = 0;
 
             switch (id)
             {
                 case "routine-test-clear":
                     judgement = MinigameJudgement.Success;
-                    basePoints = BasePoints;
+                    basePoints = PointsPerSuccess;
                     return true;
 
                 case "routine-test-survive":
                     judgement = MinigameJudgement.Success;
-                    endReason = MinigameEndReason.TimeLimitReached;
-                    basePoints = BasePoints;
+                    basePoints = PointsPerSuccess;
                     return true;
 
                 case "routine-test-failure":
                     return true;
 
                 case "routine-test-timeout":
-                    endReason = MinigameEndReason.TimeLimitReached;
                     return true;
 
                 default:
@@ -191,11 +188,10 @@ namespace DreamOfMilitary.Routine.Tests
             }
         }
 
-        private bool ValidateEntry(RoutineEntry entry, MinigameJudgement judgement, MinigameEndReason endReason, int basePoints)
+        private bool ValidateEntry(RoutineEntry entry, MinigameJudgement judgement, int basePoints)
         {
             var passed = Expect(entry.Judgement == judgement, $"{entry.MinigameId}의 판정이 다릅니다.");
-            passed &= Expect(entry.EndReason == endReason, $"{entry.MinigameId}의 종료 사유가 다릅니다.");
-            passed &= Expect(entry.Score.BasePoints == basePoints, $"{entry.MinigameId}의 기본 상점이 다릅니다.");
+            passed &= Expect(entry.Score == basePoints, $"{entry.MinigameId}의 기본 상점이 다릅니다.");
             return passed;
         }
 
@@ -242,9 +238,9 @@ namespace DreamOfMilitary.Routine.Tests
             Debug.Log($"[RoutineTest][Command] {current}/{total}: {command}");
         }
 
-        private static void OnFeedbackShown(MinigameJudgement judgement, ScoreBreakdown score)
+        private static void OnFeedbackShown(MinigameJudgement judgement, int score)
         {
-            Debug.Log($"[RoutineTest][Feedback] {judgement}, Points={score.TotalPoints}");
+            Debug.Log($"[RoutineTest][Feedback] {judgement}, Points={score}");
         }
     }
 }

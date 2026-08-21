@@ -27,7 +27,7 @@ namespace DreamOfMilitary.Routine
 
         [Header("일과 퍼펙트 보너스")]
         [FormerlySerializedAs("_allPerfectBonusPoints")]
-        [SerializeField, Min(0)] private int _allSuccessBonusPoints;
+        [SerializeField, Min(0)] private int _allSuccessBonusPoints = 2;
 
         public int MinigameCount => _minigameCount;
 

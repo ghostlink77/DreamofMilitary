@@ -1,6 +1,6 @@
 // ====================
 // 미니게임 하나의 결과를 담는 플레인 클래스
-// 미니게임 종류(Id), 성공 여부, 종료 원인, 획득 상점 등을 관리한다.
+// 미니게임 종류(Id), 성공 여부, 획득 상점 등을 관리한다.
 // ====================
 
 using System;
@@ -12,15 +12,19 @@ namespace DreamOfMilitary.Routine
     {
         public string MinigameId { get; }
         public MinigameJudgement Judgement { get; }
-        public MinigameEndReason EndReason { get; }
-        public ScoreBreakdown Score { get; }
+        public int Score { get; }
         public float ElapsedSeconds { get; }
 
-        public RoutineEntry(string minigameId, MinigameJudgement judgement, MinigameEndReason endReason, ScoreBreakdown score, float elapsedSeconds)
+        public RoutineEntry(string minigameId, MinigameJudgement judgement, int score, float elapsedSeconds)
         {
             if (string.IsNullOrWhiteSpace(minigameId))
             {
                 throw new ArgumentException("미니게임 ID가 필요합니다.", nameof(minigameId));
+            }
+
+            if (score < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(score));
             }
 
             if (elapsedSeconds < 0f)
@@ -31,7 +35,6 @@ namespace DreamOfMilitary.Routine
 
             MinigameId = minigameId;
             Judgement = judgement;
-            EndReason = endReason;
             Score = score;
             ElapsedSeconds = elapsedSeconds;
         }
@@ -95,7 +98,7 @@ namespace DreamOfMilitary.Routine
                             "알 수 없는 판정이 포함되어 있습니다.");
                 }
 
-                basePointsTotal = checked(basePointsTotal + entry.Score.BasePoints);
+                basePointsTotal = checked(basePointsTotal + entry.Score);
             }
 
             var isAllSuccessful =
