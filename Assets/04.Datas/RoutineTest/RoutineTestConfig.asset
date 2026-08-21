@@ -15,5 +15,6 @@ MonoBehaviour:
   _minigameCount: 9
   _commandDisplaySeconds: 3
   _feedbackDisplaySeconds: 1
+  _nextMinigameCountdownSeconds: 2
   _abortCleanupGraceSeconds: 0.5
   _allSuccessBonusPoints: 2

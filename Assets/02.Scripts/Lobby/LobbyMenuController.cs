@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public sealed class LobbyMenuController : MonoBehaviour
@@ -13,21 +12,21 @@ public sealed class LobbyMenuController : MonoBehaviour
     private void Awake()
     {
         settingBlackBack.SetActive(false);
-        stageButton.onClick.AddListener(LoadMiniGame);
+        stageButton.onClick.AddListener(BeginRoutine);
         settingButton.onClick.AddListener(OpenSettings);
         exitButton.onClick.AddListener(CloseSettings);
     }
 
     private void OnDestroy()
     {
-        stageButton.onClick.RemoveListener(LoadMiniGame);
+        stageButton.onClick.RemoveListener(BeginRoutine);
         settingButton.onClick.RemoveListener(OpenSettings);
         exitButton.onClick.RemoveListener(CloseSettings);
     }
 
-    private void LoadMiniGame()
+    private void BeginRoutine()
     {
-        SceneManager.LoadScene(miniGameSceneName);
+        DreamOfMilitary.Routine.RoutineFlowController.Instance.BeginRoutine(miniGameSceneName);
     }
 
     private void OpenSettings()
