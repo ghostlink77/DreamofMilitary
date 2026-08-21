@@ -31,6 +31,8 @@ namespace DreamOfMilitary.Routine
 
         [SerializeField, Min(0.1f)] private float _timeLimitSeconds = 5f;
 
+        [SerializeField] private MinigameTimeLimitRule _timeLimitRule = MinigameTimeLimitRule.MustCompleteBeforeLimit;
+
 
         // ---- Properties ----
         public string Id => _id;
@@ -41,6 +43,7 @@ namespace DreamOfMilitary.Routine
         public int BasePoints => _basePoints;
         public int DifficultyTier => _difficultyTier;
         public float TimeLimitSeconds => _timeLimitSeconds;
+        public MinigameTimeLimitRule TimeLimitRule => _timeLimitRule;
 
         public bool SupportsStage(RoutineStage stage)
         {

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e95bf72a6c9414fbc70d842a31b6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.Tests.RoutineTestMinigame
-  _judgement: 2
+  _judgement: 1
+  _timeLimitJudgement: 0
   _completeAfterSeconds: 0.02
-  _neverComplete: 0
+  _neverComplete: 1

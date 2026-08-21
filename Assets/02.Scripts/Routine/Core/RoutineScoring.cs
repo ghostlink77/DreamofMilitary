@@ -5,23 +5,16 @@ namespace DreamOfMilitary.Routine
     public readonly struct ScoreBreakdown
     {
         public int BasePoints { get; }
-        public int PerfectBonus { get; }
-        public int TotalPoints => checked(BasePoints + PerfectBonus);
+        public int TotalPoints => BasePoints;
 
-        public ScoreBreakdown(int basePoints, int perfectBonus)
+        public ScoreBreakdown(int basePoints)
         {
             if (basePoints < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(basePoints));
             }
 
-            if (perfectBonus < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(perfectBonus));
-            }
-
             BasePoints = basePoints;
-            PerfectBonus = perfectBonus;
         }
     }
 
@@ -38,23 +31,10 @@ namespace DreamOfMilitary.Routine
 
             return judgement switch
             {
-                MinigameJudgement.Failure => new ScoreBreakdown(0, 0),
-                MinigameJudgement.Clear => new ScoreBreakdown(minigameBasePoints,0),
-                MinigameJudgement.Perfect => CalculatePerfect(minigameBasePoints),
+                MinigameJudgement.Failure => new ScoreBreakdown(0),
+                MinigameJudgement.Success => new ScoreBreakdown(minigameBasePoints),
                 _ => throw new ArgumentOutOfRangeException(nameof(judgement))
             };
-        }
-
-        private static ScoreBreakdown CalculatePerfect(int basePoints)
-        {
-            if (basePoints % 2 != 0)
-            {
-                throw new InvalidOperationException(
-                    "퍼펙트 보너스의 반올림 규칙이 확정되기 전에는 "
-                    + "기본 상점을 짝수로 설정해야 합니다.");
-            }
-
-            return new ScoreBreakdown(basePoints, basePoints / 2);
         }
     }
 }

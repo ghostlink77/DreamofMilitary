@@ -31,14 +31,23 @@ namespace DreamOfMilitary.Routine
     public enum MinigameJudgement
     {
         Failure = 0,
-        Clear = 1,
-        Perfect = 2
+        Success = 1
+    }
+
+    /// <summary>
+    /// 제한시간에 도달했을 때 미니게임의 결과를 결정하는 방식이다.
+    /// </summary>
+    public enum MinigameTimeLimitRule
+    {
+        MustCompleteBeforeLimit = 0,
+        SurviveUntilLimit = 1,
+        EvaluateAtLimit = 2
     }
 
     public enum MinigameEndReason
     {
         Completed = 0,
-        Timeout = 1,
+        TimeLimitReached = 1,
         Aborted = 2,
         Error = 3
     }
@@ -108,5 +117,13 @@ namespace DreamOfMilitary.Routine
         /// 호출 이후에는 플레이어 입력과 완료 콜백을 발생시키지 않아야 한다.
         /// </summary>
         void Abort();
+    }
+
+    /// <summary>
+    /// 제한시간 종료 시 현재 상태를 기준으로 판정해야 하는 미니게임이 구현한다.
+    /// </summary>
+    public interface ITimeLimitResolver
+    {
+        MinigameOutcome ResolveAtTimeLimit();
     }
 }

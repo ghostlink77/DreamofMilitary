@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MouseInputManager : MonoBehaviour
@@ -7,7 +7,7 @@ public class MouseInputManager : MonoBehaviour
 
     private GameInputActions inputActions;
 
-    // ÇöÀç ¸¶¿ì½ºÀÇ È­¸é ÁÂÇ¥
+    // í˜„ì¬ ë§ˆìš°ìŠ¤ì˜ í™”ë©´ ì¢Œí‘œ
     public Vector2 MouseScreenPosition
     {
         get
@@ -19,7 +19,7 @@ public class MouseInputManager : MonoBehaviour
         }
     }
 
-    // ÇöÀç ¸¶¿ì½ºÀÇ ¿ùµå ÁÂÇ¥
+    // í˜„ì¬ ë§ˆìš°ìŠ¤ì˜ ì›”ë“œ ì¢Œí‘œ
     public Vector2 MouseWorldPosition
     {
         get
@@ -33,7 +33,7 @@ public class MouseInputManager : MonoBehaviour
 
     private void Awake()
     {
-        // ½Ì±ÛÅæ
+        // ì‹±ê¸€í†¤
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -42,10 +42,10 @@ public class MouseInputManager : MonoBehaviour
 
         Instance = this;
 
-        // ¾ÀÀÌ ¹Ù²î¾îµµ À¯Áö
+        // ì”¬ì´ ë°”ë€Œì–´ë„ ìœ ì§€
         DontDestroyOnLoad(gameObject);
 
-        // Input Actions »ı¼º
+        // Input Actions ìƒì„±
         inputActions = new GameInputActions();
     }
 
@@ -59,25 +59,25 @@ public class MouseInputManager : MonoBehaviour
         inputActions.Gameplay.Disable();
     }
 
-    /// ¸¶¿ì½º ¿ŞÂÊ ¹öÆ°À» ´©¸¥ ¼ø°£
+    /// ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ì„ ëˆ„ë¥¸ ìˆœê°„
     public bool IsClickDown()
     {
         return inputActions.Gameplay.Click.WasPressedThisFrame();
     }
 
-    /// ¸¶¿ì½º ¿ŞÂÊ ¹öÆ°À» ´©¸£°í ÀÖ´Â µ¿¾È
+    /// ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ì„ ëˆ„ë¥´ê³  ìˆëŠ” ë™ì•ˆ
     public bool IsClickHeld()
     {
         return inputActions.Gameplay.Click.IsPressed();
     }
 
-    /// ¸¶¿ì½º ¿ŞÂÊ ¹öÆ°À» ¶¾ ¼ø°£
+    /// ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ì„ ë—€ ìˆœê°„
     public bool IsClickUp()
     {
         return inputActions.Gameplay.Click.WasReleasedThisFrame();
     }
 
-    /// ÇöÀç ¸¶¿ì½º À§Ä¡¿¡¼­ Å¬¸¯µÈ 2D ¿ÀºêÁ§Æ® ¹İÈ¯
+    /// í˜„ì¬ ë§ˆìš°ìŠ¤ ìœ„ì¹˜ì—ì„œ í´ë¦­ëœ 2D ì˜¤ë¸Œì íŠ¸ ë°˜í™˜
     public GameObject GetClickedObject()
     {
         Vector2 worldPosition = MouseWorldPosition;
@@ -92,7 +92,7 @@ public class MouseInputManager : MonoBehaviour
         return null;
     }
 
-    /// ÇöÀç ¸¶¿ì½º À§Ä¡¿¡¼­ Å¬¸¯µÈ Collider2D ¹İÈ¯
+    /// í˜„ì¬ ë§ˆìš°ìŠ¤ ìœ„ì¹˜ì—ì„œ í´ë¦­ëœ Collider2D ë°˜í™˜
     public Collider2D GetClickedCollider()
     {
         Vector2 worldPosition = MouseWorldPosition;

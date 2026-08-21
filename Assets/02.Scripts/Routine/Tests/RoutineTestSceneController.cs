@@ -1,26 +1,27 @@
 // ========================
 // RoutineTestScene에서 일과 루프를 자동 실행하고 결과를 검증하는 테스트 관리자
-// 혼합 판정 일과와 전체 퍼펙트 일과를 차례대로 실행해 결과를 Console에 출력한다.
+// 혼합 판정 일과와 전체 성공 일과를 차례대로 실행해 결과를 Console에 출력한다.
 // ========================
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DreamOfMilitary.Routine.Tests
 {
     public sealed class RoutineTestSceneController : MonoBehaviour
     {
         private const int MixedSeed = 12345;
-        private const int PerfectSeed = 67890;
+        private const int AllSuccessSeed = 67890;
         private const int BasePoints = 10;
-        private const int PerfectBonus = 5;
         private const int RoutinePerfectBonus = 25;
 
         [SerializeField] private RoutineRunner _runner;
         [SerializeField] private RoutineConfig _config;
         [SerializeField] private MinigameCatalog _catalog;
-        [SerializeField] private MinigameDef _perfectDefinition;
+        [FormerlySerializedAs("_perfectDefinition")]
+        [SerializeField] private MinigameDef _allSuccessDefinition;
 
         private TestPhase _phase;
         private bool _allTestsPassed = true;
@@ -28,7 +29,7 @@ namespace DreamOfMilitary.Routine.Tests
         private enum TestPhase
         {
             Mixed = 0,
-            AllPerfect = 1,
+            AllSuccess = 1,
             Complete = 2
         }
 
@@ -70,7 +71,7 @@ namespace DreamOfMilitary.Routine.Tests
             _runner.StartRoutine(sequence, MixedSeed);
         }
 
-        private IEnumerator RunAllPerfectTest()
+        private IEnumerator RunAllSuccessTest()
         {
             yield return null;
 
@@ -78,12 +79,12 @@ namespace DreamOfMilitary.Routine.Tests
 
             for (var index = 0; index < _config.MinigameCount; index++)
             {
-                sequence.Add(_perfectDefinition);
+                sequence.Add(_allSuccessDefinition);
             }
 
-            _phase = TestPhase.AllPerfect;
-            Debug.Log($"[RoutineTest] ALL PERFECT TEST START: Count={sequence.Count}");
-            _runner.StartRoutine(sequence, PerfectSeed);
+            _phase = TestPhase.AllSuccess;
+            Debug.Log($"[RoutineTest] ALL SUCCESS TEST START: Count={sequence.Count}");
+            _runner.StartRoutine(sequence, AllSuccessSeed);
         }
 
         private void OnRoutineCompleted(RoutineReport report)
@@ -93,15 +94,15 @@ namespace DreamOfMilitary.Routine.Tests
                 var passed = ValidateMixedReport(report);
                 _allTestsPassed &= passed;
                 LogPhaseResult("MIXED", passed);
-                StartCoroutine(RunAllPerfectTest());
+                StartCoroutine(RunAllSuccessTest());
                 return;
             }
 
-            if (_phase == TestPhase.AllPerfect)
+            if (_phase == TestPhase.AllSuccess)
             {
-                var passed = ValidatePerfectReport(report);
+                var passed = ValidateAllSuccessReport(report);
                 _allTestsPassed &= passed;
-                LogPhaseResult("ALL PERFECT", passed);
+                LogPhaseResult("ALL SUCCESS", passed);
                 _phase = TestPhase.Complete;
 
                 if (_allTestsPassed)
@@ -117,78 +118,72 @@ namespace DreamOfMilitary.Routine.Tests
 
         private bool ValidateMixedReport(RoutineReport report)
         {
-            var passed = Expect(report.Entries.Count == _config.MinigameCount, "혼합 일과 결과 개수가 10개가 아닙니다.");
+            var passed = Expect(report.Entries.Count == _config.MinigameCount, "혼합 일과 결과 개수가 설정값과 다릅니다.");
             var seenIds = new HashSet<string>();
             var expectedBaseTotal = 0;
-            var expectedBonusTotal = 0;
 
             for (var index = 0; index < report.Entries.Count; index++)
             {
                 var entry = report.Entries[index];
                 seenIds.Add(entry.MinigameId);
 
-                if (!TryGetExpectedResult(entry.MinigameId, out var judgement, out var endReason, out var basePoints, out var bonus))
+                if (!TryGetExpectedResult(entry.MinigameId, out var judgement, out var endReason, out var basePoints))
                 {
                     passed &= Expect(false, $"알 수 없는 미니게임 ID입니다: {entry.MinigameId}");
                     continue;
                 }
 
-                passed &= ValidateEntry(entry, judgement, endReason, basePoints, bonus);
+                passed &= ValidateEntry(entry, judgement, endReason, basePoints);
                 expectedBaseTotal += basePoints;
-                expectedBonusTotal += bonus;
             }
 
             passed &= Expect(seenIds.Count == 4, "셔플백 결과에 후보 미니게임 4종이 모두 포함되지 않았습니다.");
-            passed &= Expect(!report.IsAllPerfect, "혼합 일과가 전체 퍼펙트로 판정되었습니다.");
+            passed &= Expect(!report.IsAllSuccessful, "혼합 일과가 전체 성공으로 판정되었습니다.");
             passed &= Expect(report.BasePointsTotal == expectedBaseTotal, "혼합 일과 기본 상점 합계가 다릅니다.");
-            passed &= Expect(report.PerfectBonusTotal == expectedBonusTotal, "혼합 일과 퍼펙트 보너스 합계가 다릅니다.");
             passed &= Expect(report.RoutinePerfectBonus == 0, "혼합 일과에 전체 퍼펙트 보너스가 지급되었습니다.");
-            passed &= Expect(report.TotalPoints == expectedBaseTotal + expectedBonusTotal, "혼합 일과 최종 상점이 다릅니다.");
+            passed &= Expect(report.TotalPoints == expectedBaseTotal, "혼합 일과 최종 상점이 다릅니다.");
 
             return passed;
         }
 
-        private bool ValidatePerfectReport(RoutineReport report)
+        private bool ValidateAllSuccessReport(RoutineReport report)
         {
-            var passed = Expect(report.Entries.Count == 10, "전체 퍼펙트 결과 개수가 10개가 아닙니다.");
-            passed &= Expect(report.FailureCount == 0, "전체 퍼펙트 결과에 실패가 포함되었습니다.");
-            passed &= Expect(report.ClearCount == 0, "전체 퍼펙트 결과에 일반 클리어가 포함되었습니다.");
-            passed &= Expect(report.PerfectCount == 10, "퍼펙트 횟수가 10회가 아닙니다.");
-            passed &= Expect(report.IsAllPerfect, "전체 퍼펙트 판정이 false입니다.");
-            passed &= Expect(report.BasePointsTotal == 100, "전체 퍼펙트 기본 상점이 100점이 아닙니다.");
-            passed &= Expect(report.PerfectBonusTotal == 50, "전체 퍼펙트 추가 상점이 50점이 아닙니다.");
+            var expectedBaseTotal = _config.MinigameCount * BasePoints;
+            var passed = Expect(report.Entries.Count == _config.MinigameCount, "전체 성공 결과 개수가 설정값과 다릅니다.");
+            passed &= Expect(report.FailureCount == 0, "전체 성공 결과에 실패가 포함되었습니다.");
+            passed &= Expect(report.SuccessCount == _config.MinigameCount, "성공 횟수가 설정값과 다릅니다.");
+            passed &= Expect(report.IsAllSuccessful, "전체 성공 판정이 false입니다.");
+            passed &= Expect(report.BasePointsTotal == expectedBaseTotal, "전체 성공 기본 상점이 다릅니다.");
             passed &= Expect(report.RoutinePerfectBonus == RoutinePerfectBonus, "일과 퍼펙트 보너스가 25점이 아닙니다.");
-            passed &= Expect(report.TotalPoints == 175, "전체 퍼펙트 최종 상점이 175점이 아닙니다.");
+            passed &= Expect(report.TotalPoints == expectedBaseTotal + RoutinePerfectBonus, "전체 성공 최종 상점이 다릅니다.");
 
             return passed;
         }
 
-        private static bool TryGetExpectedResult(string id, out MinigameJudgement judgement,
-            out MinigameEndReason endReason, out int basePoints, out int bonus)
+        private static bool TryGetExpectedResult(string id, out MinigameJudgement judgement, out MinigameEndReason endReason, out int basePoints)
         {
             judgement = MinigameJudgement.Failure;
             endReason = MinigameEndReason.Completed;
             basePoints = 0;
-            bonus = 0;
 
             switch (id)
             {
                 case "routine-test-clear":
-                    judgement = MinigameJudgement.Clear;
+                    judgement = MinigameJudgement.Success;
                     basePoints = BasePoints;
                     return true;
 
-                case "routine-test-perfect":
-                    judgement = MinigameJudgement.Perfect;
+                case "routine-test-survive":
+                    judgement = MinigameJudgement.Success;
+                    endReason = MinigameEndReason.TimeLimitReached;
                     basePoints = BasePoints;
-                    bonus = PerfectBonus;
                     return true;
 
                 case "routine-test-failure":
                     return true;
 
                 case "routine-test-timeout":
-                    endReason = MinigameEndReason.Timeout;
+                    endReason = MinigameEndReason.TimeLimitReached;
                     return true;
 
                 default:
@@ -196,13 +191,11 @@ namespace DreamOfMilitary.Routine.Tests
             }
         }
 
-        private bool ValidateEntry(RoutineEntry entry, MinigameJudgement judgement,
-            MinigameEndReason endReason, int basePoints, int bonus)
+        private bool ValidateEntry(RoutineEntry entry, MinigameJudgement judgement, MinigameEndReason endReason, int basePoints)
         {
             var passed = Expect(entry.Judgement == judgement, $"{entry.MinigameId}의 판정이 다릅니다.");
             passed &= Expect(entry.EndReason == endReason, $"{entry.MinigameId}의 종료 사유가 다릅니다.");
             passed &= Expect(entry.Score.BasePoints == basePoints, $"{entry.MinigameId}의 기본 상점이 다릅니다.");
-            passed &= Expect(entry.Score.PerfectBonus == bonus, $"{entry.MinigameId}의 퍼펙트 보너스가 다릅니다.");
             return passed;
         }
 
@@ -212,7 +205,7 @@ namespace DreamOfMilitary.Routine.Tests
             valid &= Expect(_runner != null, "RoutineRunner가 연결되지 않았습니다.");
             valid &= Expect(_config != null, "RoutineConfig가 연결되지 않았습니다.");
             valid &= Expect(_catalog != null, "MinigameCatalog가 연결되지 않았습니다.");
-            valid &= Expect(_perfectDefinition != null, "퍼펙트 미니게임 정의가 연결되지 않았습니다.");
+            valid &= Expect(_allSuccessDefinition != null, "전체 성공 테스트용 미니게임 정의가 연결되지 않았습니다.");
             return valid;
         }
 

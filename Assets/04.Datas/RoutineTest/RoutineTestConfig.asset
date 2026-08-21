@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07993f6608635874fbb29c10c60754ac, type: 3}
   m_Name: RoutineTestConfig
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.RoutineConfig
-  _minigameCount: 10
-  _commandDisplaySeconds: 0.01
-  _feedbackDisplaySeconds: 0.01
-  _abortCleanupGraceSeconds: 0.05
-  _allPerfectBonusPoints: 25
+  _minigameCount: 9
+  _commandDisplaySeconds: 3
+  _feedbackDisplaySeconds: 1
+  _abortCleanupGraceSeconds: 0.5
+  _allSuccessBonusPoints: 25

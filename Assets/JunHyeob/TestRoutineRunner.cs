@@ -430,7 +430,7 @@ namespace DreamOfMilitary.Routine
                 MinigameCompleted?.Invoke(
                     definition,
                     outcome,
-                    MinigameEndReason.Timeout);
+                    MinigameEndReason.TimeLimitReached);
             }
 
             _currentMinigameIndex++;

@@ -6,15 +6,15 @@ using UnityEngine;
 namespace DreamOfMilitary.Routine.Minigames.QuickPack
 {
     /// <summary>
-    /// ½Å¼Ó ±ºÀå ½Î±â ¹Ì´Ï°ÔÀÓ.
+    /// ì‹ ì† êµ°ì¥ ì‹¸ê¸° ë¯¸ë‹ˆê²Œì„.
     ///
-    /// ÀÔ·ÂÀº ÇÁ·ÎÁ§Æ® °øÅë MouseInputManager¸¦ »ç¿ëÇÑ´Ù.
-    /// Á¡¼ö, °è±Ş, º¹¹« °³¿ù µîÀÇ °ÔÀÓ ÁøÇàÀº Á÷Á¢ ¼öÁ¤ÇÏÁö ¾Ê´Â´Ù.
+    /// ì…ë ¥ì€ í”„ë¡œì íŠ¸ ê³µí†µ MouseInputManagerë¥¼ ì‚¬ìš©í•œë‹¤.
+    /// ì ìˆ˜, ê³„ê¸‰, ë³µë¬´ ê°œì›” ë“±ì˜ ê²Œì„ ì§„í–‰ì€ ì§ì ‘ ìˆ˜ì •í•˜ì§€ ì•ŠëŠ”ë‹¤.
     /// </summary>
     public sealed class QuickPackMinigame
         : MonoBehaviour, IMinigame
     {
-        [Header("±ºÀå ¹°Ç°")]
+        [Header("êµ°ì¥ ë¬¼í’ˆ")]
         [SerializeField]
         private QuickPackItem[] _items;
 
@@ -31,15 +31,9 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
         [SerializeField]
         private TMP_Text _mistakeText;
 
-        [Header("±âº» °ÔÀÓ ¼³Á¤")]
+        [Header("ê¸°ë³¸ ê²Œì„ ì„¤ì •")]
         [SerializeField, Min(1)]
         private int _baseItemCount = 4;
-
-        [SerializeField, Range(0.1f, 1f)]
-        private float _perfectTimeRatio = 0.5f;
-
-        [SerializeField, Min(0)]
-        private int _perfectMaxMistakes = 0;
 
         private MinigameContext _context;
 
@@ -51,8 +45,6 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
         private int _currentIndex;
         private int _mistakeCount;
 
-        private float _elapsedTime;
-
         private bool _isPlaying;
         private bool _hasFinished;
 
@@ -63,7 +55,7 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
             if (_isPlaying)
             {
                 Debug.LogWarning(
-                    "QuickPackMinigameÀº ÀÌ¹Ì ½ÇÇà ÁßÀÔ´Ï´Ù.");
+                    "QuickPackMinigameì€ ì´ë¯¸ ì‹¤í–‰ ì¤‘ì…ë‹ˆë‹¤.");
 
                 return;
             }
@@ -71,7 +63,7 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
             if (onCompleted == null)
             {
                 Debug.LogError(
-                    "QuickPackMinigame: ¿Ï·á Äİ¹éÀÌ nullÀÔ´Ï´Ù.");
+                    "QuickPackMinigame: ì™„ë£Œ ì½œë°±ì´ nullì…ë‹ˆë‹¤.");
 
                 return;
             }
@@ -79,7 +71,7 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
             if (_items == null || _items.Length == 0)
             {
                 Debug.LogError(
-                    "QuickPackMinigame: ±ºÀå ¹°Ç°ÀÌ µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+                    "QuickPackMinigame: êµ°ì¥ ë¬¼í’ˆì´ ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 
                 return;
             }
@@ -89,8 +81,6 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
 
             _currentIndex = 0;
             _mistakeCount = 0;
-            _elapsedTime = 0f;
-
             _hasFinished = false;
             _isPlaying = true;
 
@@ -98,8 +88,8 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
         }
 
         /// <summary>
-        /// RoutineRunner¿¡¼­ °­Á¦ Á¾·áÇÒ ¶§ È£ÃâÇÑ´Ù.
-        /// Abort ÀÌÈÄ¿¡´Â ¿Ï·á Äİ¹éÀ» È£ÃâÇÏÁö ¾Ê´Â´Ù.
+        /// RoutineRunnerì—ì„œ ê°•ì œ ì¢…ë£Œí•  ë•Œ í˜¸ì¶œí•œë‹¤.
+        /// Abort ì´í›„ì—ëŠ” ì™„ë£Œ ì½œë°±ì„ í˜¸ì¶œí•˜ì§€ ì•ŠëŠ”ë‹¤.
         /// </summary>
         public void Abort()
         {
@@ -128,14 +118,12 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
                 return;
             }
 
-            _elapsedTime += Time.deltaTime;
-
             HandleMouseInput();
         }
 
         /// <summary>
-        /// ÇÁ·ÎÁ§Æ® °øÅë MouseInputManager¸¦ ÀÌ¿ëÇØ¼­
-        /// ¸¶¿ì½º Å¬¸¯À» Ã³¸®ÇÑ´Ù.
+        /// í”„ë¡œì íŠ¸ ê³µí†µ MouseInputManagerë¥¼ ì´ìš©í•´ì„œ
+        /// ë§ˆìš°ìŠ¤ í´ë¦­ì„ ì²˜ë¦¬í•œë‹¤.
         /// </summary>
         private void HandleMouseInput()
         {
@@ -204,8 +192,8 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
         }
 
         /// <summary>
-        /// RandomSeed¸¦ ÀÌ¿ëÇØ¼­ ÀÌ¹ø °ÔÀÓÀÇ
-        /// ±ºÀå ¹°Ç° ¼ø¼­¸¦ °áÁ¤ÇÑ´Ù.
+        /// RandomSeedë¥¼ ì´ìš©í•´ì„œ ì´ë²ˆ ê²Œì„ì˜
+        /// êµ°ì¥ ë¬¼í’ˆ ìˆœì„œë¥¼ ê²°ì •í•œë‹¤.
         /// </summary>
         private void CreateSequence(
             int itemCount,
@@ -323,8 +311,8 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
             UpdateUI();
 
             Debug.Log(
-                $"[QuickPack] Àß¸øµÈ ¹°Ç°! " +
-                $"½Ç¼ö È½¼ö = {_mistakeCount}");
+                $"[QuickPack] ì˜ëª»ëœ ë¬¼í’ˆ! " +
+                $"ì‹¤ìˆ˜ íšŸìˆ˜ = {_mistakeCount}");
         }
 
         private void CompleteGame()
@@ -337,11 +325,7 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
             _hasFinished = true;
             _isPlaying = false;
 
-            MinigameJudgement judgement =
-                CalculateJudgement();
-
-            MinigameOutcome outcome =
-                new MinigameOutcome(judgement);
+            var outcome = new MinigameOutcome(MinigameJudgement.Success);
 
             Action<MinigameOutcome> callback =
                 _onCompleted;
@@ -351,44 +335,19 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
             callback?.Invoke(outcome);
         }
 
-        /// <summary>
-        /// TimeoutÀº ¿©±â¼­ Ã³¸®ÇÏÁö ¾Ê´Â´Ù.
-        /// RoutineRunner°¡ Á¦ÇÑ½Ã°£À» °ü¸®ÇÑ´Ù.
-        /// </summary>
-        private MinigameJudgement CalculateJudgement()
-        {
-            float perfectTime =
-                _context.TimeLimitSeconds
-                * _perfectTimeRatio;
-
-            bool isPerfectTime =
-                _elapsedTime <= perfectTime;
-
-            bool hasFewEnoughMistakes =
-                _mistakeCount <= _perfectMaxMistakes;
-
-            if (isPerfectTime &&
-                hasFewEnoughMistakes)
-            {
-                return MinigameJudgement.Perfect;
-            }
-
-            return MinigameJudgement.Clear;
-        }
-
         private void UpdateUI()
         {
             if (_instructionText != null)
             {
                 _instructionText.text =
-                    "½Å¼ÓÇÏ°Ô ±ºÀåÀ» ½Î¶ó!";
+                    "ì‹ ì†í•˜ê²Œ êµ°ì¥ì„ ì‹¸ë¼!";
             }
 
             if (_nextItemText != null)
             {
                 if (_currentIndex >= _sequence.Count)
                 {
-                    _nextItemText.text = "¿Ï·á!";
+                    _nextItemText.text = "ì™„ë£Œ!";
                 }
                 else
                 {
@@ -396,7 +355,7 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
                         _sequence[_currentIndex];
 
                     _nextItemText.text =
-                        $"´ÙÀ½ : {nextItem.ItemId}";
+                        $"ë‹¤ìŒ : {nextItem.ItemId}";
                 }
             }
 
@@ -409,7 +368,7 @@ namespace DreamOfMilitary.Routine.Minigames.QuickPack
             if (_mistakeText != null)
             {
                 _mistakeText.text =
-                    $"½Ç¼ö : {_mistakeCount}";
+                    $"ì‹¤ìˆ˜ : {_mistakeCount}";
             }
         }
 
