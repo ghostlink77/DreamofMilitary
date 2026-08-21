@@ -15,7 +15,7 @@ public class PushUp : MonoBehaviour, IMinigame
     [SerializeField] private GameObject upSprite;
     [SerializeField] private GameObject downSprite;
     [SerializeField] private Slider pushUpCountSlider;
-    [SerializeField] private TMP_Text countText;
+    [SerializeField] private TextMeshProUGUI countText;
 
     private int _pushUpCount;
     private int _successCount;
