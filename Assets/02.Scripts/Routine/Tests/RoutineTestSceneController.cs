@@ -14,7 +14,7 @@ namespace DreamOfMilitary.Routine.Tests
     {
         private const int MixedSeed = 12345;
         private const int AllSuccessSeed = 67890;
-        private const int PointsPerSuccess = RoutineScoring.PointsPerSuccess;
+        private const int PointsPerSuccess = 1;
         private const int RoutinePerfectBonus = 2;
 
         [SerializeField] private RoutineRunner _runner;

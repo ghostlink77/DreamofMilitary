@@ -17,22 +17,6 @@ namespace DreamOfMilitary.Routine
 
         public RoutineEntry(string minigameId, MinigameJudgement judgement, int score, float elapsedSeconds)
         {
-            if (string.IsNullOrWhiteSpace(minigameId))
-            {
-                throw new ArgumentException("미니게임 ID가 필요합니다.", nameof(minigameId));
-            }
-
-            if (score < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(score));
-            }
-
-            if (elapsedSeconds < 0f)
-            {
-                throw new ArgumentOutOfRangeException(
-                    nameof(elapsedSeconds));
-            }
-
             MinigameId = minigameId;
             Judgement = judgement;
             Score = score;
@@ -75,30 +59,19 @@ namespace DreamOfMilitary.Routine
 
             for (var index = 0; index < entries.Count; index++)
             {
-                var entry = entries[index]
-                    ?? throw new ArgumentException(
-                        "일과 기록에는 null 항목을 넣을 수 없습니다.",
-                        nameof(entries));
-
+                var entry = entries[index];
                 _entries[index] = entry;
 
-                switch (entry.Judgement)
+                if (entry.Judgement == MinigameJudgement.Success)
                 {
-                    case MinigameJudgement.Failure:
-                        failureCount++;
-                        break;
-
-                    case MinigameJudgement.Success:
-                        successCount++;
-                        break;
-
-                    default:
-                        throw new ArgumentOutOfRangeException(
-                            nameof(entries),
-                            "알 수 없는 판정이 포함되어 있습니다.");
+                    successCount++;
+                }
+                else
+                {
+                    failureCount++;
                 }
 
-                basePointsTotal = checked(basePointsTotal + entry.Score);
+                basePointsTotal += entry.Score;
             }
 
             var isAllSuccessful =
@@ -117,7 +90,7 @@ namespace DreamOfMilitary.Routine
             BasePointsTotal = basePointsTotal;
             RoutinePerfectBonus = routinePerfectBonus;
 
-            TotalPoints = checked(basePointsTotal + routinePerfectBonus);
+            TotalPoints = basePointsTotal + routinePerfectBonus;
         }
     }
 }

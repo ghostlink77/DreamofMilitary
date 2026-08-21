@@ -225,7 +225,7 @@ namespace DreamOfMilitary.Routine
                 feedbackSeconds = Mathf.Max(feedbackSeconds, _config.AbortCleanupGraceSeconds);
             }
 
-            var score = runMode == RoutineRunMode.Routine ? RoutineScoring.Calculate(judgement) : 0;
+            var score = runMode == RoutineRunMode.Routine && judgement == MinigameJudgement.Success ? 1 : 0;
 
             entries.Add(new RoutineEntry(minigameId, judgement, score, elapsedSeconds));
 
