@@ -13,7 +13,7 @@ namespace DreamOfMilitary.Routine
     /// - IMinigame.Begin 호출
     /// - 제한시간 관리
     /// - Timeout 발생 시 Abort 호출
-    /// - MinigameOutcome 수신
+    /// - 미니게임 판정 수신
     /// - 다음 미니게임 실행
     ///
     /// 담당하지 않음:
@@ -113,8 +113,7 @@ namespace DreamOfMilitary.Routine
         /// </summary>
         public event Action<
             MinigameDef,
-            MinigameOutcome,
-            MinigameEndReason> MinigameCompleted;
+            MinigameJudgement> MinigameCompleted;
 
         private void Awake()
         {
@@ -423,14 +422,9 @@ namespace DreamOfMilitary.Routine
 
             if (definition != null)
             {
-                MinigameOutcome outcome =
-                    new MinigameOutcome(
-                        MinigameJudgement.Failure);
-
                 MinigameCompleted?.Invoke(
                     definition,
-                    outcome,
-                    MinigameEndReason.TimeLimitReached);
+                    MinigameJudgement.Failure);
             }
 
             _currentMinigameIndex++;
@@ -439,7 +433,7 @@ namespace DreamOfMilitary.Routine
         }
 
         private void OnMinigameCompleted(
-            MinigameOutcome outcome)
+            MinigameJudgement judgement)
         {
             if (!_isMinigameRunning)
             {
@@ -462,8 +456,7 @@ namespace DreamOfMilitary.Routine
             {
                 MinigameCompleted?.Invoke(
                     definition,
-                    outcome,
-                    MinigameEndReason.Completed);
+                    judgement);
             }
 
             _currentMinigameIndex++;
@@ -499,14 +492,9 @@ namespace DreamOfMilitary.Routine
 
             if (definition != null)
             {
-                MinigameOutcome outcome =
-                    new MinigameOutcome(
-                        MinigameJudgement.Failure);
-
                 MinigameCompleted?.Invoke(
                     definition,
-                    outcome,
-                    MinigameEndReason.Error);
+                    MinigameJudgement.Failure);
             }
 
             _currentMinigameIndex++;

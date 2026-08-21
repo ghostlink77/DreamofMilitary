@@ -22,11 +22,7 @@ namespace DreamOfMilitary.Routine
         [Header("일과 등장 조건")]
         [SerializeField] private RoutineStageMask _availableStages = RoutineStageMask.All;
 
-        [SerializeField] private bool _isExamMinigame;
-
         [Header("기본 설정")]
-        [SerializeField, Min(0)] private int _basePoints;
-
         [SerializeField, Min(0)] private int _difficultyTier;
 
         [SerializeField, Min(0.1f)] private float _timeLimitSeconds = 5f;
@@ -39,8 +35,6 @@ namespace DreamOfMilitary.Routine
         public string CommandText => _commandText;
         public GameObject Prefab => _prefab;
         public RoutineStageMask AvailableStages => _availableStages;
-        public bool IsExamMinigame => _isExamMinigame;
-        public int BasePoints => _basePoints;
         public int DifficultyTier => _difficultyTier;
         public float TimeLimitSeconds => _timeLimitSeconds;
         public MinigameTimeLimitRule TimeLimitRule => _timeLimitRule;
@@ -76,9 +70,6 @@ namespace DreamOfMilitary.Routine
         {
             _id = _id?.Trim() ?? string.Empty;
             _commandText = _commandText?.Trim() ?? string.Empty;
-            _basePoints = Mathf.Max(0, _basePoints);
-            _difficultyTier = Mathf.Max(0, _difficultyTier);
-            _timeLimitSeconds = Mathf.Max(0.1f, _timeLimitSeconds);
         }
 #endif
     }

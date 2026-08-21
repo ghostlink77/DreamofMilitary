@@ -16,4 +16,4 @@ MonoBehaviour:
   _commandDisplaySeconds: 3
   _feedbackDisplaySeconds: 1
   _abortCleanupGraceSeconds: 0.5
-  _allSuccessBonusPoints: 25
+  _allSuccessBonusPoints: 2

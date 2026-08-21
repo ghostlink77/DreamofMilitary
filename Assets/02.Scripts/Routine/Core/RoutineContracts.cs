@@ -14,6 +14,12 @@ namespace DreamOfMilitary.Routine
         Discharge = 3
     }
 
+    public enum RoutineRunMode
+    {
+        Routine = 0,
+        Exam = 1
+    }
+
     [Flags]
     public enum RoutineStageMask
     {
@@ -42,20 +48,6 @@ namespace DreamOfMilitary.Routine
         MustCompleteBeforeLimit = 0,
         SurviveUntilLimit = 1,
         EvaluateAtLimit = 2
-    }
-
-    public enum MinigameEndReason
-    {
-        Completed = 0,
-        TimeLimitReached = 1,
-        Aborted = 2,
-        Error = 3
-    }
-
-    public enum MonthAdvanceReason
-    {
-        RoutineCompleted = 0,
-        PromotionFailed = 1
     }
 
     // 미니게임 한 번의 설정 값
@@ -87,22 +79,6 @@ namespace DreamOfMilitary.Routine
         }
     }
 
-    // 미니게임 한 번의 결과(성공 여부)
-    public readonly struct MinigameOutcome
-    {
-        public MinigameJudgement Judgement { get; }
-
-        public MinigameOutcome(MinigameJudgement judgement)
-        {
-            if (!Enum.IsDefined(typeof(MinigameJudgement), judgement))
-            {
-                throw new ArgumentOutOfRangeException(nameof(judgement));
-            }
-
-            Judgement = judgement;
-        }
-    }
-
     public interface IMinigame
     {
         /// <summary>
@@ -110,7 +86,7 @@ namespace DreamOfMilitary.Routine
         /// 완료 콜백은 최대 한 번 호출해야 한다.
         /// 최종 흐름 제어와 제한시간 판정은 RoutineRunner가 담당한다.
         /// </summary>
-        void Begin(MinigameContext context, Action<MinigameOutcome> onCompleted);
+        void Begin(MinigameContext context, Action<MinigameJudgement> onCompleted);
 
         /// <summary>
         /// 입력과 내부 진행을 즉시 중단한다.
@@ -124,6 +100,6 @@ namespace DreamOfMilitary.Routine
     /// </summary>
     public interface ITimeLimitResolver
     {
-        MinigameOutcome ResolveAtTimeLimit();
+        MinigameJudgement ResolveAtTimeLimit();
     }
 }

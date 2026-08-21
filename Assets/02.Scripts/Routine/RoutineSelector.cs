@@ -4,21 +4,32 @@ using System.Collections.Generic;
 namespace DreamOfMilitary.Routine
 {
     /// <summary>
-    /// 각 일과 구간별 후보를 한 번씩 모두 사용한 뒤 다시 섞는다.
-    /// 후보가 일과 진행 개수보다 적어도 정상적으로 반복 선정된다.
+    /// 현재 일과 구간에 등장 가능한 일반 미니게임을 필터링하고,
+    /// 셔플백 방식(후보를 한 번씩 모두 소진한 뒤 다시 섞음)으로 일과 목록을 만든다.
     /// </summary>
-    public sealed class ShuffleBagRoutineSelectionStrategy: IRoutineSelectionStrategy
+    public sealed class RoutineSelector
     {
+        private readonly MinigameCatalog _catalog;
         private readonly Dictionary<RoutineStage, BagState> _bags = new Dictionary<RoutineStage, BagState>();
 
-        public IReadOnlyList<MinigameDef> Select(RoutineSelectionRequest request, IReadOnlyList<MinigameDef> candidates)
+        public RoutineSelector(MinigameCatalog catalog)
         {
-            ValidateCandidates(candidates);
+            _catalog = catalog ?? throw new ArgumentNullException(nameof(catalog));
+        }
 
-            if (!_bags.TryGetValue(request.Stage, out var bag))
+        public IReadOnlyList<MinigameDef> SelectRoutine(RoutineStage stage, int count, int randomSeed)
+        {
+            if (count <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count), "선정할 미니게임 수는 1 이상이어야 합니다.");
+            }
+
+            var candidates = BuildCandidateList(stage);
+
+            if (!_bags.TryGetValue(stage, out var bag))
             {
                 bag = new BagState();
-                _bags.Add(request.Stage, bag);
+                _bags.Add(stage, bag);
             }
 
             if (!bag.MatchesPool(candidates))
@@ -26,10 +37,10 @@ namespace DreamOfMilitary.Routine
                 bag.ResetPool(candidates);
             }
 
-            var random = new Random(request.RandomSeed);
-            var selected = new List<MinigameDef>(request.Count);
+            var random = new Random(randomSeed);
+            var selected = new List<MinigameDef>(count);
 
-            for (var index = 0; index < request.Count; index++)
+            for (var index = 0; index < count; index++)
             {
                 if (bag.Remaining.Count == 0)
                 {
@@ -46,28 +57,43 @@ namespace DreamOfMilitary.Routine
             return selected;
         }
 
-        private static void ValidateCandidates(IReadOnlyList<MinigameDef> candidates)
+        private List<MinigameDef> BuildCandidateList(RoutineStage stage)
         {
-            if (candidates == null)
+            var candidates = new List<MinigameDef>();
+            var knownIds = new HashSet<string>(StringComparer.Ordinal);
+
+            for (var index = 0; index < _catalog.Definitions.Count; index++)
             {
-                throw new ArgumentNullException(nameof(candidates));
+                var definition = _catalog.Definitions[index];
+
+                if (definition == null || !definition.SupportsStage(stage))
+                {
+                    continue;
+                }
+
+                if (string.IsNullOrWhiteSpace(definition.Id))
+                {
+                    throw new InvalidOperationException(
+                        "미니게임 정의에는 비어 있지 않은 ID가 필요합니다.");
+                }
+
+                if (!knownIds.Add(definition.Id))
+                {
+                    throw new InvalidOperationException(
+                        $"중복된 미니게임 ID가 있습니다: {definition.Id}");
+                }
+
+                candidates.Add(definition);
             }
 
             if (candidates.Count == 0)
             {
                 throw new InvalidOperationException(
-                    "선정 가능한 미니게임이 없습니다.");
+                    $"{stage} 구간에 등장 가능한 "
+                    + "일과 미니게임이 없습니다.");
             }
 
-            for (var index = 0; index < candidates.Count; index++)
-            {
-                if (candidates[index] == null)
-                {
-                    throw new ArgumentException(
-                        "후보 목록에는 null 미니게임을 넣을 수 없습니다.",
-                        nameof(candidates));
-                }
-            }
+            return candidates;
         }
 
         private static void RefillBag(BagState bag, Random random)

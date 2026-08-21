@@ -30,7 +30,7 @@ namespace DreamOfMilitary.Progression
 
         public event Action<GameStateSnapshot> StateChanged;
 
-        public event Action<MonthAdvanceReason, GameStateSnapshot> MonthAdvanced;
+        public event Action<GameStateSnapshot> MonthAdvanced;
 
         private void Awake()
         {
@@ -77,25 +77,20 @@ namespace DreamOfMilitary.Progression
             _ = checked(ServiceMonths + 1);
 
             TotalPoints = nextTotalPoints;
-            AdvanceMonth(MonthAdvanceReason.RoutineCompleted);
+            AdvanceMonth();
         }
 
         /// <summary>
         /// 복무 개월 변경은 이 메서드를 통해서만 처리한다.
         /// 일과 완료와 진급심사 실패 모두 1개월이 경과한다.
         /// </summary>
-        public void AdvanceMonth(MonthAdvanceReason reason)
+        public void AdvanceMonth()
         {
-            if (!Enum.IsDefined(typeof(MonthAdvanceReason), reason))
-            {
-                throw new ArgumentOutOfRangeException(nameof(reason));
-            }
-
             ServiceMonths = checked(ServiceMonths + 1);
 
             var snapshot = CaptureSnapshot();
 
-            MonthAdvanced?.Invoke(reason, snapshot);
+            MonthAdvanced?.Invoke(snapshot);
             StateChanged?.Invoke(snapshot);
         }
 

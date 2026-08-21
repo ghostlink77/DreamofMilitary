@@ -20,7 +20,6 @@ namespace DreamOfMilitary.Routine
         Completed = 4
     }
 
-    [DisallowMultipleComponent]
     public sealed class RoutineRunner : MonoBehaviour
     {
         [Header("일과 설정")]
@@ -32,7 +31,7 @@ namespace DreamOfMilitary.Routine
         private Coroutine _routineCoroutine;
         private GameObject _activeInstance;
         private IMinigame _activeMinigame;
-        private MinigameOutcome _pendingOutcome;
+        private MinigameJudgement _pendingJudgement;
         private bool _isRunning;
         private bool _acceptingCompletion;
         private bool _hasOutcome;
@@ -44,10 +43,10 @@ namespace DreamOfMilitary.Routine
         public event Action<RoutineRunState> StateChanged;
         public event Action<string, int, int> CommandShown;
         public event Action<float> TimeNormalizedChanged;
-        public event Action<MinigameJudgement, ScoreBreakdown> FeedbackShown;
+        public event Action<MinigameJudgement, int> FeedbackShown;
         public event Action<RoutineReport> RoutineCompleted;
 
-        public void StartRoutine(IReadOnlyList<MinigameDef> sequence, int sessionSeed)
+        public void StartRoutine(IReadOnlyList<MinigameDef> sequence, int sessionSeed, RoutineRunMode runMode = RoutineRunMode.Routine)
         {
             if (_isRunning)
             {
@@ -73,12 +72,19 @@ namespace DreamOfMilitary.Routine
 
             for (var index = 0; index < sequence.Count; index++)
             {
-                copiedSequence.Add(sequence[index]);
+                var definition = sequence[index];
+
+                if (definition == null)
+                {
+                    throw new ArgumentException($"{index + 1}번째 미니게임 정의가 null입니다.", nameof(sequence));
+                }
+
+                copiedSequence.Add(definition);
             }
 
             _runToken++;
             _isRunning = true;
-            _routineCoroutine = StartCoroutine(RunRoutine(copiedSequence, sessionSeed, _runToken));
+            _routineCoroutine = StartCoroutine(RunRoutine(copiedSequence, sessionSeed, _runToken, runMode));
         }
 
         public void CancelRoutine()
@@ -109,7 +115,7 @@ namespace DreamOfMilitary.Routine
             CancelRoutine();
         }
 
-        private IEnumerator RunRoutine(IReadOnlyList<MinigameDef> sequence, int sessionSeed, int runToken)
+        private IEnumerator RunRoutine(IReadOnlyList<MinigameDef> sequence, int sessionSeed, int runToken, RoutineRunMode runMode)
         {
             var entries = new List<RoutineEntry>(sequence.Count);
 
@@ -123,14 +129,14 @@ namespace DreamOfMilitary.Routine
                 var definition = sequence[index];
 
                 SetState(RoutineRunState.ShowingCommand);
-                CommandShown?.Invoke(definition != null ? definition.CommandText : string.Empty, index + 1, sequence.Count);
+                CommandShown?.Invoke(definition.CommandText, index + 1, sequence.Count);
 
                 if (_config.CommandDisplaySeconds > 0f)
                 {
                     yield return new WaitForSeconds(_config.CommandDisplaySeconds);
                 }
 
-                yield return RunSingleMinigame(definition, index, sequence.Count, sessionSeed, runToken, entries);
+                yield return RunSingleMinigame(definition, index, sessionSeed, runToken, entries, runMode);
             }
 
             var allSuccessful = entries.Count > 0;
@@ -144,7 +150,7 @@ namespace DreamOfMilitary.Routine
                 }
             }
 
-            var routineBonus = allSuccessful ? _config.AllSuccessBonusPoints : 0;
+            var routineBonus = runMode == RoutineRunMode.Routine && allSuccessful ? _config.AllSuccessBonusPoints : 0;
             var report = new RoutineReport(entries, routineBonus);
 
             _routineCoroutine = null;
@@ -154,46 +160,21 @@ namespace DreamOfMilitary.Routine
             RoutineCompleted?.Invoke(report);
         }
 
-        private IEnumerator RunSingleMinigame(MinigameDef definition, int index, int totalCount,
-            int sessionSeed, int runToken, List<RoutineEntry> entries)
+        private IEnumerator RunSingleMinigame(MinigameDef definition, int index,
+            int sessionSeed, int runToken, List<RoutineEntry> entries, RoutineRunMode runMode)
         {
-            var minigameId = GetMinigameId(definition, index);
-
-            if (definition == null)
-            {
-                yield return RecordError(minigameId, "미니게임 정의가 null입니다.", entries);
-                yield break;
-            }
-
             if (definition.Prefab == null)
             {
-                yield return RecordError(minigameId, "미니게임 프리팹이 연결되지 않았습니다.", entries);
-                yield break;
+                throw new InvalidOperationException($"[{definition.Id}] 미니게임 프리팹이 연결되지 않았습니다.");
             }
 
-            Exception spawnError = null;
+            var minigameId = GetMinigameId(definition, index);
 
-            try
-            {
-                _activeInstance = Instantiate(definition.Prefab, _playAreaRoot);
-            }
-            catch (Exception exception)
-            {
-                spawnError = exception;
-            }
-
-            if (spawnError != null)
-            {
-                Debug.LogException(spawnError, this);
-                yield return RecordError(minigameId, "미니게임 프리팹 생성에 실패했습니다.", entries);
-                yield break;
-            }
+            _activeInstance = Instantiate(definition.Prefab, _playAreaRoot);
 
             if (!TryFindMinigame(_activeInstance, out _activeMinigame, out var componentError))
             {
-                yield return RecordError(minigameId, componentError, entries);
-                DestroyActiveInstance();
-                yield break;
+                throw new InvalidOperationException($"[{minigameId}] {componentError}");
             }
 
             _acceptingCompletion = true;
@@ -202,27 +183,7 @@ namespace DreamOfMilitary.Routine
             var randomSeed = unchecked(sessionSeed + index * 397);
             var context = new MinigameContext(definition.DifficultyTier, definition.TimeLimitSeconds, randomSeed);
 
-            Exception beginError = null;
-
-            try
-            {
-                _activeMinigame.Begin(context, outcome => AcceptOutcome(runToken, outcome));
-            }
-            catch (Exception exception)
-            {
-                beginError = exception;
-            }
-
-            if (beginError != null)
-            {
-                Debug.LogException(beginError, this);
-                _acceptingCompletion = false;
-                AbortActiveMinigame();
-
-                yield return RecordError(minigameId, "미니게임 시작 중 오류가 발생했습니다.", entries);
-                DestroyActiveInstance();
-                yield break;
-            }
+            _activeMinigame.Begin(context, judgement => AcceptOutcome(runToken, judgement));
 
             SetState(RoutineRunState.Playing);
             TimeNormalizedChanged?.Invoke(1f);
@@ -249,62 +210,26 @@ namespace DreamOfMilitary.Routine
 
             _acceptingCompletion = false;
 
-            var judgement = MinigameJudgement.Failure;
-            var endReason = MinigameEndReason.TimeLimitReached;
+            MinigameJudgement judgement;
             var feedbackSeconds = _config.FeedbackDisplaySeconds;
-            Exception timeLimitError = null;
 
             if (_hasOutcome)
             {
-                judgement = _pendingOutcome.Judgement;
-                endReason = MinigameEndReason.Completed;
+                judgement = _pendingJudgement;
             }
             else
             {
                 TimeNormalizedChanged?.Invoke(0f);
 
-                try
-                {
-                    judgement = ResolveTimeLimitJudgement(definition);
-                }
-                catch (Exception exception)
-                {
-                    timeLimitError = exception;
-                    judgement = MinigameJudgement.Failure;
-                    endReason = MinigameEndReason.Error;
-                }
+                judgement = ResolveTimeLimitJudgement(definition);
 
                 AbortActiveMinigame();
                 feedbackSeconds = Mathf.Max(feedbackSeconds, _config.AbortCleanupGraceSeconds);
             }
 
-            if (timeLimitError != null)
-            {
-                Debug.LogException(timeLimitError, this);
-            }
+            var score = runMode == RoutineRunMode.Routine && judgement == MinigameJudgement.Success ? 1 : 0;
 
-            ScoreBreakdown score;
-            Exception scoringError = null;
-
-            try
-            {
-                score = RoutineScoring.Calculate(definition.BasePoints, judgement);
-            }
-            catch (Exception exception)
-            {
-                scoringError = exception;
-                judgement = MinigameJudgement.Failure;
-                endReason = MinigameEndReason.Error;
-                score = new ScoreBreakdown(0);
-            }
-
-            if (scoringError != null)
-            {
-                Debug.LogException(scoringError, this);
-                AbortActiveMinigame();
-            }
-
-            entries.Add(new RoutineEntry(minigameId, judgement, endReason, score, elapsedSeconds));
+            entries.Add(new RoutineEntry(minigameId, judgement, score, elapsedSeconds));
 
             SetState(RoutineRunState.ShowingFeedback);
             FeedbackShown?.Invoke(judgement, score);
@@ -317,14 +242,14 @@ namespace DreamOfMilitary.Routine
             DestroyActiveInstance();
         }
 
-        private void AcceptOutcome(int runToken, MinigameOutcome outcome)
+        private void AcceptOutcome(int runToken, MinigameJudgement judgement)
         {
             if (!_acceptingCompletion || _hasOutcome || runToken != _runToken)
             {
                 return;
             }
 
-            _pendingOutcome = outcome;
+            _pendingJudgement = judgement;
             _hasOutcome = true;
         }
 
@@ -345,26 +270,10 @@ namespace DreamOfMilitary.Routine
                             $"[{definition.Id}] 제한시간 종료 판정을 제공하는 ITimeLimitResolver가 필요합니다.");
                     }
 
-                    return resolver.ResolveAtTimeLimit().Judgement;
+                    return resolver.ResolveAtTimeLimit();
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(definition.TimeLimitRule));
-            }
-        }
-
-        private IEnumerator RecordError(string minigameId, string message, List<RoutineEntry> entries)
-        {
-            Debug.LogError($"[{minigameId}] {message}", this);
-
-            var score = new ScoreBreakdown(0);
-            entries.Add(new RoutineEntry(minigameId, MinigameJudgement.Failure, MinigameEndReason.Error, score, 0f));
-
-            SetState(RoutineRunState.ShowingFeedback);
-            FeedbackShown?.Invoke(MinigameJudgement.Failure, score);
-
-            if (_config.FeedbackDisplaySeconds > 0f)
-            {
-                yield return new WaitForSeconds(_config.FeedbackDisplaySeconds);
             }
         }
 
@@ -431,9 +340,7 @@ namespace DreamOfMilitary.Routine
 
         private static string GetMinigameId(MinigameDef definition, int index)
         {
-            return definition != null && !string.IsNullOrWhiteSpace(definition.Id)
-                ? definition.Id
-                : $"invalid-{index + 1}";
+            return !string.IsNullOrWhiteSpace(definition.Id) ? definition.Id : $"minigame-{index + 1}";
         }
 
         private void SetState(RoutineRunState state)
