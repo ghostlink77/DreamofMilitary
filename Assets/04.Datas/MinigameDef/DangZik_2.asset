@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
+  m_Name: DangZik_2
+  m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
+  _id: Dang_Zik
+  _commandText: "\uB208\uCE58\uAECF \uC878\uC544\uB77C!"
+  _prefab: {fileID: 7013333293897079636, guid: 2ea58930ac47c0447adc4d92af8adadf, type: 3}
+  _availableStages: 8
+  _isExamMinigame: 0
+  _basePoints: 2
+  _difficultyTier: 1
+  _timeLimitSeconds: 5
+  _timeLimitRule: 1
