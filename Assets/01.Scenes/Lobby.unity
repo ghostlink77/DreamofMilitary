@@ -238,6 +238,10 @@ MonoBehaviour:
   settingButton: {fileID: 304590830}
   exitButton: {fileID: 2007297696}
   settingBlackBack: {fileID: 1596436988}
+  pointSlider: {fileID: 667799790}
+  pointText: {fileID: 848154462}
+  stageButtonText: {fileID: 1990901818}
+  promotionExamButtonSprite: {fileID: 21300000, guid: 3e7835a6da982b0418247d8f31ef50da, type: 3}
   miniGameSceneName: Routine_TestScene
 --- !u!1 &115694023
 GameObject:

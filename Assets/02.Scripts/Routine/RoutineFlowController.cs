@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DreamOfMilitary.Progression;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace DreamOfMilitary.Routine
 {
@@ -127,6 +128,19 @@ namespace DreamOfMilitary.Routine
             var lobbySceneName = _lobbySceneName;
             ClearSession();
             SceneManager.LoadScene(lobbySceneName);
+        }
+
+        public bool RefreshLobbyPointUI(Slider pointSlider, Text pointText)
+        {
+            var state = GameState.Instance.CaptureSnapshot();
+            var requiredPoints = progressionConfig.GetRequiredCumulativePoints(state.Rank);
+
+            pointSlider.minValue = 0;
+            pointSlider.maxValue = requiredPoints;
+            pointSlider.value = state.TotalPoints;
+            pointSlider.interactable = false;
+            pointText.text = $"{state.TotalPoints} / {requiredPoints}";
+            return state.TotalPoints >= requiredPoints;
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)

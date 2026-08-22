@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca3b2a4c19ad2634ab4640945bae9e77, type: 3}
   m_Name: ProgressionConfig
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Progression.ProgressionConfig
-  _privateSecondClassToPrivateFirstClassPoints: 0
-  _privateFirstClassToCorporalPoints: 0
-  _corporalToSergeantPoints: 0
-  _sergeantToDischargePoints: 0
+  _privateSecondClassToPrivateFirstClassPoints: 20
+  _privateFirstClassToCorporalPoints: 40
+  _corporalToSergeantPoints: 60
+  _sergeantToDischargePoints: 80
