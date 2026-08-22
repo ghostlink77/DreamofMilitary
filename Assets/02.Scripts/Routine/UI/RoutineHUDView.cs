@@ -9,11 +9,6 @@ public class RoutineHUDView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI commandText;
     [SerializeField] private Slider timeSlider;
 
-    [Header("임시 테스트")]
-    [SerializeField] private Button routineStartButton;
-    [SerializeField] private MinigameDef testMinigame;
-    [SerializeField] private int testSeed = 12345;
-
     private void Awake()
     {
         timeSlider.minValue = 0;
@@ -28,12 +23,6 @@ public class RoutineHUDView : MonoBehaviour
         routineRunner.StateChanged += OnStateChanged;
         routineRunner.CommandShown += OnCommandShown;
         routineRunner.TimeNormalizedChanged += OnTimeNormalizedChanged;
-
-        if (routineStartButton != null)
-        {
-            routineStartButton.onClick.AddListener(OnRoutineStartClicked);
-        }
-
         OnStateChanged(routineRunner.State);
     }
 
@@ -42,21 +31,6 @@ public class RoutineHUDView : MonoBehaviour
         routineRunner.StateChanged -= OnStateChanged;
         routineRunner.CommandShown -= OnCommandShown;
         routineRunner.TimeNormalizedChanged -= OnTimeNormalizedChanged;
-
-        if (routineStartButton != null)
-        {
-            routineStartButton.onClick.RemoveListener(OnRoutineStartClicked);
-        }
-    }
-
-    private void OnRoutineStartClicked()
-    {
-        if (routineRunner.IsRunning || testMinigame == null)
-        {
-            return;
-        }
-
-        routineRunner.StartRoutine(new[] { testMinigame }, testSeed);
     }
 
     private void OnCommandShown(string command, int current, int total)
@@ -71,18 +45,10 @@ public class RoutineHUDView : MonoBehaviour
 
     private void OnStateChanged(RoutineRunState state)
     {
-        bool visible =
-            state != RoutineRunState.Idle &&
-            state != RoutineRunState.Completed;
+        var commandVisible = state == RoutineRunState.ShowingCommand || state == RoutineRunState.Playing;
+        var timeSliderVisible = state == RoutineRunState.Playing || state == RoutineRunState.ShowingProgress;
 
-        commandText.gameObject.SetActive(visible);
-        timeSlider.gameObject.SetActive(state == RoutineRunState.Playing);
-
-        if (routineStartButton != null)
-        {
-            routineStartButton.interactable =
-                state == RoutineRunState.Idle ||
-                state == RoutineRunState.Completed;
-        }
+        commandText.gameObject.SetActive(commandVisible);
+        timeSlider.gameObject.SetActive(timeSliderVisible);
     }
 }
