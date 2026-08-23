@@ -1765,6 +1765,7 @@ MonoBehaviour:
   progressionConfig: {fileID: 11400000, guid: 7945fb456fb24f9e835fbb3e29ec0678, type: 2}
   routineConfig: {fileID: 11400000, guid: f92c87bb9c43c9644814027d6cd1c9ce, type: 2}
   minigameCatalog: {fileID: 11400000, guid: 835563b8b7d60d841a9f27e95402c0a6, type: 2}
+  endingSceneName: Ending
 --- !u!1 &918382132
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,10 +36,12 @@ namespace DreamOfMilitary.Routine
         private bool _isRunning;
         private bool _acceptingCompletion;
         private bool _hasOutcome;
+        private bool _earlyStopRequested;
         private int _runToken;
 
         public bool IsRunning => _isRunning;
         public RoutineRunState State { get; private set; } = RoutineRunState.Idle;
+        public RoutineRunMode CurrentRunMode { get; private set; }
 
         public event Action<RoutineRunState> StateChanged;
         public event Action<string, int, int> CommandShown;
@@ -86,7 +88,19 @@ namespace DreamOfMilitary.Routine
 
             _runToken++;
             _isRunning = true;
+            CurrentRunMode = runMode;
+            _earlyStopRequested = false;
             _routineCoroutine = StartCoroutine(RunRoutine(copiedSequence, sessionSeed, _runToken, runMode));
+        }
+
+        /// <summary>
+        /// 다음 미니게임으로 넘어가지 않고, 지금 미니게임의 피드백·진행 화면까지만 마친 뒤
+        /// 정상 완료와 같은 경로로 RoutineReport를 만들고 종료하도록 요청한다.
+        /// 진급·전역심사에서 합/불이 조기에 확정됐을 때 사용한다.
+        /// </summary>
+        public void RequestEarlyStop()
+        {
+            _earlyStopRequested = true;
         }
 
         public void CancelRoutine()
@@ -143,6 +157,11 @@ namespace DreamOfMilitary.Routine
                 if (runToken != _runToken)
                 {
                     yield break;
+                }
+
+                if (_earlyStopRequested)
+                {
+                    break;
                 }
             }
 
