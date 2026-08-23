@@ -130,7 +130,7 @@ public sealed class RoutineProgressView : MonoBehaviour
         var requiredSuccessCount = progressionConfig.GetExamRequiredSuccessCount(GameState.Instance.CaptureSnapshot().Rank);
         var remaining = total - current;
 
-        examProgressText.text = $"승급까지 {_examSuccessCount}/{requiredSuccessCount}, 남은 미니게임 : {remaining}";
+        examProgressText.text = $"승급까지 {_examSuccessCount}/{requiredSuccessCount}\n남은 종목 : {remaining}";
     }
 
     private void ResetSlots()

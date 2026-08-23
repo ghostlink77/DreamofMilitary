@@ -1717,7 +1717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Progression.GameState
   _startingRank: 0
   _startingServiceMonths: 0
-  _startingTotalPoints: 0
+  _startingTotalPoints: 20
 --- !u!1 &910000004
 GameObject:
   m_ObjectHideFlags: 0
