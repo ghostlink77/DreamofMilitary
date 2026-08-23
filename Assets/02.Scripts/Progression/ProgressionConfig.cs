@@ -27,6 +27,31 @@ namespace DreamOfMilitary.Progression
         [SerializeField, Min(0)]
         private int _sergeantToDischargePoints;
 
+        [Header("진급·전역심사 미니게임 개수·합격 기준")]
+        [SerializeField, Min(1)]
+        private int _privateFirstClassExamMinigameCount = 12;
+
+        [SerializeField, Min(1)]
+        private int _privateFirstClassExamRequiredSuccessCount = 6;
+
+        [SerializeField, Min(1)]
+        private int _corporalExamMinigameCount = 12;
+
+        [SerializeField, Min(1)]
+        private int _corporalExamRequiredSuccessCount = 8;
+
+        [SerializeField, Min(1)]
+        private int _sergeantExamMinigameCount = 16;
+
+        [SerializeField, Min(1)]
+        private int _sergeantExamRequiredSuccessCount = 14;
+
+        [SerializeField, Min(1)]
+        private int _dischargeExamMinigameCount = 16;
+
+        [SerializeField, Min(1)]
+        private int _dischargeExamRequiredSuccessCount = 16;
+
         public int GetRequiredCumulativePoints(MilitaryRank currentRank)
         {
             switch (currentRank)
@@ -68,6 +93,54 @@ namespace DreamOfMilitary.Progression
 
                 case MilitaryRank.Sergeant:
                     return RoutineStage.Discharge;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(currentRank));
+            }
+        }
+
+        /// <summary>
+        /// 현재 계급이 준비 중인 심사(진급·전역)에서 실행할 미니게임 총 개수.
+        /// </summary>
+        public int GetExamMinigameCount(MilitaryRank currentRank)
+        {
+            switch (currentRank)
+            {
+                case MilitaryRank.PrivateSecondClass:
+                    return _privateFirstClassExamMinigameCount;
+
+                case MilitaryRank.PrivateFirstClass:
+                    return _corporalExamMinigameCount;
+
+                case MilitaryRank.Corporal:
+                    return _sergeantExamMinigameCount;
+
+                case MilitaryRank.Sergeant:
+                    return _dischargeExamMinigameCount;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(currentRank));
+            }
+        }
+
+        /// <summary>
+        /// 현재 계급이 준비 중인 심사(진급·전역)에서 합격하기 위해 필요한 최소 성공 개수.
+        /// </summary>
+        public int GetExamRequiredSuccessCount(MilitaryRank currentRank)
+        {
+            switch (currentRank)
+            {
+                case MilitaryRank.PrivateSecondClass:
+                    return _privateFirstClassExamRequiredSuccessCount;
+
+                case MilitaryRank.PrivateFirstClass:
+                    return _corporalExamRequiredSuccessCount;
+
+                case MilitaryRank.Corporal:
+                    return _sergeantExamRequiredSuccessCount;
+
+                case MilitaryRank.Sergeant:
+                    return _dischargeExamRequiredSuccessCount;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(currentRank));

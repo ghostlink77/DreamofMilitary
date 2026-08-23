@@ -558,11 +558,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3601135526987934331, guid: c75aba6c21868744ba2ef7f3a9fd6c59, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3601135526987934331, guid: c75aba6c21868744ba2ef7f3a9fd6c59, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 3601135526987934331, guid: c75aba6c21868744ba2ef7f3a9fd6c59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -893,8 +893,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1676694807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.4117647, y: 0}
+  m_AnchorMax: {x: 0.4117647, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1016,7 +1016,7 @@ RectTransform:
   m_Father: {fileID: 589796070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.4117647, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1383,7 +1383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &704762666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1787,9 +1787,9 @@ MonoBehaviour:
   routineRunner: {fileID: 544839411}
   commandText: {fileID: 1574253149}
   timeSlider: {fileID: 170780231}
-  routineStartButton: {fileID: 0}
-  testMinigame: {fileID: 0}
-  testSeed: 12345
+  commandIntroScale: 1.5
+  commandCenterHoldSeconds: 0.6
+  commandReturnSeconds: 0.15
 --- !u!114 &773796949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3368,7 +3368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3601135526987934331, guid: c75aba6c21868744ba2ef7f3a9fd6c59, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 3601135526987934331, guid: c75aba6c21868744ba2ef7f3a9fd6c59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

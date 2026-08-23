@@ -168,12 +168,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -242,7 +242,7 @@ MonoBehaviour:
   pointText: {fileID: 848154462}
   stageButtonText: {fileID: 1990901818}
   promotionExamButtonSprite: {fileID: 21300000, guid: 3e7835a6da982b0418247d8f31ef50da, type: 3}
-  miniGameSceneName: Routine_TestScene
+  miniGameSceneName: Minigame
 --- !u!1 &115694023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,7 +1717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Progression.GameState
   _startingRank: 0
   _startingServiceMonths: 0
-  _startingTotalPoints: 0
+  _startingTotalPoints: 20
 --- !u!1 &910000004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,6 +1765,7 @@ MonoBehaviour:
   progressionConfig: {fileID: 11400000, guid: 7945fb456fb24f9e835fbb3e29ec0678, type: 2}
   routineConfig: {fileID: 11400000, guid: f92c87bb9c43c9644814027d6cd1c9ce, type: 2}
   minigameCatalog: {fileID: 11400000, guid: 835563b8b7d60d841a9f27e95402c0a6, type: 2}
+  endingSceneName: Ending
 --- !u!1 &918382132
 GameObject:
   m_ObjectHideFlags: 0
