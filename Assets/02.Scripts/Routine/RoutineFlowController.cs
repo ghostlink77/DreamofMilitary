@@ -20,6 +20,7 @@ namespace DreamOfMilitary.Routine
         private RoutineSelector _routineSelector;
         private IReadOnlyList<MinigameDef> _selectedRoutine;
         private RoutineRunner _activeRunner;
+        private RoutineResultView _activeResultView;
         private RoutineRunMode _runMode;
         private string _lobbySceneName;
         private string _minigameSceneName;
@@ -181,6 +182,22 @@ namespace DreamOfMilitary.Routine
                 return;
             }
 
+            if (_runMode == RoutineRunMode.Routine)
+            {
+                _activeResultView = FindFirstObjectByType<RoutineResultView>(FindObjectsInactive.Include);
+
+                if (_activeResultView == null)
+                {
+                    Debug.LogError($"{scene.name} 씬에서 RoutineResultView를 찾지 못했습니다.");
+                    ReturnToLobby();
+                    return;
+                }
+            }
+            else
+            {
+                _activeResultView = null;
+            }
+
             _activeRunner.RoutineCompleted += OnRoutineCompleted;
 
             if (_runMode == RoutineRunMode.Exam)
@@ -241,8 +258,32 @@ namespace DreamOfMilitary.Routine
 
         private void CompleteRoutine(RoutineReport report)
         {
-            GameState.Instance.ApplyRoutineSettlement(report);
+            if (_activeResultView == null)
+            {
+                Debug.LogError("일과 결과 화면을 표시할 RoutineResultView가 없습니다.");
+                ReturnToLobby();
+                return;
+            }
 
+            var beforeSettlement = GameState.Instance.CaptureSnapshot();
+            GameState.Instance.ApplyRoutineSettlement(report);
+            var afterSettlement = GameState.Instance.CaptureSnapshot();
+            var requiredPoints = progressionConfig.GetRequiredCumulativePoints(afterSettlement.Rank);
+
+            var resultData = new RoutineResultData(
+                report.SuccessCount,
+                report.FailureCount,
+                report.BasePointsTotal,
+                report.RoutinePerfectBonus,
+                beforeSettlement.TotalPoints,
+                afterSettlement.TotalPoints,
+                requiredPoints);
+
+            _activeResultView.Show(resultData, ContinueAfterRoutineResult);
+        }
+
+        private void ContinueAfterRoutineResult()
+        {
             var lobbySceneName = _lobbySceneName;
             ClearSession();
             SceneManager.LoadScene(lobbySceneName);
@@ -302,7 +343,10 @@ namespace DreamOfMilitary.Routine
 
         private void ClearSession()
         {
+            UnsubscribeActiveRunner();
+
             _selectedRoutine = null;
+            _activeResultView = null;
             _lobbySceneName = null;
             _minigameSceneName = null;
             _sessionSeed = 0;

@@ -287,6 +287,13 @@ namespace DreamOfMilitary.Routine
 
             DestroyActiveInstance();
 
+            var hasNextMinigame = index + 1 < total && !_earlyStopRequested;
+
+            if (!hasNextMinigame)
+            {
+                yield break;
+            }
+
             SetState(RoutineRunState.ShowingProgress);
             ProgressShown?.Invoke(judgement, index + 1, total);
             yield return RunNextMinigameCountdown(runToken);
