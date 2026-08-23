@@ -55,7 +55,6 @@ public class RoutineHUDView : MonoBehaviour
         {
             return;
         }
-
         routineRunner.StartRoutine(new[] { testMinigame }, testSeed);
     }
 

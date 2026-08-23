@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3720942189945626489}
   - component: {fileID: 1871827995962688682}
   - component: {fileID: 3710460564265334776}
+  - component: {fileID: 3786979984581039206}
   m_Layer: 5
   m_Name: FindShell_Button (8)
   m_TagString: Untagged
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3786979984581039206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378671092872373308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 0
+  digit: 3
 --- !u!1 &738680989426037799
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +227,7 @@ GameObject:
   - component: {fileID: 6344211057803326714}
   - component: {fileID: 2178360963617893373}
   - component: {fileID: 4962140983448171434}
+  - component: {fileID: 168055773575609693}
   m_Layer: 5
   m_Name: FindShell_Button (10)
   m_TagString: Untagged
@@ -321,6 +337,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &168055773575609693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771784571913869021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 1
+  digit: 0
 --- !u!1 &819395334279533854
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +442,7 @@ GameObject:
   - component: {fileID: 7175608813354595076}
   - component: {fileID: 6244195760828011498}
   - component: {fileID: 6658193465115254453}
+  - component: {fileID: 5923417321186618211}
   m_Layer: 5
   m_Name: FindShell_Button (1)
   m_TagString: Untagged
@@ -521,6 +552,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5923417321186618211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826071473526660184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 0
+  digit: 8
 --- !u!1 &1121775447495998361
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,6 +893,7 @@ GameObject:
   - component: {fileID: 403612128027659331}
   - component: {fileID: 4444488559158109524}
   - component: {fileID: 4207392351043791062}
+  - component: {fileID: 3321614720951241780}
   m_Layer: 5
   m_Name: FindShell_Button (7)
   m_TagString: Untagged
@@ -957,6 +1003,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3321614720951241780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2797415102051620194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 0
+  digit: 2
 --- !u!1 &2819029757217963389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,6 +1266,7 @@ GameObject:
   - component: {fileID: 2633413740590570540}
   - component: {fileID: 8029977809160694078}
   - component: {fileID: 3397232872375121272}
+  - component: {fileID: 4736028247471117359}
   m_Layer: 5
   m_Name: FindShell_Button (4)
   m_TagString: Untagged
@@ -1315,6 +1376,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4736028247471117359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4167677169271066291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 0
+  digit: 5
 --- !u!1 &4280508756664058545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,6 +1560,7 @@ GameObject:
   - component: {fileID: 2827194064520424221}
   - component: {fileID: 6686949806806752923}
   - component: {fileID: 6908486309816146583}
+  - component: {fileID: 2101875270021769677}
   m_Layer: 5
   m_Name: FindShell_Button (6)
   m_TagString: Untagged
@@ -1594,6 +1670,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2101875270021769677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4619502222613897710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 0
+  digit: 1
 --- !u!1 &4798694653084622754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,6 +2220,7 @@ GameObject:
   - component: {fileID: 4771917937615900504}
   - component: {fileID: 4041877759817246411}
   - component: {fileID: 7770012636115099838}
+  - component: {fileID: 6872363275569645558}
   m_Layer: 5
   m_Name: FindShell_Button (2)
   m_TagString: Untagged
@@ -2239,6 +2330,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6872363275569645558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900625380635039548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 0
+  digit: 9
 --- !u!1 &6926769247415928891
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,6 +2435,7 @@ GameObject:
   - component: {fileID: 8988133071228623568}
   - component: {fileID: 8837392492604918601}
   - component: {fileID: 6400221929216091519}
+  - component: {fileID: 1591628210660648818}
   m_Layer: 5
   m_Name: ChkCount_Canvas
   m_TagString: Untagged
@@ -2352,8 +2458,6 @@ RectTransform:
   - {fileID: 4804936170144658954}
   - {fileID: 4424007754668684909}
   - {fileID: 1936618196876026437}
-  - {fileID: 2870280941129721999}
-  - {fileID: 829335991176712301}
   - {fileID: 2845334908766323227}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2425,6 +2529,41 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1591628210660648818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013333293897079636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d61296447241f46a973662e9e9bf30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountMinigame
+  totalCountText: {fileID: 4733402688664100524}
+  absentCountTexts:
+  - {fileID: 4634284061439613921}
+  - {fileID: 1288925360504213870}
+  - {fileID: 8797505068306298036}
+  - {fileID: 7109609475585363619}
+  inputText: {fileID: 9011158607385933101}
+  keypadButtons:
+  - {fileID: 4319840187240557797}
+  - {fileID: 2101875270021769677}
+  - {fileID: 3321614720951241780}
+  - {fileID: 3786979984581039206}
+  - {fileID: 3217296132619810125}
+  - {fileID: 4736028247471117359}
+  - {fileID: 2670232810922044329}
+  - {fileID: 5043415195288799655}
+  - {fileID: 5923417321186618211}
+  - {fileID: 6872363275569645558}
+  maximumInputDigits: 3
+  minimumTotalCount: 40
+  maximumTotalCount: 80
+  minimumAbsentCount: 1
+  maximumAbsentCount: 9
 --- !u!1 &7089255344195426858
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,6 +2576,7 @@ GameObject:
   - component: {fileID: 929246164809469002}
   - component: {fileID: 6431356586123931869}
   - component: {fileID: 2722969386519058517}
+  - component: {fileID: 5043415195288799655}
   m_Layer: 5
   m_Name: FindShell_Button
   m_TagString: Untagged
@@ -2546,6 +2686,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5043415195288799655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089255344195426858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 0
+  digit: 7
 --- !u!1 &7385316134870277827
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,6 +2791,7 @@ GameObject:
   - component: {fileID: 273753732130436903}
   - component: {fileID: 960396690201128421}
   - component: {fileID: 7872684886247476465}
+  - component: {fileID: 2670232810922044329}
   m_Layer: 5
   m_Name: FindShell_Button (5)
   m_TagString: Untagged
@@ -2746,6 +2901,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2670232810922044329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7452994119013012547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 0
+  digit: 6
 --- !u!1 &7623417363809765626
 GameObject:
   m_ObjectHideFlags: 0
@@ -2916,6 +3085,7 @@ GameObject:
   - component: {fileID: 8189999532493675695}
   - component: {fileID: 6209138508403726250}
   - component: {fileID: 5066533218557365916}
+  - component: {fileID: 3217296132619810125}
   m_Layer: 5
   m_Name: FindShell_Button (3)
   m_TagString: Untagged
@@ -3025,6 +3195,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3217296132619810125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7926626929021012124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 0
+  digit: 4
 --- !u!1 &8411270490760955781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3116,6 +3300,7 @@ GameObject:
   - component: {fileID: 1467691034601276935}
   - component: {fileID: 2990873277088822180}
   - component: {fileID: 6298261227101995170}
+  - component: {fileID: 5477101091465991693}
   m_Layer: 5
   m_Name: FindShell_Button (11)
   m_TagString: Untagged
@@ -3225,6 +3410,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5477101091465991693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8521341595680421193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 2
+  digit: 0
 --- !u!1 &8606907115650350780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3303,7 +3502,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 7
+  m_Text: 0
 --- !u!1 &8617371197640086826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3316,6 +3515,7 @@ GameObject:
   - component: {fileID: 8425828325400213962}
   - component: {fileID: 8138198425720893027}
   - component: {fileID: 2640072013982494709}
+  - component: {fileID: 4319840187240557797}
   m_Layer: 5
   m_Name: FindShell_Button (9)
   m_TagString: Untagged
@@ -3425,6 +3625,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4319840187240557797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617371197640086826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cae8b5ca58d77e438e1d20fdcd0fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChkCountKeypadButton
+  keyType: 0
+  digit: 0
 --- !u!1 &8896723139175277281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,215 +3718,3 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1.5
   m_Text: 6
---- !u!1001 &4882242556568240252
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 150887497872729717}
-    m_Modifications:
-    - target: {fileID: 3429768306109104599, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_Name
-      value: Time_Slider
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360141893441835984, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360141893441835984, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 650
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -80
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
---- !u!224 &829335991176712301 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-  m_PrefabInstance: {fileID: 4882242556568240252}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &7281755257313387115
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 150887497872729717}
-    m_Modifications:
-    - target: {fileID: 4292491691018702929, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_Name
-      value: ToDo_Text
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_Pivot.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 809.9431
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 157.0727
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -26
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
---- !u!224 &2870280941129721999 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-  m_PrefabInstance: {fileID: 7281755257313387115}
-  m_PrefabAsset: {fileID: 0}

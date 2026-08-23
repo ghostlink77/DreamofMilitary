@@ -29,7 +29,7 @@ public class WalkPlayerInputHandler : MonoBehaviour
             }
 
             // 왼발 판정
-            manager.OnPlayerLeftStep();
+         //   manager.OnPlayerLeftStep();
         }
 
         // =====================================================
@@ -45,7 +45,7 @@ public class WalkPlayerInputHandler : MonoBehaviour
             }
 
             // 오른발 처리
-            manager.OnPlayerRightStep();
+          //  manager.OnPlayerRightStep();
         }
     }
 }

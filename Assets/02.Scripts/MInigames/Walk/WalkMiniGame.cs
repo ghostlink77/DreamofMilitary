@@ -2,12 +2,13 @@ using System;
 using DreamOfMilitary.Routine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 카운트다운으로 전우의 보행 템포를 익힌 뒤, 전우의 왼발 타이밍에 맞춰
 /// 마우스를 눌러(왼발) 제한시간까지 버티는 이동 제식 미니게임이다.
 /// </summary>
-public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitResolver
+public sealed class WalkMiniGame : MonoBehaviour, IMinigame, ITimeLimitResolver
 {
     private enum Phase
     {
@@ -24,7 +25,13 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
     [Header("전우")]
     [SerializeField] private WalkFrontController frontController;
 
-    [Header("표시 (선택)")]
+    [Header("카운트다운 표시 (전용 UI)")]
+    [SerializeField] private GameObject countdown3;
+    [SerializeField] private GameObject countdown2;
+    [SerializeField] private GameObject countdown1;
+   // [SerializeField] private TextMeshProUGUI countdown;
+
+    [Header("플레이어 발 표시 (선택)")]
     [SerializeField] private GameObject playerLeftFoot;
     [SerializeField] private GameObject playerRightFoot;
 
@@ -49,7 +56,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         currentStepJudged = false;
         lastFrontLeftTime = -1f;
         SetPlayerFoot(false);
-        UpdateCountdownText();
+        UpdateCountdownVisual();
 
         // 카운트다운부터 전우가 같은 템포로 걷기 시작한다.
         if (frontController != null)
@@ -79,7 +86,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
     private void UpdateCountdown()
     {
         countdownRemaining -= Time.deltaTime;
-        UpdateCountdownText();
+        UpdateCountdownVisual();
 
         if (countdownRemaining > 0f)
         {
@@ -90,11 +97,58 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         hasFrontLeftStep = false;
         currentStepJudged = false;
         lastFrontLeftTime = -1f;
+
+        HideCountdownVisuals();
     }
 
-    private void UpdateCountdownText()
+    private void UpdateCountdownVisual()
     {
         var count = Mathf.CeilToInt(countdownRemaining);
+
+        if (countdown3 != null)
+        {
+            countdown3.SetActive(count == 3);
+        }
+
+        if (countdown2 != null)
+        {
+            countdown2.SetActive(count == 2);
+        }
+
+        if (countdown1 != null)
+        {
+            countdown1.SetActive(count == 1);
+        }
+
+
+        //if (countdown != null)
+        //{
+        //    //countdown.text = $"{count}}";
+        //    countdown.SetActive(true);
+        //}
+    }
+
+    private void HideCountdownVisuals()
+    {
+        if (countdown3 != null)
+        {
+            countdown3.SetActive(false);
+        }
+
+        if (countdown2 != null)
+        {
+            countdown2.SetActive(false);
+        }
+
+        if (countdown1 != null)
+        {
+            countdown1.SetActive(false);
+        }
+
+        //if (countdown != null)
+        //{
+        //    countdown.SetActive(false);
+        //}
     }
 
     private void UpdatePlayerFootVisual()
@@ -140,6 +194,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
     private void OnPlayerLeftStep()
     {
+
         if (!hasFrontLeftStep)
         {
             Complete(MinigameJudgement.Failure);
@@ -171,6 +226,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         // 클릭을 계속 누르고 있으면 다음 왼발에 IsClickDown이 발생하지 않으므로 여기서 실패한다.
         if (Time.time - lastFrontLeftTime > acceptWindow)
         {
+            Debug.Log("실패");
             Complete(MinigameJudgement.Failure);
         }
     }
@@ -198,8 +254,9 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         {
             return MinigameJudgement.Failure;
         }
-
+    
         phase = Phase.Finished;
+        HideCountdownVisuals();
         StopWalking();
         onCompleted = null;
         return MinigameJudgement.Success;
@@ -214,6 +271,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
         phase = Phase.Finished;
         onCompleted = null;
+        HideCountdownVisuals();
         StopWalking();
     }
 
@@ -225,6 +283,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         }
 
         phase = Phase.Finished;
+        HideCountdownVisuals();
         StopWalking();
 
         var completed = onCompleted;
