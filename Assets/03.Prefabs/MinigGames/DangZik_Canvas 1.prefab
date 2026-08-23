@@ -889,7 +889,7 @@ GameObject:
   - component: {fileID: 6400221929216091519}
   - component: {fileID: 1843517162239070742}
   m_Layer: 5
-  m_Name: DangZik_Canvas
+  m_Name: DangZik_Canvas 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1003,15 +1003,15 @@ MonoBehaviour:
   fatigueGauge: {fileID: 3909058014541346861}
   maxFatigue: 30
   fatigueIncreasePerSecond: 40
-  fatigueDecreasePerSecond: 15
+  fatigueDecreasePerSecond: 12
   forcedSleepDuration: 0.6
   commander: {fileID: 1060494713453895536}
   commanderLookState: {fileID: 4934033549043971418}
   commanderPositions:
   - {fileID: 2271874875503583621}
   - {fileID: 1028538094301452401}
-  nextAppearanceTime: {x: 1.5, y: 3}
-  moveTime: {x: 0.8, y: 1.5}
+  nextAppearanceTime: {x: 1, y: 2}
+  moveTime: {x: 0.5, y: 1}
   failureCheckStartNormalized: 0.62
   caughtDelay: 1
 --- !u!1 &7045354213881491874
