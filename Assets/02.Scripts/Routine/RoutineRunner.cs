@@ -144,6 +144,11 @@ namespace DreamOfMilitary.Routine
 
                 var definition = sequence[index];
 
+                if (!TryPrepareMinigame(definition, index))
+                {
+                    yield break;
+                }
+
                 SetState(RoutineRunState.ShowingCommand);
                 CommandShown?.Invoke(definition.CommandText, index + 1, sequence.Count);
 
@@ -186,13 +191,12 @@ namespace DreamOfMilitary.Routine
             RoutineCompleted?.Invoke(report);
         }
 
-        private IEnumerator RunSingleMinigame(MinigameDef definition, int index, int total, int sessionSeed,
-            int runToken, List<RoutineEntry> entries, RoutineRunMode runMode)
+        private bool TryPrepareMinigame(MinigameDef definition, int index)
         {
             if (definition.Prefab == null)
             {
                 HandleRoutineException(new InvalidOperationException($"[{definition.Id}] 미니게임 프리팹이 연결되지 않았습니다."));
-                yield break;
+                return false;
             }
 
             var minigameId = GetMinigameId(definition, index);
@@ -206,6 +210,22 @@ namespace DreamOfMilitary.Routine
                     throw new InvalidOperationException($"[{minigameId}] {componentError}");
                 }
 
+                return true;
+            }
+            catch (Exception exception)
+            {
+                HandleRoutineException(exception);
+                return false;
+            }
+        }
+
+        private IEnumerator RunSingleMinigame(MinigameDef definition, int index, int total, int sessionSeed,
+            int runToken, List<RoutineEntry> entries, RoutineRunMode runMode)
+        {
+            var minigameId = GetMinigameId(definition, index);
+
+            try
+            {
                 _acceptingCompletion = true;
                 _hasOutcome = false;
 

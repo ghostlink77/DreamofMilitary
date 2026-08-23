@@ -169,8 +169,7 @@ namespace DreamOfMilitary.Routine
             {
                 elapsedSeconds += Time.unscaledDeltaTime;
                 var normalized = Mathf.Clamp01(elapsedSeconds / progressAnimationSeconds);
-                var displayedPoints = Mathf.RoundToInt(
-                    Mathf.Lerp(data.PreviousTotalPoints, data.CurrentTotalPoints, normalized));
+                var displayedPoints = Mathf.RoundToInt(Mathf.Lerp(data.PreviousTotalPoints, data.CurrentTotalPoints, normalized));
 
                 UpdatePromotionProgress(displayedPoints, requiredPoints);
                 yield return null;
