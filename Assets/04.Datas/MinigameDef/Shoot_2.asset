@@ -18,6 +18,6 @@ MonoBehaviour:
   _availableStages: 12
   _isExamMinigame: 0
   _basePoints: 2
-  _difficultyTier: 1
+  _difficultyTier: 2
   _timeLimitSeconds: 5
   _timeLimitRule: 1
