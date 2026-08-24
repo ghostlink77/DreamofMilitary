@@ -10,6 +10,7 @@ public sealed class LobbyMenuController : MonoBehaviour
     [SerializeField] private Image characterImage;
     [SerializeField] private Image portraitImage;
     [SerializeField] private Text rankText;
+    [SerializeField] private Text serviceMonthsText;
 
     [Header("Menu")]
     [SerializeField] private Button stageButton;
@@ -34,7 +35,10 @@ public sealed class LobbyMenuController : MonoBehaviour
 
     private void Start()
     {
-        RefreshRankUI(GameState.Instance.CurrentRank);
+        var gameState = GameState.Instance;
+
+        RefreshRankUI(gameState.CurrentRank);
+        serviceMonthsText.text = $"복무 {gameState.ServiceMonths}개월 차";
 
         var routineFlow = DreamOfMilitary.Routine.RoutineFlowController.Instance;
         _canTakeExam = routineFlow.RefreshLobbyPointUI(pointSlider, pointText);
