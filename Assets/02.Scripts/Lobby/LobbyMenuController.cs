@@ -1,8 +1,17 @@
+using DreamOfMilitary.Progression;
 using UnityEngine;
 using UnityEngine.UI;
 
 public sealed class LobbyMenuController : MonoBehaviour
 {
+    [Header("Rank UI")]
+    [SerializeField] private LobbyUIData lobbyUIData;
+    [SerializeField] private Image backgroundImage;
+    [SerializeField] private Image characterImage;
+    [SerializeField] private Image portraitImage;
+    [SerializeField] private Text rankText;
+
+    [Header("Menu")]
     [SerializeField] private Button stageButton;
     [SerializeField] private Button settingButton;
     [SerializeField] private Button exitButton;
@@ -25,6 +34,8 @@ public sealed class LobbyMenuController : MonoBehaviour
 
     private void Start()
     {
+        RefreshRankUI(GameState.Instance.CurrentRank);
+
         var routineFlow = DreamOfMilitary.Routine.RoutineFlowController.Instance;
         _canTakeExam = routineFlow.RefreshLobbyPointUI(pointSlider, pointText);
 
@@ -40,6 +51,16 @@ public sealed class LobbyMenuController : MonoBehaviour
         stageButton.onClick.RemoveListener(OnStageButtonClicked);
         settingButton.onClick.RemoveListener(OpenSettings);
         exitButton.onClick.RemoveListener(CloseSettings);
+    }
+
+    private void RefreshRankUI(MilitaryRank rank)
+    {
+        var rankUI = lobbyUIData.GetRankUI(rank);
+
+        backgroundImage.sprite = rankUI.BackgroundSprite;
+        characterImage.sprite = rankUI.CharacterSprite;
+        portraitImage.sprite = rankUI.PortraitSprite;
+        rankText.text = rankUI.RankText;
     }
 
     private void OnStageButtonClicked()

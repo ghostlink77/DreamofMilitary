@@ -127,10 +127,12 @@ public sealed class RoutineProgressView : MonoBehaviour
             return;
         }
 
-        var requiredSuccessCount = progressionConfig.GetExamRequiredSuccessCount(GameState.Instance.CaptureSnapshot().Rank);
+        var snapshot = GameState.Instance.CaptureSnapshot();
+        var requiredSuccessCount = progressionConfig.GetExamRequiredSuccessCount(snapshot.Rank);
         var remaining = total - current;
+        var goalText = progressionConfig.IsDischargeExam(snapshot) ? "전역까지" : "승급까지";
 
-        examProgressText.text = $"승급까지 {_examSuccessCount}/{requiredSuccessCount}\n남은 종목 : {remaining}";
+        examProgressText.text = $"{goalText} {_examSuccessCount}/{requiredSuccessCount}\n남은 종목 : {remaining}";
     }
 
     private void ResetSlots()

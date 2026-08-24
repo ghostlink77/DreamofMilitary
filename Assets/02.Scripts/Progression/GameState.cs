@@ -27,6 +27,8 @@ namespace DreamOfMilitary.Progression
         public MilitaryRank CurrentRank { get; private set; }
         public int ServiceMonths { get; private set; }
         public int TotalPoints { get; private set; }
+        public int TotalMinigameSuccessCount { get; private set; }
+        public int TotalMinigameFailureCount { get; private set; }
 
         public event Action<GameStateSnapshot> StateChanged;
 
@@ -71,12 +73,32 @@ namespace DreamOfMilitary.Progression
             }
 
             var nextTotalPoints = checked(TotalPoints + report.TotalPoints);
+            var nextSuccessCount = checked(TotalMinigameSuccessCount + report.SuccessCount);
+            var nextFailureCount = checked(TotalMinigameFailureCount + report.FailureCount);
 
-            // 상점만 반영된 중간 상태가 남지 않도록
+            // 정산값만 일부 반영된 중간 상태가 남지 않도록
             // 개월 수 오버플로도 변경 전에 검사한다.
             _ = checked(ServiceMonths + 1);
 
             TotalPoints = nextTotalPoints;
+            TotalMinigameSuccessCount = nextSuccessCount;
+            TotalMinigameFailureCount = nextFailureCount;
+            AdvanceMonth();
+        }
+
+        public void ApplyExamSettlement(RoutineReport report)
+        {
+            if (report == null)
+            {
+                throw new ArgumentNullException(nameof(report));
+            }
+
+            var nextSuccessCount = checked(TotalMinigameSuccessCount + report.SuccessCount);
+            var nextFailureCount = checked(TotalMinigameFailureCount + report.FailureCount);
+            _ = checked(ServiceMonths + 1);
+
+            TotalMinigameSuccessCount = nextSuccessCount;
+            TotalMinigameFailureCount = nextFailureCount;
             AdvanceMonth();
         }
 
@@ -122,15 +144,15 @@ namespace DreamOfMilitary.Progression
         {
             CurrentRank = _startingRank;
             ServiceMonths = Mathf.Max(0, _startingServiceMonths);
-
             TotalPoints = Mathf.Max(0, _startingTotalPoints);
+            TotalMinigameSuccessCount = 0;
+            TotalMinigameFailureCount = 0;
         }
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
             _startingServiceMonths = Mathf.Max(0, _startingServiceMonths);
-
             _startingTotalPoints = Mathf.Max(0, _startingTotalPoints);
         }
 #endif

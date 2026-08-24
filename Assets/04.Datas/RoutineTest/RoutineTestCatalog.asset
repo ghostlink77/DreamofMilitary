@@ -15,13 +15,3 @@ MonoBehaviour:
   _definitions:
   - {fileID: 11400000, guid: bdc77bf3eb2327445889aaa5dd1c3848, type: 2}
   - {fileID: 11400000, guid: f33c3c6ae2f879e48b0f366df22a396a, type: 2}
-  - {fileID: 11400000, guid: 216b7701b3b711d4eb4d33f3a667c9e8, type: 2}
-  - {fileID: 11400000, guid: d091805179cb83c4797518936d2fed36, type: 2}
-  - {fileID: 11400000, guid: ab4639acded4ba340ae7df78fefba687, type: 2}
-  - {fileID: 11400000, guid: e6acfd3acc94ae04b8daf18b45833012, type: 2}
-  - {fileID: 11400000, guid: bb11853fec69fb64fb4f67f4a4749bbc, type: 2}
-  - {fileID: 11400000, guid: f1133bdad280df842b187b0c4b00d62c, type: 2}
-  - {fileID: 11400000, guid: 136e7bd6367d6424eb5799bdc29da359, type: 2}
-  - {fileID: 11400000, guid: 67ece9f132bcd7044bba0ca0a77d59e1, type: 2}
-  - {fileID: 11400000, guid: 511a31e0b6a6b8c48b0bc00a3f281b6d, type: 2}
-  - {fileID: 11400000, guid: 7b49016ab02f9a24fa59bcb20f686002, type: 2}

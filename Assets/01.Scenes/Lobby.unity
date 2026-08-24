@@ -236,6 +236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d1a4b073cf4e18a6a1d5b5081ee7b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LobbyMenuController
+  lobbyUIData: {fileID: 11400000, guid: 8e2f61f9e16391a4d98fe1b792542554, type: 2}
+  backgroundImage: {fileID: 1877561180}
+  characterImage: {fileID: 510781494}
+  portraitImage: {fileID: 1769008670}
+  rankText: {fileID: 1970148357}
   stageButton: {fileID: 1473840772}
   settingButton: {fileID: 304590830}
   exitButton: {fileID: 2007297696}
@@ -1168,8 +1173,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2172, y: 724.3535}
+  m_AnchoredPosition: {x: -1643, y: 17}
+  m_SizeDelta: {x: 480, y: 467}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &632868737
 MonoBehaviour:
@@ -1191,7 +1196,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 678e50738d0303042948caa591cead96, type: 3}
+  m_Sprite: {fileID: 1753316507, guid: 678e50738d0303042948caa591cead96, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1959,9 +1964,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa83b3f02bbd094d9575c682c63f76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Progression.GameState
-  _startingRank: 0
+  _startingRank: 3
   _startingServiceMonths: 0
-  _startingTotalPoints: 20
+  _startingTotalPoints: 100
 --- !u!1 &910000004
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,8 +3851,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -1361, y: 9}
-  m_SizeDelta: {x: 784, y: 467.22803}
+  m_AnchoredPosition: {x: -1643, y: 17}
+  m_SizeDelta: {x: 480, y: 467}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1769008670
 MonoBehaviour:
@@ -4129,7 +4134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1877561179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4594,7 +4599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2060819735
 RectTransform:
   m_ObjectHideFlags: 0
