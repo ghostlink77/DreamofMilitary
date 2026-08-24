@@ -17,7 +17,8 @@ namespace DreamOfMilitary.Routine
         ShowingCommand = 1,
         Playing = 2,
         ShowingFeedback = 3,
-        Completed = 4
+        ShowingProgress = 4,
+        Completed = 5
     }
 
     public sealed class RoutineRunner : MonoBehaviour
@@ -44,6 +45,7 @@ namespace DreamOfMilitary.Routine
         public event Action<string, int, int> CommandShown;
         public event Action<float> TimeNormalizedChanged;
         public event Action<MinigameJudgement, int> FeedbackShown;
+        public event Action<MinigameJudgement, int, int> ProgressShown;
         public event Action<RoutineReport> RoutineCompleted;
 
         public void StartRoutine(IReadOnlyList<MinigameDef> sequence, int sessionSeed, RoutineRunMode runMode = RoutineRunMode.Routine)
@@ -136,7 +138,12 @@ namespace DreamOfMilitary.Routine
                     yield return new WaitForSeconds(_config.CommandDisplaySeconds);
                 }
 
-                yield return RunSingleMinigame(definition, index, sessionSeed, runToken, entries, runMode);
+                yield return RunSingleMinigame(definition, index, sequence.Count, sessionSeed, runToken, entries, runMode);
+
+                if (runToken != _runToken)
+                {
+                    yield break;
+                }
             }
 
             var allSuccessful = entries.Count > 0;
@@ -160,30 +167,38 @@ namespace DreamOfMilitary.Routine
             RoutineCompleted?.Invoke(report);
         }
 
-        private IEnumerator RunSingleMinigame(MinigameDef definition, int index,
-            int sessionSeed, int runToken, List<RoutineEntry> entries, RoutineRunMode runMode)
+        private IEnumerator RunSingleMinigame(MinigameDef definition, int index, int total, int sessionSeed,
+            int runToken, List<RoutineEntry> entries, RoutineRunMode runMode)
         {
             if (definition.Prefab == null)
             {
-                throw new InvalidOperationException($"[{definition.Id}] 미니게임 프리팹이 연결되지 않았습니다.");
+                HandleRoutineException(new InvalidOperationException($"[{definition.Id}] 미니게임 프리팹이 연결되지 않았습니다."));
+                yield break;
             }
 
             var minigameId = GetMinigameId(definition, index);
 
-            _activeInstance = Instantiate(definition.Prefab, _playAreaRoot);
-
-            if (!TryFindMinigame(_activeInstance, out _activeMinigame, out var componentError))
+            try
             {
-                throw new InvalidOperationException($"[{minigameId}] {componentError}");
+                _activeInstance = Instantiate(definition.Prefab, _playAreaRoot);
+
+                if (!TryFindMinigame(_activeInstance, out _activeMinigame, out var componentError))
+                {
+                    throw new InvalidOperationException($"[{minigameId}] {componentError}");
+                }
+
+                _acceptingCompletion = true;
+                _hasOutcome = false;
+
+                var randomSeed = unchecked(sessionSeed + index * 397);
+                var context = new MinigameContext(definition.DifficultyTier, definition.TimeLimitSeconds, randomSeed);
+                _activeMinigame.Begin(context, judgement => AcceptOutcome(runToken, judgement));
             }
-
-            _acceptingCompletion = true;
-            _hasOutcome = false;
-
-            var randomSeed = unchecked(sessionSeed + index * 397);
-            var context = new MinigameContext(definition.DifficultyTier, definition.TimeLimitSeconds, randomSeed);
-
-            _activeMinigame.Begin(context, judgement => AcceptOutcome(runToken, judgement));
+            catch (Exception exception)
+            {
+                HandleRoutineException(exception);
+                yield break;
+            }
 
             SetState(RoutineRunState.Playing);
             TimeNormalizedChanged?.Invoke(1f);
@@ -221,14 +236,21 @@ namespace DreamOfMilitary.Routine
             {
                 TimeNormalizedChanged?.Invoke(0f);
 
-                judgement = ResolveTimeLimitJudgement(definition);
+                try
+                {
+                    judgement = ResolveTimeLimitJudgement(definition);
+                }
+                catch (Exception exception)
+                {
+                    HandleRoutineException(exception);
+                    yield break;
+                }
 
                 AbortActiveMinigame();
                 feedbackSeconds = Mathf.Max(feedbackSeconds, _config.AbortCleanupGraceSeconds);
             }
 
             var score = runMode == RoutineRunMode.Routine && judgement == MinigameJudgement.Success ? 1 : 0;
-
             entries.Add(new RoutineEntry(minigameId, judgement, score, elapsedSeconds));
 
             SetState(RoutineRunState.ShowingFeedback);
@@ -239,7 +261,57 @@ namespace DreamOfMilitary.Routine
                 yield return new WaitForSeconds(feedbackSeconds);
             }
 
+            if (runToken != _runToken)
+            {
+                yield break;
+            }
+
             DestroyActiveInstance();
+
+            SetState(RoutineRunState.ShowingProgress);
+            ProgressShown?.Invoke(judgement, index + 1, total);
+            yield return RunNextMinigameCountdown(runToken);
+        }
+
+        private IEnumerator RunNextMinigameCountdown(int runToken)
+        {
+            var duration = _config.NextMinigameCountdownSeconds;
+
+            if (duration <= 0f)
+            {
+                yield break;
+            }
+
+            TimeNormalizedChanged?.Invoke(1f);
+
+            var elapsedSeconds = 0f;
+
+            while (elapsedSeconds < duration)
+            {
+                yield return null;
+
+                if (runToken != _runToken)
+                {
+                    yield break;
+                }
+
+                elapsedSeconds = Mathf.Min(elapsedSeconds + Time.deltaTime, duration);
+                TimeNormalizedChanged?.Invoke(1f - Mathf.Clamp01(elapsedSeconds / duration));
+            }
+        }
+
+        private void HandleRoutineException(Exception exception)
+        {
+            Debug.LogException(exception, this);
+
+            _runToken++;
+            _acceptingCompletion = false;
+            AbortActiveMinigame();
+            DestroyActiveInstance();
+
+            _routineCoroutine = null;
+            _isRunning = false;
+            SetState(RoutineRunState.Idle);
         }
 
         private void AcceptOutcome(int runToken, MinigameJudgement judgement)

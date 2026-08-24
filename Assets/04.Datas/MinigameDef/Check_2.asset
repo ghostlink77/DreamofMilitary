@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
-  m_Name: Repair_3
+  m_Name: Check_2
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: Repair
-  _commandText: "\uB098\uC0AC\uB97C \uD480\uC5B4\uB77C!"
-  _prefab: {fileID: 7013333293897079636, guid: fad802b50d7450146804c5dd230664f4, type: 3}
+  _id: Check
+  _commandText: "\uC778\uC6D0\uC744 \uACC4\uC0B0\uD558\uB77C!"
+  _prefab: {fileID: 7013333293897079636, guid: 76c594bfb00eebf47a721fe3471c2cce, type: 3}
   _availableStages: -1
-  _difficultyTier: 3
-  _timeLimitSeconds: 5
+  _difficultyTier: 2
+  _timeLimitSeconds: 8
   _timeLimitRule: 0

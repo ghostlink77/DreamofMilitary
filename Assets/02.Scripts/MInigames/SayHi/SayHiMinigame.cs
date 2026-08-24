@@ -10,7 +10,8 @@ using UnityEngine;
 /// </summary>
 public sealed class SayHiMinigame : MonoBehaviour, IMinigame
 {
-    private const int RequiredCharacterCount = 5;
+    //private const int RequiredCharacterCount = 5;
+    private int RequiredCharacterCount;
 
     [Header("등장 후보 인물 (11명 모두 등록)")]
     [SerializeField] private SayHiCharacter[] characters;
@@ -19,7 +20,8 @@ public sealed class SayHiMinigame : MonoBehaviour, IMinigame
     [SerializeField, Min(0f)] private float nextCharacterDelay;
 
     private Action<MinigameJudgement> onCompleted;
-    private readonly List<SayHiCharacter> selectedCharacters = new List<SayHiCharacter>(RequiredCharacterCount);
+    //private readonly List<SayHiCharacter> selectedCharacters = new List<SayHiCharacter>(RequiredCharacterCount);
+    private readonly List<SayHiCharacter> selectedCharacters = new List<SayHiCharacter>();
     private int currentCharacterIndex;
     private float nextCharacterAt;
     private bool isRunning;
@@ -31,9 +33,20 @@ public sealed class SayHiMinigame : MonoBehaviour, IMinigame
             throw new ArgumentNullException(nameof(completed));
         }
 
+        RequiredCharacterCount = context.DifficultyTier switch
+        {
+            1 => 5,
+            2 => 7,
+            _ => throw new ArgumentOutOfRangeException(
+                nameof(context.DifficultyTier),
+                context.DifficultyTier,
+                "난이도는 1, 2 중 하나여야 합니다.")
+        };
+
         if (!HasValidCharacterSetup())
         {
-            Debug.LogError("[SayHi] Characters에 중복되지 않는 인물 5명 이상을 등록해야 합니다.", this);
+            Debug.LogError("[SayHi] Characters에 중복되지 않는 인물 {requiredCharacterCount}명 이상을 등록해야 합니다.", this);
+           // Debug.LogError("[SayHi] Characters에 중복되지 않는 인물 5명 이상을 등록해야 합니다.", this);
             completed(MinigameJudgement.Failure);
             return;
         }

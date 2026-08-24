@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/SampleMiniGameScene.unity
     guid: 1c3dae2d97c9d9a48b4b8592bd51d75c
+  - enabled: 1
+    path: Assets/01.Scenes/TestScenes/Routine_TestScene.unity
+    guid: dcd268769c981184f8dd113e2dc62614
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: f840ab3ad7e924241b84c58c64f3b961, type: 3}
   m_UseUCBPForAssetBundles: 0

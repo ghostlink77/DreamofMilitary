@@ -1,21 +1,21 @@
 using UnityEngine;
 
 /// <summary>
-/// 전우의 좌우 발을 일정한 템포로 교대 표시한다.
+/// 전우의 스프라이트를 카운트다운 보행, 정지 자세, 실플레이 보행으로 제어한다.
 /// 왼발이 시작되는 프레임에 WalkMiniGameManager로 타이밍을 전달한다.
 /// </summary>
 public sealed class WalkFrontController : MonoBehaviour
 {
-    [Header("전우 발")]
+    [Header("전우 스프라이트")]
     [SerializeField] private GameObject frontLeft;
     [SerializeField] private GameObject frontRight;
-    [SerializeField] private GameObject front;
+    [SerializeField] private GameObject frontStanding;
 
     [Header("게임 매니저")]
     [SerializeField] private WalkMiniGameManager manager;
 
     [Header("걸음 간격")]
-    [SerializeField, Min(0.01f)] private float stepInterval = 0.5f;
+    [SerializeField, Min(0.01f)] public float stepInterval = 0.5f;
 
     private bool isWalking;
     private bool isLeftStep;
@@ -23,7 +23,7 @@ public sealed class WalkFrontController : MonoBehaviour
 
     private void Awake()
     {
-        front.SetActive(true);
+        HideAllPoses();
     }
 
     private void Update()
@@ -35,7 +35,7 @@ public sealed class WalkFrontController : MonoBehaviour
 
         stepTimer += Time.deltaTime;
 
-        // 프레임 지연이 있어도 보행 템포가 누적해서 느려지지 않게 처리한다.
+        // 프레임이 잠깐 느려져도 보행 템포가 누적해서 밀리지 않게 한다.
         while (stepTimer >= stepInterval)
         {
             stepTimer -= stepInterval;
@@ -43,21 +43,43 @@ public sealed class WalkFrontController : MonoBehaviour
         }
     }
 
-    public void StartWalking()
+    /// <summary>카운트다운 동안 플레이어에게 박자를 보여 주는 보행.</summary>
+    public void StartPracticeWalking()
+    {
+        StartWalkingFromLeftFoot();
+    }
+
+    /// <summary>정지 후, 첫 왼발부터 시작하는 실플레이 보행.</summary>
+    public void StartGameWalking()
+    {
+        StartWalkingFromLeftFoot();
+    }
+
+    private void StartWalkingFromLeftFoot()
     {
         isWalking = true;
         stepTimer = 0f;
-
-        // 카운트다운 시작부터 왼발로 출발한다.
         isLeftStep = true;
         ShowLeftFoot();
     }
 
+    /// <summary>
+    /// 카운트다운과 실플레이 사이의 정지 자세.
+    /// Front Standing을 비워 두면 좌우 발을 모두 숨긴 상태로 멈춘다.
+    /// </summary>
+    public void PauseWalking()
+    {
+        isWalking = false;
+        stepTimer = 0f;
+        ShowStandingPose();
+    }
+
+    /// <summary>미니게임 종료 시 전우 스프라이트를 모두 숨긴다.</summary>
     public void StopWalking()
     {
         isWalking = false;
         stepTimer = 0f;
-        HideFeet();
+        HideAllPoses();
     }
 
     private void ChangeStep()
@@ -76,17 +98,11 @@ public sealed class WalkFrontController : MonoBehaviour
 
     private void ShowLeftFoot()
     {
-        if (frontLeft != null)
-        {
-            frontLeft.SetActive(true);
-        }
+        SetActive(frontLeft, true);
+        SetActive(frontRight, false);
+        SetActive(frontStanding, false);
 
-        if (frontRight != null)
-        {
-            frontRight.SetActive(false);
-        }
-
-        // 카운트다운 중 호출은 WalkMiniGameManager가 무시한다.
+        // 카운트다운 중의 호출은 WalkMiniGameManager가 판정하지 않는다.
         if (manager != null)
         {
             manager.OnFrontLeftStep();
@@ -95,27 +111,30 @@ public sealed class WalkFrontController : MonoBehaviour
 
     private void ShowRightFoot()
     {
-        if (frontLeft != null)
-        {
-            frontLeft.SetActive(false);
-        }
-
-        if (frontRight != null)
-        {
-            frontRight.SetActive(true);
-        }
+        SetActive(frontLeft, false);
+        SetActive(frontRight, true);
+        SetActive(frontStanding, false);
     }
 
-    private void HideFeet()
+    private void ShowStandingPose()
     {
-        if (frontLeft != null)
-        {
-            frontLeft.SetActive(false);
-        }
+        SetActive(frontLeft, false);
+        SetActive(frontRight, false);
+        SetActive(frontStanding, true);
+    }
 
-        if (frontRight != null)
+    private void HideAllPoses()
+    {
+        SetActive(frontLeft, false);
+        SetActive(frontRight, false);
+        SetActive(frontStanding, false);
+    }
+
+    private static void SetActive(GameObject target, bool active)
+    {
+        if (target != null)
         {
-            frontRight.SetActive(false);
+            target.SetActive(active);
         }
     }
 }

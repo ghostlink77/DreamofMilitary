@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
-  m_Name: Song_1
+  m_Name: FindShell_2 1
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: Song
-  _commandText: "\uAD70\uAC00\uB97C \uBD88\uB7EC\uB77C!"
-  _prefab: {fileID: 7013333293897079636, guid: 03b86a1f5bfcd254196ca93601e41eb4, type: 3}
+  _id: FindShell
+  _commandText: "\uD0C4\uD53C\uB97C \uC138\uC5B4\uB77C!"
+  _prefab: {fileID: 7013333293897079636, guid: 54372587b0f882b45858bac20ab60e1c, type: 3}
   _availableStages: -1
-  _difficultyTier: 1
-  _timeLimitSeconds: 10
+  _difficultyTier: 2
+  _timeLimitSeconds: 6
   _timeLimitRule: 0

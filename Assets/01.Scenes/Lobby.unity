@@ -238,7 +238,11 @@ MonoBehaviour:
   settingButton: {fileID: 304590830}
   exitButton: {fileID: 2007297696}
   settingBlackBack: {fileID: 1596436988}
-  miniGameSceneName: SampleMiniGameScene
+  pointSlider: {fileID: 667799790}
+  pointText: {fileID: 848154462}
+  stageButtonText: {fileID: 1990901818}
+  promotionExamButtonSprite: {fileID: 21300000, guid: 3e7835a6da982b0418247d8f31ef50da, type: 3}
+  miniGameSceneName: Routine_TestScene
 --- !u!1 &115694023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,6 +1671,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848154460}
   m_CullTransparentMesh: 1
+--- !u!1 &910000001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910000002}
+  - component: {fileID: 910000003}
+  m_Layer: 0
+  m_Name: GameState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &910000002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910000001}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &910000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910000001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa83b3f02bbd094d9575c682c63f76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Progression.GameState
+  _startingRank: 0
+  _startingServiceMonths: 0
+  _startingTotalPoints: 0
+--- !u!1 &910000004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910000005}
+  - component: {fileID: 910000006}
+  m_Layer: 0
+  m_Name: RoutineFlowController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &910000005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910000004}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &910000006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910000004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea39219fe1f04f4ebd14bbf302e37bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.RoutineFlowController
+  progressionConfig: {fileID: 11400000, guid: 7945fb456fb24f9e835fbb3e29ec0678, type: 2}
+  routineConfig: {fileID: 11400000, guid: f92c87bb9c43c9644814027d6cd1c9ce, type: 2}
+  minigameCatalog: {fileID: 11400000, guid: 835563b8b7d60d841a9f27e95402c0a6, type: 2}
 --- !u!1 &918382132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,3 +3944,5 @@ SceneRoots:
   - {fileID: 1532149582}
   - {fileID: 380451}
   - {fileID: 957996077}
+  - {fileID: 910000002}
+  - {fileID: 910000005}

@@ -13,27 +13,34 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
     {
         Idle,
         Countdown,
+        ReadyPause,
         Playing,
         Finished
     }
 
     [Header("타이밍 잡기")]
     [SerializeField, Min(0f)] private float countdownDuration = 3f;
+    [SerializeField, Min(0f)] private float prePlayPauseDuration = 0.5f;
     [SerializeField, Min(0.01f)] private float acceptWindow = 0.15f;
 
     [Header("전우")]
     [SerializeField] private WalkFrontController frontController;
 
-    [Header("표시 (선택)")]
+    [Header("카운트다운 표시 (전용 UI)")]
+    [SerializeField] private TextMeshProUGUI countdownText;
+
+    [Header("플레이어 발 표시 (선택)")]
     [SerializeField] private GameObject playerLeftFoot;
     [SerializeField] private GameObject playerRightFoot;
 
     private Action<MinigameJudgement> onCompleted;
     private Phase phase;
     private float countdownRemaining;
+    private float prePlayPauseRemaining;
     private float lastFrontLeftTime;
     private bool hasFrontLeftStep;
     private bool currentStepJudged;
+    private bool didFail;
 
     public void Begin(MinigameContext context, Action<MinigameJudgement> completed)
     {
@@ -47,14 +54,26 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         countdownRemaining = countdownDuration;
         hasFrontLeftStep = false;
         currentStepJudged = false;
+        didFail = false;
         lastFrontLeftTime = -1f;
+
+        (acceptWindow, frontController.stepInterval) = context.DifficultyTier switch
+        {
+            1 => (0.5f, 0.7f),
+            2 => (0.3f, 0.5f),
+            _ => throw new ArgumentOutOfRangeException(
+                nameof(context.DifficultyTier),
+                "난이도는 1, 2 중 하나여야 합니다."
+            )
+        };
+
         SetPlayerFoot(false);
-        UpdateCountdownText();
+        UpdateCountdownVisual();
 
         // 카운트다운부터 전우가 같은 템포로 걷기 시작한다.
         if (frontController != null)
         {
-            frontController.StartWalking();
+            frontController.StartPracticeWalking();
         }
     }
 
@@ -73,28 +92,72 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
             return;
         }
 
+        if (phase == Phase.ReadyPause)
+        {
+            UpdateReadyPause();
+            return;
+        }
+
         CheckMissedStep();
     }
 
     private void UpdateCountdown()
     {
         countdownRemaining -= Time.deltaTime;
-        UpdateCountdownText();
+        UpdateCountdownVisual();
 
         if (countdownRemaining > 0f)
         {
             return;
         }
 
+        // 카운트다운으로 보행 템포를 보여준 뒤, 실플레이 직전에는 잠시 정지한다.
+        phase = Phase.ReadyPause;
+        prePlayPauseRemaining = prePlayPauseDuration;
+        HideCountdownVisuals();
+        frontController.PauseWalking();
+    }
+
+    private void UpdateReadyPause()
+    {
+        prePlayPauseRemaining -= Time.deltaTime;
+
+        if (prePlayPauseRemaining > 0f)
+        {
+            return;
+        }
+
+        // phase를 먼저 Playing으로 바꿔야 StartWalking()의 첫 왼발 신호가 판정 대상이 된다.
         phase = Phase.Playing;
         hasFrontLeftStep = false;
         currentStepJudged = false;
         lastFrontLeftTime = -1f;
+
+        if (frontController != null)
+        {
+            frontController.StartGameWalking();
+        }
     }
 
-    private void UpdateCountdownText()
+    private void UpdateCountdownVisual()
     {
+        if (countdownText == null)
+        {
+            return;
+        }
+
         var count = Mathf.CeilToInt(countdownRemaining);
+        countdownText.gameObject.SetActive(count > 0);
+        countdownText.text = count > 0 ? count.ToString() : string.Empty;
+    }
+
+    private void HideCountdownVisuals()
+    {
+        if (countdownText != null)
+        {
+            countdownText.text = string.Empty;
+            countdownText.gameObject.SetActive(false);
+        }
     }
 
     private void UpdatePlayerFootVisual()
@@ -128,7 +191,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
     /// </summary>
     public void OnFrontLeftStep()
     {
-        if (phase != Phase.Playing)
+        if (didFail || phase != Phase.Playing)
         {
             return;
         }
@@ -194,12 +257,14 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
     /// </summary>
     public MinigameJudgement ResolveAtTimeLimit()
     {
-        if (phase != Phase.Playing)
+        // 이미 실패 콜백을 보낸 뒤라면, 타이머 종료가 성공을 덮어쓰지 못하게 한다.
+        if (didFail || phase != Phase.Playing)
         {
             return MinigameJudgement.Failure;
         }
 
         phase = Phase.Finished;
+        HideCountdownVisuals();
         StopWalking();
         onCompleted = null;
         return MinigameJudgement.Success;
@@ -214,6 +279,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
         phase = Phase.Finished;
         onCompleted = null;
+        HideCountdownVisuals();
         StopWalking();
     }
 
@@ -224,7 +290,9 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
             return;
         }
 
+        didFail = judgement == MinigameJudgement.Failure;
         phase = Phase.Finished;
+        HideCountdownVisuals();
         StopWalking();
 
         var completed = onCompleted;
@@ -245,3 +313,4 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         Abort();
     }
 }
+
