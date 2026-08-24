@@ -107,6 +107,24 @@ public class MouseInputManager : MonoBehaviour
         return inputActions.Gameplay.Click.WasReleasedThisFrame();
     }
 
+    /// 마우스 오른쪽 버튼을 누른 순간
+    public bool IsRightClickDown()
+    {
+        return inputActions.Gameplay.ClickRight.WasPressedThisFrame();
+    }
+
+    /// 마우스 오른쪽 버튼을 누르고 있는 동안
+    public bool IsRightClickHeld()
+    {
+        return inputActions.Gameplay.ClickRight.IsPressed();
+    
+    }
+
+    /// 마우스 오른쪽 버튼을 뗀 순간
+    public bool IsRightClickUp()
+    {
+        return inputActions.Gameplay.ClickRight.WasReleasedThisFrame();
+    }
 
     // ========================
     // 클릭 오브젝트

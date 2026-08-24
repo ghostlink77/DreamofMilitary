@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: RoutineTestCatalog
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameCatalog
   _definitions:
-  - {fileID: 11400000, guid: bdc77bf3eb2327445889aaa5dd1c3848, type: 2}
-  - {fileID: 11400000, guid: f33c3c6ae2f879e48b0f366df22a396a, type: 2}
+  - {fileID: 11400000, guid: 59afa10dbfc186b4c82cba6f22fe11fd, type: 2}
