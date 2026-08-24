@@ -568,8 +568,7 @@ public class MOPP : MonoBehaviour, IMinigame
                 Success();
                 return;
             }
-            Debug.Log("MOPP 실패!");
-            Abort();
+            Failure();
             return;
 
         }
@@ -578,14 +577,12 @@ public class MOPP : MonoBehaviour, IMinigame
         // 일반 MOPP
         // ========================
 
-        if (_nextEquipmentIndex >= _moppStage)
+        if (_nextEquipmentIndex == _moppStage)
         {
             Success();
             return;
         }
-        //실패
-        Debug.Log("MOPP 실패!");
-        Abort();
+        Failure();
 
     }
 
@@ -609,6 +606,23 @@ public class MOPP : MonoBehaviour, IMinigame
         _onCompleted = null;
 
         callback?.Invoke(MinigameJudgement.Success);
+    }
+
+    private void Failure()
+    {
+        if (!_isPlaying)
+        {
+            return;
+        }
+
+        Debug.Log("MOPP 실패!");
+
+        _isPlaying = false;
+
+        var callback = _onCompleted;
+        _onCompleted = null;
+
+        callback?.Invoke(MinigameJudgement.Failure);
     }
 
 

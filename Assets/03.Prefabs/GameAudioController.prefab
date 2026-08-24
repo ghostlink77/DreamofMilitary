@@ -56,10 +56,14 @@ MonoBehaviour:
   lockerEffect: {fileID: 8300000, guid: 368891ec34f56504a9ff5fa53b3420d9, type: 3}
   metalEffect: {fileID: 8300000, guid: 55f019f331e0039458aaf598400d0410, type: 3}
   gunshotEffect: {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
+  gunshotVolumeScale: 0.211
   targetHitEffect: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  tcccBleedRevealEffect: {fileID: 8300000, guid: 3becec1909f194046945d85ac1077772, type: 3}
+  tcccTourniquetEffect: {fileID: 8300000, guid: a6be0d9f2e887884c92c68b2d07f9220, type: 3}
+  tcccSuccessScreamEffect: {fileID: 8300000, guid: ba144692efee9ef4b940f2974b23405a, type: 3}
   breathEffect: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
-  sleepEffect: {fileID: 8300000, guid: 6cf9c85b5a3b88c468b21b9d21250adf, type: 3}
-  surpriseEffect: {fileID: 8300000, guid: 613745e4b26364f46a3c02298c7e9b24, type: 3}
+  sleepEffect: {fileID: 8300000, guid: 0e5020d2cccb83a4cbc39241b0a8c4f0, type: 3}
+  surpriseEffect: {fileID: 8300000, guid: 57fd38b20a876d940aa6e6604a4eaf64, type: 3}
   textRevealEffect: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
   continueEffect: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
   titleSceneName: Title
