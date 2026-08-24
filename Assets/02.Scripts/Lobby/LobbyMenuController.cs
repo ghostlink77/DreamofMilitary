@@ -1,6 +1,7 @@
 using DreamOfMilitary.Progression;
 using UnityEngine;
 using UnityEngine.UI;
+using DreamOfMilitary.Audio;
 
 public sealed class LobbyMenuController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public sealed class LobbyMenuController : MonoBehaviour
     [SerializeField] private Button settingButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private GameObject settingBlackBack;
+    [SerializeField] private Slider bgmVolumeSlider;
+    [SerializeField] private Slider sfxVolumeSlider;
     [SerializeField] private Slider pointSlider;
     [SerializeField] private Text pointText;
     [SerializeField] private Text stageButtonText;
@@ -39,6 +42,7 @@ public sealed class LobbyMenuController : MonoBehaviour
 
         RefreshRankUI(gameState.CurrentRank);
         serviceMonthsText.text = $"복무 {gameState.ServiceMonths}개월 차";
+        GameAudioController.Instance?.BindVolumeSliders(bgmVolumeSlider, sfxVolumeSlider);
 
         var routineFlow = DreamOfMilitary.Routine.RoutineFlowController.Instance;
         _canTakeExam = routineFlow.RefreshLobbyPointUI(pointSlider, pointText);
@@ -69,6 +73,7 @@ public sealed class LobbyMenuController : MonoBehaviour
 
     private void OnStageButtonClicked()
     {
+        GameAudioController.Instance?.PlayUiClick();
         var routineFlow = DreamOfMilitary.Routine.RoutineFlowController.Instance;
 
         if (_canTakeExam)
@@ -83,11 +88,13 @@ public sealed class LobbyMenuController : MonoBehaviour
 
     private void OpenSettings()
     {
+        GameAudioController.Instance?.PlayUiClick();
         settingBlackBack.SetActive(true);
     }
 
     private void CloseSettings()
     {
+        GameAudioController.Instance?.PlayUiClick();
         settingBlackBack.SetActive(false);
     }
 }

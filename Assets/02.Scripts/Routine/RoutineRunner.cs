@@ -224,6 +224,11 @@ namespace DreamOfMilitary.Routine
         {
             var minigameId = GetMinigameId(definition, index);
 
+            // Set the visible gameplay state before Begin so state-driven presentation
+            // such as BGM starts with the minigame itself.
+            SetState(RoutineRunState.Playing);
+            TimeNormalizedChanged?.Invoke(1f);
+
             try
             {
                 _acceptingCompletion = true;
@@ -238,9 +243,6 @@ namespace DreamOfMilitary.Routine
                 HandleRoutineException(exception);
                 yield break;
             }
-
-            SetState(RoutineRunState.Playing);
-            TimeNormalizedChanged?.Invoke(1f);
 
             var elapsedSeconds = 0f;
 

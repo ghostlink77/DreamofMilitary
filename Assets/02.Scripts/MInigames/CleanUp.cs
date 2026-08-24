@@ -3,6 +3,7 @@
 // ========================
 
 using DreamOfMilitary.Routine;
+using DreamOfMilitary.Audio;
 using System;
 using UnityEngine;
 
@@ -110,6 +111,7 @@ public class CleanUp : MonoBehaviour, IMinigame
         if (clickedObject == lockerClosed ||
             clickedObject == lockerOpened)
         {
+            GameAudioController.Instance?.PlayLocker();
             ToggleLocker();
             CheckSuccess();
             return;
@@ -118,6 +120,7 @@ public class CleanUp : MonoBehaviour, IMinigame
         // 관물대 안의 옷
         if (_isLockerOpened && IsClothes(clickedObject))
         {
+            GameAudioController.Instance?.PlayCloth();
             RemoveClothes(clickedObject);
             CheckSuccess();
             return;
@@ -126,6 +129,7 @@ public class CleanUp : MonoBehaviour, IMinigame
         // 빨래바구니
         if (clickedObject == laundryBasket)
         {
+            GameAudioController.Instance?.PlayCloth();
             MoveLaundryBasket();
             CheckSuccess();
             return;
@@ -134,6 +138,7 @@ public class CleanUp : MonoBehaviour, IMinigame
         // 슬리퍼
         if (clickedObject == slippers)
         {
+            GameAudioController.Instance?.PlayCloth();
             MoveSlippers();
             CheckSuccess();
         }
@@ -141,6 +146,7 @@ public class CleanUp : MonoBehaviour, IMinigame
         // 슬리퍼
         if (clickedObject == slippers_b)
         {
+            GameAudioController.Instance?.PlayCloth();
             MoveSlippers_b();
             CheckSuccess();
         }

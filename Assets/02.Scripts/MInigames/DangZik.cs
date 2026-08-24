@@ -4,6 +4,7 @@
 
 using System;
 using DreamOfMilitary.Routine;
+using DreamOfMilitary.Audio;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -63,6 +64,7 @@ public class DangZik : MonoBehaviour, IMinigame
         }
 
         ResetPresentation();
+        GameAudioController.Instance?.PlaySleep();
         ScheduleCommanderAppearance();
     }
 
@@ -160,6 +162,7 @@ public class DangZik : MonoBehaviour, IMinigame
     private void ShowCommanderApproaching()
     {
         _isCommanderApproaching = true;
+        GameAudioController.Instance?.PlayFootstep();
         SetCommanderStartPosition();
         SetActive(commander, true);
         SetActive(commanderLookState, false);
@@ -236,6 +239,7 @@ public class DangZik : MonoBehaviour, IMinigame
         }
 
         _caughtAt = Time.time + caughtDelay;
+        GameAudioController.Instance?.PlaySurprise();
         SetActive(sleepState, false);
         SetActive(awakeState, false);
         SetActive(failureState, true);
