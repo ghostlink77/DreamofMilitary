@@ -22,6 +22,19 @@ namespace DreamOfMilitary.Audio
         [SerializeField] private AudioClip failureMusic;
         [SerializeField] private AudioClip endingMusic;
 
+        [Header("효과음")]
+        [SerializeField] private AudioClip footstepEffect;
+        [SerializeField] private AudioClip clothEffect;
+        [SerializeField] private AudioClip lockerEffect;
+        [SerializeField] private AudioClip metalEffect;
+        [SerializeField] private AudioClip gunshotEffect;
+        [SerializeField] private AudioClip targetHitEffect;
+        [SerializeField] private AudioClip breathEffect;
+        [SerializeField] private AudioClip sleepEffect;
+        [SerializeField] private AudioClip surpriseEffect;
+        [SerializeField] private AudioClip textRevealEffect;
+        [SerializeField] private AudioClip continueEffect;
+
         [Header("씬 이름")]
         [SerializeField] private string titleSceneName = "Title";
         [SerializeField] private string lobbySceneName = "Lobby";
@@ -41,6 +54,7 @@ namespace DreamOfMilitary.Audio
         {
             if (Instance != null && Instance != this)
             {
+                CopyEffectConfigurationTo(Instance);
                 Destroy(gameObject);
                 return;
             }
@@ -109,6 +123,20 @@ namespace DreamOfMilitary.Audio
             }
         }
 
+        public void PlayFootstep() => PlayEffect(footstepEffect);
+        public void PlayCloth() => PlayEffect(clothEffect);
+        public void PlayLocker() => PlayEffect(lockerEffect);
+        public void PlayMetal() => PlayEffect(metalEffect);
+        public void PlayGunshot() => PlayEffect(gunshotEffect);
+        public void PlayTargetHit() => PlayEffect(targetHitEffect);
+        public void PlayBreath() => PlayEffect(breathEffect);
+        public void PlaySleep() => PlayEffect(sleepEffect, 0.55f);
+        public void PlaySurprise() => PlayEffect(surpriseEffect);
+        public void PlayTextReveal() => PlayEffect(textRevealEffect, 0.7f);
+        public void PlayContinue() => PlayEffect(continueEffect);
+        public void PlayUiClick() => PlayEffect(textRevealEffect);
+        public void PlayScream() => PlayEffect(surpriseEffect);
+
         private AudioSource CreateAudioSource(string sourceName, bool loop)
         {
             var sourceObject = new GameObject(sourceName);
@@ -118,6 +146,29 @@ namespace DreamOfMilitary.Audio
             source.playOnAwake = false;
             source.spatialBlend = 0f;
             return source;
+        }
+
+        private void CopyEffectConfigurationTo(GameAudioController target)
+        {
+            CopyIfMissing(ref target.footstepEffect, footstepEffect);
+            CopyIfMissing(ref target.clothEffect, clothEffect);
+            CopyIfMissing(ref target.lockerEffect, lockerEffect);
+            CopyIfMissing(ref target.metalEffect, metalEffect);
+            CopyIfMissing(ref target.gunshotEffect, gunshotEffect);
+            CopyIfMissing(ref target.targetHitEffect, targetHitEffect);
+            CopyIfMissing(ref target.breathEffect, breathEffect);
+            CopyIfMissing(ref target.sleepEffect, sleepEffect);
+            CopyIfMissing(ref target.surpriseEffect, surpriseEffect);
+            CopyIfMissing(ref target.textRevealEffect, textRevealEffect);
+            CopyIfMissing(ref target.continueEffect, continueEffect);
+        }
+
+        private static void CopyIfMissing(ref AudioClip destination, AudioClip source)
+        {
+            if (destination == null && source != null)
+            {
+                destination = source;
+            }
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)

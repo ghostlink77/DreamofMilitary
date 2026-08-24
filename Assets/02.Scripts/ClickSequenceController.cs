@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DreamOfMilitary.Audio;
 
 /// <summary>
 /// Advances a UI cut sequence when the configured UI hierarchy is clicked.
@@ -98,6 +99,8 @@ public sealed class ClickSequenceController : MonoBehaviour, IPointerClickHandle
         {
             return;
         }
+
+        GameAudioController.Instance?.PlayUiClick();
 
         if (isSkipped && HasBeenViewed())
         {

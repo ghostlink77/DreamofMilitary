@@ -49,6 +49,7 @@ public sealed class LobbyMenuController : MonoBehaviour
 
     private void OnStageButtonClicked()
     {
+        GameAudioController.Instance?.PlayUiClick();
         var routineFlow = DreamOfMilitary.Routine.RoutineFlowController.Instance;
 
         if (_canTakeExam)
@@ -63,11 +64,13 @@ public sealed class LobbyMenuController : MonoBehaviour
 
     private void OpenSettings()
     {
+        GameAudioController.Instance?.PlayUiClick();
         settingBlackBack.SetActive(true);
     }
 
     private void CloseSettings()
     {
+        GameAudioController.Instance?.PlayUiClick();
         settingBlackBack.SetActive(false);
     }
 }

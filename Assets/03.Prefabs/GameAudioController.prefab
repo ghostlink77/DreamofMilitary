@@ -51,6 +51,17 @@ MonoBehaviour:
   successMusic: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
   failureMusic: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
   endingMusic: {fileID: 8300000, guid: 54443e1629b0ac942abb3a0b8f10d982, type: 3}
+  footstepEffect: {fileID: 8300000, guid: 446cea23758126b41b46b60e0a5a7bd6, type: 3}
+  clothEffect: {fileID: 8300000, guid: 2ab97f7ecefc8ec4c84270c06de0edd8, type: 3}
+  lockerEffect: {fileID: 8300000, guid: 368891ec34f56504a9ff5fa53b3420d9, type: 3}
+  metalEffect: {fileID: 8300000, guid: 55f019f331e0039458aaf598400d0410, type: 3}
+  gunshotEffect: {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
+  targetHitEffect: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  breathEffect: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
+  sleepEffect: {fileID: 8300000, guid: 6cf9c85b5a3b88c468b21b9d21250adf, type: 3}
+  surpriseEffect: {fileID: 8300000, guid: 613745e4b26364f46a3c02298c7e9b24, type: 3}
+  textRevealEffect: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
+  continueEffect: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
   titleSceneName: Title
   lobbySceneName: Lobby
   minigameSceneName: Minigame

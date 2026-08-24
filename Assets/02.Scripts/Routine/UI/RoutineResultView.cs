@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using DreamOfMilitary.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -128,19 +129,24 @@ namespace DreamOfMilitary.Routine
         private IEnumerator RevealSequence(RoutineResultData data)
         {
             successFailureGroup.SetActive(true);
+            GameAudioController.Instance?.PlayTextReveal();
             yield return WaitForRevealInterval();
 
             basePointsGroup.SetActive(true);
+            GameAudioController.Instance?.PlayTextReveal();
             yield return WaitForRevealInterval();
 
             perfectBonusGroup.SetActive(true);
+            GameAudioController.Instance?.PlayTextReveal();
             yield return WaitForRevealInterval();
 
             promotionProgressGroup.SetActive(true);
+            GameAudioController.Instance?.PlayTextReveal();
             yield return AnimatePromotionProgress(data);
 
             continueButton.gameObject.SetActive(true);
             continueButton.interactable = true;
+            GameAudioController.Instance?.PlayContinue();
 
             _revealCoroutine = null;
         }

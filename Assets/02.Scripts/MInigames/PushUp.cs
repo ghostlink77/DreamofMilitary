@@ -3,6 +3,7 @@
 // ========================
 
 using DreamOfMilitary.Routine;
+using DreamOfMilitary.Audio;
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
@@ -103,6 +104,7 @@ public class PushUp : MonoBehaviour, IMinigame
         }
 
         _pushUpCount++;
+        GameAudioController.Instance?.PlayBreath();
         _isPushingDown = false;
         _currentCoroutine = null;
         UpdateUI(_isPushingDown);
