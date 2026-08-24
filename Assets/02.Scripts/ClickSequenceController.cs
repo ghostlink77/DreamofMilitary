@@ -38,7 +38,7 @@ public sealed class ClickSequenceController : MonoBehaviour, IPointerClickHandle
     [SerializeField] private string nextSceneName;
 
     [Header("Skip")]
-    [Tooltip("When this sequence has already been completed once, move to the next scene on the first cut click.")]
+    [Tooltip("When this sequence has already been completed once, the start input immediately completes it without showing the panel or opening graphic.")]
     [SerializeField] private bool isSkipped;
     [Tooltip("Optional persistent key for this sequence. Leave empty to use the scene and GameObject names.")]
     [SerializeField] private string viewingStateKey;
@@ -99,6 +99,12 @@ public sealed class ClickSequenceController : MonoBehaviour, IPointerClickHandle
             return;
         }
 
+        if (isSkipped && HasBeenViewed())
+        {
+            CompleteSequence();
+            return;
+        }
+
         nextCutIndex = 0;
         isRunning = true;
         isInputLocked = false;
@@ -127,7 +133,7 @@ public sealed class ClickSequenceController : MonoBehaviour, IPointerClickHandle
             return;
         }
 
-        if (isSkipped && nextCutIndex == 0 && HasBeenViewed())
+        if (isSkipped && HasBeenViewed())
         {
             CompleteSequence();
             return;
@@ -159,7 +165,15 @@ public sealed class ClickSequenceController : MonoBehaviour, IPointerClickHandle
     {
         if (string.IsNullOrEmpty(nextSceneName))
         {
-            Debug.LogWarning("Set a Next Scene Name before continuing past the final cut.", this);
+            isComplete = true;
+            MarkAsViewed();
+            HideShownCuts(cuts.Length);
+
+            if (sequencePanel != null)
+            {
+                sequencePanel.SetActive(false);
+            }
+
             return;
         }
 

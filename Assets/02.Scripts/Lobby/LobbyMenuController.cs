@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using DreamOfMilitary.Audio;
 
 public sealed class LobbyMenuController : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public sealed class LobbyMenuController : MonoBehaviour
     [SerializeField] private Button settingButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private GameObject settingBlackBack;
+    [SerializeField] private Slider bgmVolumeSlider;
+    [SerializeField] private Slider sfxVolumeSlider;
     [SerializeField] private Slider pointSlider;
     [SerializeField] private Text pointText;
     [SerializeField] private Text stageButtonText;
@@ -25,6 +28,8 @@ public sealed class LobbyMenuController : MonoBehaviour
 
     private void Start()
     {
+        GameAudioController.Instance?.BindVolumeSliders(bgmVolumeSlider, sfxVolumeSlider);
+
         var routineFlow = DreamOfMilitary.Routine.RoutineFlowController.Instance;
         _canTakeExam = routineFlow.RefreshLobbyPointUI(pointSlider, pointText);
 
