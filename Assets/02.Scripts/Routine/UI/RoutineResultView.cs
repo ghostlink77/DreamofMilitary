@@ -9,20 +9,22 @@ namespace DreamOfMilitary.Routine
 {
     public readonly struct RoutineResultData
     {
+        public int ServiceMonths { get; }
         public int SuccessCount { get; }
         public int FailureCount { get; }
-        public int BasePoints { get; }
+        public int EarnedPoints { get; }
         public int PerfectBonusPoints { get; }
         public int PreviousTotalPoints { get; }
         public int CurrentTotalPoints { get; }
         public int RequiredPoints { get; }
 
-        public RoutineResultData(int successCount, int failureCount, int basePoints, int perfectBonusPoints,
-            int previousTotalPoints, int currentTotalPoints, int requiredPoints)
+        public RoutineResultData(int serviceMonths, int successCount, int failureCount, int earnedPoints,
+            int perfectBonusPoints, int previousTotalPoints, int currentTotalPoints, int requiredPoints)
         {
+            ServiceMonths = serviceMonths;
             SuccessCount = successCount;
             FailureCount = failureCount;
-            BasePoints = basePoints;
+            EarnedPoints = earnedPoints;
             PerfectBonusPoints = perfectBonusPoints;
             PreviousTotalPoints = previousTotalPoints;
             CurrentTotalPoints = currentTotalPoints;
@@ -35,6 +37,7 @@ namespace DreamOfMilitary.Routine
     {
         [Header("결과 화면")]
         [SerializeField] private GameObject resultRoot;
+        [SerializeField] private TextMeshProUGUI resultTitleText;
 
         [Header("성공 및 실패")]
         [SerializeField] private GameObject successFailureGroup;
@@ -60,6 +63,7 @@ namespace DreamOfMilitary.Routine
         [Header("연출 시간")]
         [SerializeField, Min(0f)] private float revealIntervalSeconds = 0.35f;
         [SerializeField, Min(0f)] private float progressAnimationSeconds = 0.5f;
+        [SerializeField, Min(0f)] private float continueButtonDelaySeconds = 1f;
 
         private Coroutine _revealCoroutine;
         private Action _onContinue;
@@ -100,10 +104,11 @@ namespace DreamOfMilitary.Routine
             StopReveal();
             _onContinue = onContinue;
 
+            resultTitleText.text = $"복무 {data.ServiceMonths}개월 차";
             successCountText.text = $"성공 : {data.SuccessCount}";
             failureCountText.text = $"실패 : {data.FailureCount}";
-            basePointsText.text = $"획득 상점 : {data.BasePoints}";
             perfectBonusText.text = $"일과 퍼펙트 보너스 : {data.PerfectBonusPoints}";
+            basePointsText.text = $"총 획득 상점 : {data.EarnedPoints}";
 
             var requiredPoints = Mathf.Max(1, data.RequiredPoints);
 
@@ -115,8 +120,8 @@ namespace DreamOfMilitary.Routine
             UpdatePromotionProgress(data.PreviousTotalPoints, requiredPoints);
 
             successFailureGroup.SetActive(false);
-            basePointsGroup.SetActive(false);
             perfectBonusGroup.SetActive(false);
+            basePointsGroup.SetActive(false);
             promotionProgressGroup.SetActive(false);
 
             continueButton.interactable = false;
@@ -132,17 +137,18 @@ namespace DreamOfMilitary.Routine
             GameAudioController.Instance?.PlayTextReveal();
             yield return WaitForRevealInterval();
 
-            basePointsGroup.SetActive(true);
+            perfectBonusGroup.SetActive(true);            
             GameAudioController.Instance?.PlayTextReveal();
             yield return WaitForRevealInterval();
 
-            perfectBonusGroup.SetActive(true);
+            basePointsGroup.SetActive(true);
             GameAudioController.Instance?.PlayTextReveal();
             yield return WaitForRevealInterval();
 
             promotionProgressGroup.SetActive(true);
             GameAudioController.Instance?.PlayTextReveal();
             yield return AnimatePromotionProgress(data);
+            yield return WaitForContinueButtonDelay();
 
             continueButton.gameObject.SetActive(true);
             continueButton.interactable = true;
@@ -156,6 +162,14 @@ namespace DreamOfMilitary.Routine
             if (revealIntervalSeconds > 0f)
             {
                 yield return new WaitForSecondsRealtime(revealIntervalSeconds);
+            }
+        }
+
+        private IEnumerator WaitForContinueButtonDelay()
+        {
+            if (continueButtonDelaySeconds > 0f)
+            {
+                yield return new WaitForSecondsRealtime(continueButtonDelaySeconds);
             }
         }
 
@@ -218,7 +232,8 @@ namespace DreamOfMilitary.Routine
 
         private void ValidateReferences()
         {
-            if (resultRoot != null && successFailureGroup != null && successCountText != null &&
+            if (resultRoot != null && resultTitleText != null &&
+                successFailureGroup != null && successCountText != null &&
                 failureCountText != null && basePointsGroup != null && basePointsText != null &&
                 perfectBonusGroup != null && perfectBonusText != null && promotionProgressGroup != null &&
                 promotionProgressSlider != null && promotionProgressText != null && continueButton != null)

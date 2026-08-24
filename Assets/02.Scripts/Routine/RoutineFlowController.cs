@@ -21,6 +21,7 @@ namespace DreamOfMilitary.Routine
         private IReadOnlyList<MinigameDef> _selectedRoutine;
         private RoutineRunner _activeRunner;
         private RoutineResultView _activeResultView;
+        private RoutineExamResultView _activeExamResultView;
         private RoutineRunMode _runMode;
         private string _lobbySceneName;
         private string _minigameSceneName;
@@ -185,6 +186,7 @@ namespace DreamOfMilitary.Routine
             if (_runMode == RoutineRunMode.Routine)
             {
                 _activeResultView = FindFirstObjectByType<RoutineResultView>(FindObjectsInactive.Include);
+                _activeExamResultView = null;
 
                 if (_activeResultView == null)
                 {
@@ -196,6 +198,14 @@ namespace DreamOfMilitary.Routine
             else
             {
                 _activeResultView = null;
+                _activeExamResultView = FindFirstObjectByType<RoutineExamResultView>(FindObjectsInactive.Include);
+
+                if (_activeExamResultView == null)
+                {
+                    Debug.LogError($"{scene.name} 씬에서 RoutineExamResultView를 찾지 못했습니다.");
+                    ReturnToLobby();
+                    return;
+                }
             }
 
             _activeRunner.RoutineCompleted += OnRoutineCompleted;
@@ -271,9 +281,10 @@ namespace DreamOfMilitary.Routine
             var requiredPoints = progressionConfig.GetRequiredCumulativePoints(afterSettlement.Rank);
 
             var resultData = new RoutineResultData(
+                afterSettlement.ServiceMonths,
                 report.SuccessCount,
                 report.FailureCount,
-                report.BasePointsTotal,
+                report.TotalPoints,
                 report.RoutinePerfectBonus,
                 beforeSettlement.TotalPoints,
                 afterSettlement.TotalPoints,
@@ -291,10 +302,12 @@ namespace DreamOfMilitary.Routine
 
         private void CompleteExam(RoutineReport report, int requiredSuccessCount)
         {
+            var beforeSettlement = GameState.Instance.CaptureSnapshot();
             var passed = report.SuccessCount >= requiredSuccessCount;
-            var isDischargeExam = progressionConfig.IsDischargeExam(GameState.Instance.CaptureSnapshot());
+            var isDischargeExam = progressionConfig.IsDischargeExam(beforeSettlement);
 
-            GameState.Instance.AdvanceMonth();
+            GameState.Instance.ApplyExamSettlement(report);
+            var afterSettlement = GameState.Instance.CaptureSnapshot();
 
             if (passed && isDischargeExam)
             {
@@ -313,6 +326,29 @@ namespace DreamOfMilitary.Routine
                 GameState.Instance.TryPromote();
             }
 
+            var resultMessage = isDischargeExam
+                ? "전역 실패.."
+                : $"{GetPromotionRankName(beforeSettlement.Rank)} 진급 {(passed ? "성공!" : "실패..")}";
+
+            _activeExamResultView.Show(
+                afterSettlement.ServiceMonths,
+                resultMessage,
+                ContinueAfterExamResult);
+        }
+
+        private static string GetPromotionRankName(MilitaryRank currentRank)
+        {
+            return currentRank switch
+            {
+                MilitaryRank.PrivateSecondClass => "일병",
+                MilitaryRank.PrivateFirstClass => "상병",
+                MilitaryRank.Corporal => "병장",
+                _ => throw new ArgumentOutOfRangeException(nameof(currentRank))
+            };
+        }
+
+        private void ContinueAfterExamResult()
+        {
             var lobbySceneName = _lobbySceneName;
             ClearSession();
             SceneManager.LoadScene(lobbySceneName);
@@ -347,6 +383,7 @@ namespace DreamOfMilitary.Routine
 
             _selectedRoutine = null;
             _activeResultView = null;
+            _activeExamResultView = null;
             _lobbySceneName = null;
             _minigameSceneName = null;
             _sessionSeed = 0;
