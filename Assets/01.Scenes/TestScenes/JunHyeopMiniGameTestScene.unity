@@ -448,7 +448,7 @@ MonoBehaviour:
   commandText: {fileID: 707111036}
   timeSlider: {fileID: 280687883}
   routineStartButton: {fileID: 638893920}
-  testMinigame: {fileID: 11400000, guid: bb11853fec69fb64fb4f67f4a4749bbc, type: 2}
+  testMinigame: {fileID: 11400000, guid: 64fd72b758d7838478303f18eac8e941, type: 2}
   testSeed: 12345
 --- !u!114 &694977777
 MonoBehaviour:
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694977775}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -546,6 +546,10 @@ PrefabInstance:
     - target: {fileID: 4292491691018702929, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
       propertyPath: m_Name
       value: ToDo_Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
       propertyPath: m_Pivot.x

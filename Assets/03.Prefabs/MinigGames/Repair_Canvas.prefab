@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3366517689535656844}
   - component: {fileID: 4949025049651919580}
   - component: {fileID: 3019641811520037273}
+  - component: {fileID: 3908615874773136204}
   m_Layer: 5
   m_Name: Repair_Screw (4)
   m_TagString: Untagged
@@ -34,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -155.8, y: 222.9}
+  m_AnchoredPosition: {x: -201, y: 222.9}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4949025049651919580
@@ -60,7 +61,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -75,6 +76,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3908615874773136204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394320577174271664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &685614150865730604
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +179,7 @@ GameObject:
   - component: {fileID: 4424007754668684909}
   - component: {fileID: 669665176020655726}
   - component: {fileID: 7170973901599506950}
+  - component: {fileID: 6866442066466164020}
   m_Layer: 5
   m_Name: Repair_Screw
   m_TagString: Untagged
@@ -214,7 +229,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -229,6 +244,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6866442066466164020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121775447495998361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &1270521428806614076
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +474,7 @@ RectTransform:
   m_Children:
   - {fileID: 7645294223489071080}
   - {fileID: 7721020064782007336}
-  - {fileID: 6535767628975895803}
+  - {fileID: 7539045438094518499}
   m_Father: {fileID: 150887497872729717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -553,7 +581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -84.23566, y: 99.57562}
+  m_AnchoredPosition: {x: -39, y: 99.57562}
   m_SizeDelta: {x: 1605, y: 495.2}
   m_Pivot: {x: 0.44751674, y: 0.67010427}
 --- !u!222 &3821378338585531490
@@ -594,6 +622,143 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3152200661694102712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7539045438094518499}
+  - component: {fileID: 4479632432006221943}
+  - component: {fileID: 7352197215304727586}
+  m_Layer: 5
+  m_Name: Count_Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7539045438094518499
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3152200661694102712}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7879769741989766056}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4479632432006221943
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3152200661694102712}
+  m_CullTransparentMesh: 1
+--- !u!114 &7352197215304727586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3152200661694102712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 3 / 4
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 40
+  m_fontSizeBase: 40
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3177238105841676334
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +770,7 @@ GameObject:
   - component: {fileID: 3237800518611776504}
   - component: {fileID: 6296784848994754807}
   - component: {fileID: 901421255931424320}
+  - component: {fileID: 5585438713073596193}
   m_Layer: 5
   m_Name: Repair_Screw (10)
   m_TagString: Untagged
@@ -628,7 +794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -308.8, y: 202}
+  m_AnchoredPosition: {x: -354, y: 202}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6296784848994754807
@@ -654,7 +820,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -669,6 +835,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5585438713073596193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177238105841676334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &3909868551598832080
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,6 +859,7 @@ GameObject:
   - component: {fileID: 7386398233117332826}
   - component: {fileID: 4993386204915902796}
   - component: {fileID: 8223583619762155616}
+  - component: {fileID: 5294709657954371770}
   m_Layer: 5
   m_Name: Repair_Screw (6)
   m_TagString: Untagged
@@ -703,7 +883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 156.7, y: 222.9}
+  m_AnchoredPosition: {x: 111.499985, y: 222.9}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4993386204915902796
@@ -729,7 +909,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -744,6 +924,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5294709657954371770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3909868551598832080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &4067612628441977831
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +948,7 @@ GameObject:
   - component: {fileID: 4139912291290418863}
   - component: {fileID: 6012713392694075675}
   - component: {fileID: 8499434460373917819}
+  - component: {fileID: 4415651340384654881}
   m_Layer: 5
   m_Name: Repair_Screw (16)
   m_TagString: Untagged
@@ -778,7 +972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 309, y: -86}
+  m_AnchoredPosition: {x: 263.8, y: -86}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6012713392694075675
@@ -804,7 +998,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -819,6 +1013,151 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4415651340384654881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4067612628441977831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
+--- !u!1 &4413278549184098288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6806952377484706375}
+  - component: {fileID: 2011816387337999226}
+  - component: {fileID: 558393201591393570}
+  - component: {fileID: 5309759257521326886}
+  m_Layer: 5
+  m_Name: LeftButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6806952377484706375
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413278549184098288}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 150887497872729717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -468, y: 0}
+  m_SizeDelta: {x: 160, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2011816387337999226
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413278549184098288}
+  m_CullTransparentMesh: 1
+--- !u!114 &558393201591393570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413278549184098288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 722381820027978180, guid: 95e226a15014fde498d80310d83a9610, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5309759257521326886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413278549184098288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 558393201591393570}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5895654653231753377}
+        m_TargetAssemblyTypeName: RepairGameController, Assembly-CSharp
+        m_MethodName: ShowPreviousItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4555378767305119183
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,13 +1169,14 @@ GameObject:
   - component: {fileID: 9135462920280652108}
   - component: {fileID: 5621923283120507666}
   - component: {fileID: 6312271817707666592}
+  - component: {fileID: 2609789649244190071}
   m_Layer: 5
   m_Name: Repair_Screw (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9135462920280652108
 RectTransform:
   m_ObjectHideFlags: 0
@@ -879,7 +1219,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -894,6 +1234,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2609789649244190071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4555378767305119183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &4788310954497987933
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +1258,7 @@ GameObject:
   - component: {fileID: 6459193968480360198}
   - component: {fileID: 8308980591754805978}
   - component: {fileID: 980623002446585854}
+  - component: {fileID: 9172278706355484897}
   m_Layer: 5
   m_Name: Repair_Screw (17)
   m_TagString: Untagged
@@ -928,7 +1282,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 309, y: -201}
+  m_AnchoredPosition: {x: 263.8, y: -201}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8308980591754805978
@@ -954,7 +1308,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -969,6 +1323,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9172278706355484897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788310954497987933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &4887378615877750223
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,13 +1347,14 @@ GameObject:
   - component: {fileID: 7390098028119764056}
   - component: {fileID: 6145194491694933767}
   - component: {fileID: 8074578948641574640}
+  - component: {fileID: 6842173466510283779}
   m_Layer: 5
   m_Name: Repair_Screw (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7390098028119764056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1029,7 +1397,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1044,6 +1412,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6842173466510283779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4887378615877750223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &5590038671293942247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1436,7 @@ GameObject:
   - component: {fileID: 7381909710199868085}
   - component: {fileID: 7731568478954210094}
   - component: {fileID: 57322050772822359}
+  - component: {fileID: 2914187998750315967}
   m_Layer: 5
   m_Name: Repair_Screw (3)
   m_TagString: Untagged
@@ -1104,7 +1486,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1119,6 +1501,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2914187998750315967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590038671293942247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &5861033576271609136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,6 +1600,7 @@ GameObject:
   - component: {fileID: 714859625374976870}
   - component: {fileID: 7089030338303341944}
   - component: {fileID: 6358561514439144408}
+  - component: {fileID: 2803300591778183671}
   m_Layer: 5
   m_Name: Repair_Screw (14)
   m_TagString: Untagged
@@ -1228,7 +1624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 309, y: 202}
+  m_AnchoredPosition: {x: 263.8, y: 202}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7089030338303341944
@@ -1254,7 +1650,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1269,6 +1665,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2803300591778183671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5926835930032809176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &6260210328938201117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,6 +1689,7 @@ GameObject:
   - component: {fileID: 2863142614868058555}
   - component: {fileID: 4011793199135619432}
   - component: {fileID: 4243824187707349699}
+  - component: {fileID: 4216822119872218487}
   m_Layer: 5
   m_Name: Repair_Screw (7)
   m_TagString: Untagged
@@ -1303,7 +1713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -155.8, y: -222}
+  m_AnchoredPosition: {x: -201.00002, y: -222}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4011793199135619432
@@ -1329,7 +1739,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1344,6 +1754,151 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4216822119872218487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6260210328938201117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
+--- !u!1 &6383633094737658621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8655431629333703943}
+  - component: {fileID: 4406800918534136996}
+  - component: {fileID: 6569190957490544553}
+  - component: {fileID: 1687671495112094853}
+  m_Layer: 5
+  m_Name: RightButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8655431629333703943
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383633094737658621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 150887497872729717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 468, y: 0}
+  m_SizeDelta: {x: 160, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4406800918534136996
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383633094737658621}
+  m_CullTransparentMesh: 1
+--- !u!114 &6569190957490544553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383633094737658621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 4552508287704046514, guid: 95e226a15014fde498d80310d83a9610, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1687671495112094853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383633094737658621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6569190957490544553}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5895654653231753377}
+        m_TargetAssemblyTypeName: RepairGameController, Assembly-CSharp
+        m_MethodName: ShowNextItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6412173758873321178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,6 +1910,7 @@ GameObject:
   - component: {fileID: 4801775493261039383}
   - component: {fileID: 8912875582955310044}
   - component: {fileID: 1232998998036675477}
+  - component: {fileID: 4870621964611004604}
   m_Layer: 5
   m_Name: Repair_Screw (5)
   m_TagString: Untagged
@@ -1378,7 +1934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015258789, y: 222.9}
+  m_AnchoredPosition: {x: -45.200027, y: 222.9}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8912875582955310044
@@ -1404,7 +1960,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1419,6 +1975,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4870621964611004604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6412173758873321178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &6901041361557003761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,6 +1999,7 @@ GameObject:
   - component: {fileID: 4891273434087033275}
   - component: {fileID: 451954714180793031}
   - component: {fileID: 5205574892146294693}
+  - component: {fileID: 6955123509803291892}
   m_Layer: 5
   m_Name: Repair_Screw (11)
   m_TagString: Untagged
@@ -1453,7 +2023,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -308.8, y: 77}
+  m_AnchoredPosition: {x: -354, y: 77}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &451954714180793031
@@ -1479,7 +2049,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1494,6 +2064,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6955123509803291892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901041361557003761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &7013333293897079636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,6 +2089,7 @@ GameObject:
   - component: {fileID: 8988133071228623568}
   - component: {fileID: 8837392492604918601}
   - component: {fileID: 6400221929216091519}
+  - component: {fileID: 5895654653231753377}
   m_Layer: 5
   m_Name: Repair_Canvas
   m_TagString: Untagged
@@ -1529,8 +2113,8 @@ RectTransform:
   - {fileID: 192258204194101905}
   - {fileID: 828104298438657839}
   - {fileID: 7879769741989766056}
-  - {fileID: 4056550043578247467}
-  - {fileID: 829335991176712301}
+  - {fileID: 6806952377484706375}
+  - {fileID: 8655431629333703943}
   - {fileID: 8569427777715357771}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1602,6 +2186,45 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5895654653231753377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013333293897079636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6766def4f3d49448c64562d6470d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairGameController
+  repairItems:
+  - {fileID: 685614150865730604}
+  - {fileID: 3069699589986308161}
+  allScrews:
+  - {fileID: 6866442066466164020}
+  - {fileID: 2609789649244190071}
+  - {fileID: 6842173466510283779}
+  - {fileID: 2914187998750315967}
+  - {fileID: 3908615874773136204}
+  - {fileID: 4870621964611004604}
+  - {fileID: 5294709657954371770}
+  - {fileID: 4216822119872218487}
+  - {fileID: 1191008098672145684}
+  - {fileID: 3846812875132965760}
+  - {fileID: 5585438713073596193}
+  - {fileID: 6955123509803291892}
+  - {fileID: 3218113721762823594}
+  - {fileID: 8956839465545093568}
+  - {fileID: 2803300591778183671}
+  - {fileID: 155611265600121673}
+  - {fileID: 4415651340384654881}
+  - {fileID: 9172278706355484897}
+  repairCountSlider: {fileID: 3909058014541346861}
+  countText: {fileID: 7352197215304727586}
+  leftButton: {fileID: 5309759257521326886}
+  rightButton: {fileID: 1687671495112094853}
+  repairCursor: {fileID: 9128401403875481427}
 --- !u!1 &7123726604595139967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,6 +2236,7 @@ GameObject:
   - component: {fileID: 4679582411693196775}
   - component: {fileID: 8396227471151814884}
   - component: {fileID: 1649001460647644561}
+  - component: {fileID: 3218113721762823594}
   m_Layer: 5
   m_Name: Repair_Screw (12)
   m_TagString: Untagged
@@ -1636,7 +2260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -308.8, y: -86}
+  m_AnchoredPosition: {x: -354, y: -86}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8396227471151814884
@@ -1662,7 +2286,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1677,6 +2301,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3218113721762823594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7123726604595139967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &8407033851419931413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,6 +2325,7 @@ GameObject:
   - component: {fileID: 6783499519435339101}
   - component: {fileID: 9168529926580679821}
   - component: {fileID: 7684434208750426918}
+  - component: {fileID: 3846812875132965760}
   m_Layer: 5
   m_Name: Repair_Screw (9)
   m_TagString: Untagged
@@ -1711,7 +2349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 156.7, y: -222}
+  m_AnchoredPosition: {x: 111.499985, y: -222}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9168529926580679821
@@ -1737,7 +2375,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1752,6 +2390,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3846812875132965760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8407033851419931413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &8523139845662117708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,6 +2414,7 @@ GameObject:
   - component: {fileID: 2165160004330099239}
   - component: {fileID: 6859797892686430227}
   - component: {fileID: 5761106501651875749}
+  - component: {fileID: 155611265600121673}
   m_Layer: 5
   m_Name: Repair_Screw (15)
   m_TagString: Untagged
@@ -1786,7 +2438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 309, y: 77}
+  m_AnchoredPosition: {x: 263.8, y: 77}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6859797892686430227
@@ -1812,7 +2464,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1827,6 +2479,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &155611265600121673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523139845662117708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &8969471007040324997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,6 +2503,7 @@ GameObject:
   - component: {fileID: 6883323628871677103}
   - component: {fileID: 5731409164975475677}
   - component: {fileID: 31745719992587197}
+  - component: {fileID: 1191008098672145684}
   m_Layer: 5
   m_Name: Repair_Screw (8)
   m_TagString: Untagged
@@ -1861,7 +2527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015258789, y: -222}
+  m_AnchoredPosition: {x: -45.200027, y: -222}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5731409164975475677
@@ -1887,7 +2553,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1902,6 +2568,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1191008098672145684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969471007040324997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &9078035745268998086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,6 +2592,7 @@ GameObject:
   - component: {fileID: 4894236806152207881}
   - component: {fileID: 7298214221620389098}
   - component: {fileID: 2559752186396068610}
+  - component: {fileID: 8956839465545093568}
   m_Layer: 5
   m_Name: Repair_Screw (13)
   m_TagString: Untagged
@@ -1936,7 +2616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -308.8, y: -201}
+  m_AnchoredPosition: {x: -354, y: -201}
   m_SizeDelta: {x: 40.4138, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7298214221620389098
@@ -1962,7 +2642,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -10, y: -10, z: -10, w: -10}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1977,85 +2657,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &9126163171595579832
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6535767628975895803}
-  - component: {fileID: 1792341705401575130}
-  - component: {fileID: 3265309845949620860}
-  m_Layer: 5
-  m_Name: Count_Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &6535767628975895803
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9126163171595579832}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7879769741989766056}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1792341705401575130
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9126163171595579832}
-  m_CullTransparentMesh: 1
---- !u!114 &3265309845949620860
+--- !u!114 &8956839465545093568
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9126163171595579832}
+  m_GameObject: {fileID: 9078035745268998086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Script: {fileID: 11500000, guid: ee76011d1572b8f4d965f934823c4925, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 3
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: 3 / 4
+  m_EditorClassIdentifier: Assembly-CSharp::RepairScrew
+  repairGameController: {fileID: 5895654653231753377}
 --- !u!1 &9128401403875481427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,6 +2681,7 @@ GameObject:
   - component: {fileID: 8569427777715357771}
   - component: {fileID: 3564472348547634053}
   - component: {fileID: 2401686343337726448}
+  - component: {fileID: 9037530294786755864}
   m_Layer: 5
   m_Name: Repair_Cursor
   m_TagString: Untagged
@@ -2092,7 +2707,7 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 184, y: 1017.9}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.08, y: 0.92}
 --- !u!222 &3564472348547634053
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2115,7 +2730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2131,231 +2746,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1001 &4882242556568240252
-PrefabInstance:
+--- !u!114 &9037530294786755864
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 150887497872729717}
-    m_Modifications:
-    - target: {fileID: 3429768306109104599, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_Name
-      value: Time_Slider
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360141893441835984, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360141893441835984, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 650
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -80
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
---- !u!224 &829335991176712301 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5207094707393613841, guid: 5222c389d35a7c2429a5187ef0d133dc, type: 3}
-  m_PrefabInstance: {fileID: 4882242556568240252}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8832533415236510671
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 150887497872729717}
-    m_Modifications:
-    - target: {fileID: 4292491691018702929, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_Name
-      value: ToDo_Text
-      objectReference: {fileID: 0}
-    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_text
-      value: "\uB098\uC0AC\uB97C \uD480\uC5B4\uB77C!"
-      objectReference: {fileID: 0}
-    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_fontSize
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_margin.z
-      value: 3.397766
-      objectReference: {fileID: 0}
-    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_Pivot.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 808.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 102.4169
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -26
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
---- !u!224 &4056550043578247467 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
-  m_PrefabInstance: {fileID: 8832533415236510671}
-  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9128401403875481427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5a650106058b54aaeb640a84b34d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepairCursorController
+  canvasRect: {fileID: 8569427777715357771}
+  uiCamera: {fileID: 0}
+  twistAngle: 70
+  twistSpeed: 12
