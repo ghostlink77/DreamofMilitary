@@ -176,16 +176,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060494713453895536}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 150887497872729717}
+  m_Father: {fileID: 2271874875503583621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 322, y: 24}
+  m_AnchoredPosition: {x: -16, y: -3}
   m_SizeDelta: {x: 753.75, y: 440}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &765472440302054876
@@ -301,6 +301,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1566056230756437236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1028538094301452401}
+  m_Layer: 5
+  m_Name: DangZik_Sir_Pos_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1028538094301452401
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566056230756437236}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 150887497872729717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -239, y: 71}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1604403312104416832
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +526,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 6134437624088305652}
   m_HandleRect: {fileID: 0}
@@ -670,7 +705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &48074461765095472
 RectTransform:
   m_ObjectHideFlags: 0
@@ -678,16 +713,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4934033549043971418}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 150887497872729717}
+  m_Father: {fileID: 2271874875503583621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23.125, y: 50.25}
+  m_AnchoredPosition: {x: -16.002502, y: 10.125}
   m_SizeDelta: {x: 753.75, y: 440}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7897293578015809702
@@ -803,6 +838,43 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6861176353992696585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2271874875503583621}
+  m_Layer: 5
+  m_Name: DangZik_Sir
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2271874875503583621
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6861176353992696585}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6722489201419944289}
+  - {fileID: 48074461765095472}
+  m_Father: {fileID: 150887497872729717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 511, y: -31}
+  m_SizeDelta: {x: -408.625, y: 466.25}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7013333293897079636
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +887,7 @@ GameObject:
   - component: {fileID: 8988133071228623568}
   - component: {fileID: 8837392492604918601}
   - component: {fileID: 6400221929216091519}
+  - component: {fileID: 1843517162239070742}
   m_Layer: 5
   m_Name: DangZik_Canvas
   m_TagString: Untagged
@@ -835,8 +908,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4804936170144658954}
-  - {fileID: 6722489201419944289}
-  - {fileID: 48074461765095472}
+  - {fileID: 2271874875503583621}
+  - {fileID: 1028538094301452401}
   - {fileID: 6746612000187148809}
   - {fileID: 192258204194101905}
   - {fileID: 6872025855649890458}
@@ -912,6 +985,35 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1843517162239070742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013333293897079636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f8c883676ea8f49b0f798aa2cd3875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DangZik
+  sleepState: {fileID: 685614150865730604}
+  awakeState: {fileID: 893664722795969700}
+  failureState: {fileID: 3224239636744509323}
+  fatigueGauge: {fileID: 3909058014541346861}
+  maxFatigue: 30
+  fatigueIncreasePerSecond: 40
+  fatigueDecreasePerSecond: 15
+  forcedSleepDuration: 0.6
+  commander: {fileID: 1060494713453895536}
+  commanderLookState: {fileID: 4934033549043971418}
+  commanderPositions:
+  - {fileID: 2271874875503583621}
+  - {fileID: 1028538094301452401}
+  nextAppearanceTime: {x: 1.5, y: 3}
+  moveTime: {x: 0.8, y: 1.5}
+  failureCheckStartNormalized: 0.62
+  caughtDelay: 1
 --- !u!1 &7045354213881491874
 GameObject:
   m_ObjectHideFlags: 0

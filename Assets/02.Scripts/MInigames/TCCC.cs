@@ -1,4 +1,5 @@
 using DreamOfMilitary.Routine;
+using DreamOfMilitary.Audio;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -80,6 +81,12 @@ public class TCCC : MonoBehaviour, IMinigame
                 if (IsMouseOverObject(bleedingAreas[_activeIndex], mousePos))
                 {
                     SetAlpha(bleedingAreas[_activeIndex], 1f);
+
+                    if (!_isBleedingRevealed)
+                    {
+                        GameAudioController.Instance?.PlayTargetHit();
+                    }
+
                     _isBleedingRevealed = true;
                 }
             }
@@ -94,6 +101,7 @@ public class TCCC : MonoBehaviour, IMinigame
                         if (tourniquets != null && _activeIndex < tourniquets.Length && tourniquets[_activeIndex] != null)
                         {
                             tourniquets[_activeIndex].SetActive(true);
+                            GameAudioController.Instance?.PlayMetal();
                             _isStickInitialized = false;
                         }
                     }
@@ -212,6 +220,7 @@ public class TCCC : MonoBehaviour, IMinigame
 
         if (debugPivotMarker != null) debugPivotMarker.gameObject.SetActive(false);
         if (successImage != null) successImage.SetActive(true);
+        GameAudioController.Instance?.PlayScream();
 
         var callback = _onCompleted;
         _onCompleted = null;
