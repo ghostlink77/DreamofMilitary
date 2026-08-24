@@ -22,16 +22,34 @@ namespace DreamOfMilitary.Audio
         [SerializeField] private AudioClip failureMusic;
         [SerializeField] private AudioClip endingMusic;
 
-        [Header("효과음")]
+        [Header("당직 졸기 / 엔딩 컷신 - 저벅저벅")]
         [SerializeField] private AudioClip footstepEffect;
+
+        [Header("내무반 정리 - 옷·락커")]
         [SerializeField] private AudioClip clothEffect;
         [SerializeField] private AudioClip lockerEffect;
+
+        [Header("MOPP 방호복 - 철컥")]
         [SerializeField] private AudioClip metalEffect;
+
+        [Header("훈련 사격 - 총·타겟")]
         [SerializeField] private AudioClip gunshotEffect;
+        [SerializeField, Range(0f, 1f)] private float gunshotVolumeScale = 0.35f;
         [SerializeField] private AudioClip targetHitEffect;
+
+        [Header("TCCC - 출혈 발견·지혈대 부착·성공 비명")]
+        [SerializeField] private AudioClip tcccBleedRevealEffect;
+        [SerializeField] private AudioClip tcccTourniquetEffect;
+        [SerializeField] private AudioClip tcccSuccessScreamEffect;
+
+        [Header("체력측정: 팔굽혀펴기 - 숨소리")]
         [SerializeField] private AudioClip breathEffect;
+
+        [Header("당직 졸기 - 수면·놀람")]
         [SerializeField] private AudioClip sleepEffect;
         [SerializeField] private AudioClip surpriseEffect;
+
+        [Header("일과 결과 / 로비 버튼")]
         [SerializeField] private AudioClip textRevealEffect;
         [SerializeField] private AudioClip continueEffect;
 
@@ -52,6 +70,8 @@ namespace DreamOfMilitary.Audio
 
         private void Awake()
         {
+            InitializeTcccEffectDefaults();
+
             if (Instance != null && Instance != this)
             {
                 CopyEffectConfigurationTo(Instance);
@@ -127,8 +147,11 @@ namespace DreamOfMilitary.Audio
         public void PlayCloth() => PlayEffect(clothEffect);
         public void PlayLocker() => PlayEffect(lockerEffect);
         public void PlayMetal() => PlayEffect(metalEffect);
-        public void PlayGunshot() => PlayEffect(gunshotEffect);
+        public void PlayGunshot() => PlayEffect(gunshotEffect, gunshotVolumeScale);
         public void PlayTargetHit() => PlayEffect(targetHitEffect);
+        public void PlayTcccBleedReveal() => PlayEffect(tcccBleedRevealEffect);
+        public void PlayTcccTourniquet() => PlayEffect(tcccTourniquetEffect);
+        public void PlayTcccSuccessScream() => PlayEffect(tcccSuccessScreamEffect);
         public void PlayBreath() => PlayEffect(breathEffect);
         public void PlaySleep() => PlayEffect(sleepEffect, 0.55f);
         public void PlaySurprise() => PlayEffect(surpriseEffect);
@@ -148,6 +171,26 @@ namespace DreamOfMilitary.Audio
             return source;
         }
 
+        private void InitializeTcccEffectDefaults()
+        {
+            // 기존 프리팹을 열었을 때에도 TCCC 전용 슬롯이 비어 재생되지 않도록
+            // 최초 실행만 기존 효과음으로 채운다. 인스펙터에서 각 슬롯을 별도로 지정하면 덮어쓰지 않는다.
+            if (tcccBleedRevealEffect == null)
+            {
+                tcccBleedRevealEffect = targetHitEffect;
+            }
+
+            if (tcccTourniquetEffect == null)
+            {
+                tcccTourniquetEffect = metalEffect;
+            }
+
+            if (tcccSuccessScreamEffect == null)
+            {
+                tcccSuccessScreamEffect = surpriseEffect;
+            }
+        }
+
         private void CopyEffectConfigurationTo(GameAudioController target)
         {
             CopyIfMissing(ref target.footstepEffect, footstepEffect);
@@ -156,6 +199,9 @@ namespace DreamOfMilitary.Audio
             CopyIfMissing(ref target.metalEffect, metalEffect);
             CopyIfMissing(ref target.gunshotEffect, gunshotEffect);
             CopyIfMissing(ref target.targetHitEffect, targetHitEffect);
+            CopyIfMissing(ref target.tcccBleedRevealEffect, tcccBleedRevealEffect);
+            CopyIfMissing(ref target.tcccTourniquetEffect, tcccTourniquetEffect);
+            CopyIfMissing(ref target.tcccSuccessScreamEffect, tcccSuccessScreamEffect);
             CopyIfMissing(ref target.breathEffect, breathEffect);
             CopyIfMissing(ref target.sleepEffect, sleepEffect);
             CopyIfMissing(ref target.surpriseEffect, surpriseEffect);

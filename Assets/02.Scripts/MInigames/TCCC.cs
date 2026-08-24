@@ -84,7 +84,7 @@ public class TCCC : MonoBehaviour, IMinigame
 
                     if (!_isBleedingRevealed)
                     {
-                        GameAudioController.Instance?.PlayTargetHit();
+                        GameAudioController.Instance?.PlayTcccBleedReveal();
                     }
 
                     _isBleedingRevealed = true;
@@ -101,7 +101,7 @@ public class TCCC : MonoBehaviour, IMinigame
                         if (tourniquets != null && _activeIndex < tourniquets.Length && tourniquets[_activeIndex] != null)
                         {
                             tourniquets[_activeIndex].SetActive(true);
-                            GameAudioController.Instance?.PlayMetal();
+                            GameAudioController.Instance?.PlayTcccTourniquet();
                             _isStickInitialized = false;
                         }
                     }
@@ -220,7 +220,7 @@ public class TCCC : MonoBehaviour, IMinigame
 
         if (debugPivotMarker != null) debugPivotMarker.gameObject.SetActive(false);
         if (successImage != null) successImage.SetActive(true);
-        GameAudioController.Instance?.PlayScream();
+        GameAudioController.Instance?.PlayTcccSuccessScream();
 
         var callback = _onCompleted;
         _onCompleted = null;
