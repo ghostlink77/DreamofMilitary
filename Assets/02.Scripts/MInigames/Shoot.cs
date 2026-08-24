@@ -4,6 +4,7 @@
 
 using System;
 using DreamOfMilitary.Routine;
+using DreamOfMilitary.Audio;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -147,6 +148,7 @@ public sealed class Shoot : MonoBehaviour, IMinigame
         }
 
         _remainingAmmo--;
+        GameAudioController.Instance?.PlayGunshot();
         UpdateAmmoText();
         TryHitCurrentTarget(pointerScreenPosition);
     }
@@ -197,6 +199,7 @@ public sealed class Shoot : MonoBehaviour, IMinigame
                 GetUiCamera(targetRect)))
         {
             _currentTargetHit = true;
+            GameAudioController.Instance?.PlayTargetHit();
             _hitTargetCount++;
             UpdateTargetText();
             SetTargetHitColor(_currentTargetIndex);

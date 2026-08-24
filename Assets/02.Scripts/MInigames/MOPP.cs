@@ -3,6 +3,7 @@
 // ========================
 
 using DreamOfMilitary.Routine;
+using DreamOfMilitary.Audio;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -437,6 +438,7 @@ public class MOPP : MonoBehaviour, IMinigame
 
         // 보호구를 화면에서 제거
         equipmentItems[equipmentIndex].SetActive(false);
+        GameAudioController.Instance?.PlayMetal();
 
         // 다음 단계
         _nextEquipmentIndex = equipmentIndex +1;
