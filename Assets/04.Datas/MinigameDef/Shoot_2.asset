@@ -16,12 +16,8 @@ MonoBehaviour:
   _commandText: "\uD45C\uC801\uC744 \uB9DE\uCDB0\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 22518421607dcb442a5764ff4b559f4f, type: 3}
   _availableStages: 12
-<<<<<<< HEAD
-  _difficultyTier: 1
-=======
   _isExamMinigame: 0
   _basePoints: 2
   _difficultyTier: 2
->>>>>>> origin/main
   _timeLimitSeconds: 5
   _timeLimitRule: 1
