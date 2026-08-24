@@ -2114,9 +2114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa83b3f02bbd094d9575c682c63f76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Progression.GameState
-  _startingRank: 2
-  _startingServiceMonths: 3
-  _startingTotalPoints: 45
+  _startingRank: 0
+  _startingServiceMonths: 0
+  _startingTotalPoints: 0
 --- !u!1 &910000004
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,11 +16,11 @@ MonoBehaviour:
   _privateFirstClassToCorporalPoints: 35
   _corporalToSergeantPoints: 55
   _sergeantToDischargePoints: 70
-  _privateFirstClassExamMinigameCount: 8
-  _privateFirstClassExamRequiredSuccessCount: 5
+  _privateFirstClassExamMinigameCount: 10
+  _privateFirstClassExamRequiredSuccessCount: 6
   _corporalExamMinigameCount: 10
   _corporalExamRequiredSuccessCount: 8
-  _sergeantExamMinigameCount: 10
-  _sergeantExamRequiredSuccessCount: 9
+  _sergeantExamMinigameCount: 12
+  _sergeantExamRequiredSuccessCount: 10
   _dischargeExamMinigameCount: 12
   _dischargeExamRequiredSuccessCount: 12
