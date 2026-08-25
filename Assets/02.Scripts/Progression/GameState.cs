@@ -34,6 +34,22 @@ namespace DreamOfMilitary.Progression
 
         public event Action<GameStateSnapshot> MonthAdvanced;
 
+        private const int CurrentSaveVersion = 1;
+        private const string ProgressSaveKey = "GameState.Progress.v1";
+
+        [Serializable]
+        private sealed class SaveData
+        {
+            public int Version;
+            public int Rank;
+            public int ServiceMonths;
+            public int TotalPoints;
+            public int TotalMinigameSuccessCount;
+            public int TotalMinigameFailureCount;
+        }
+
+        public bool HasSavedProgress { get; private set; }
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -45,7 +61,10 @@ namespace DreamOfMilitary.Progression
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            InitializeFromStartingValues();
+            if (!TryLoadProgress())
+            {
+                InitializeFromStartingValues();
+            }
         }
 
         private void OnDestroy()
@@ -112,6 +131,7 @@ namespace DreamOfMilitary.Progression
 
             var snapshot = CaptureSnapshot();
 
+            SaveProgress();
             MonthAdvanced?.Invoke(snapshot);
             StateChanged?.Invoke(snapshot);
         }
@@ -130,6 +150,7 @@ namespace DreamOfMilitary.Progression
 
             CurrentRank = (MilitaryRank)((int)CurrentRank + 1);
 
+            SaveProgress();
             StateChanged?.Invoke(CaptureSnapshot());
             return true;
         }
@@ -137,6 +158,7 @@ namespace DreamOfMilitary.Progression
         public void ResetForNewGame()
         {
             InitializeFromStartingValues();
+            SaveProgress();
             StateChanged?.Invoke(CaptureSnapshot());
         }
 
@@ -147,6 +169,70 @@ namespace DreamOfMilitary.Progression
             TotalPoints = Mathf.Max(0, _startingTotalPoints);
             TotalMinigameSuccessCount = 0;
             TotalMinigameFailureCount = 0;
+        }
+
+        private bool TryLoadProgress()
+        {
+            if (!PlayerPrefs.HasKey(ProgressSaveKey))
+            {
+                return false;
+            }
+
+            try
+            {
+                var json = PlayerPrefs.GetString(ProgressSaveKey);
+                var saveData = JsonUtility.FromJson<SaveData>(json);
+
+                if (!IsValidSaveData(saveData))
+                {
+                    throw new InvalidOperationException("저장 데이터가 유효하지 않습니다.");
+                }
+
+                CurrentRank = (MilitaryRank)saveData.Rank;
+                ServiceMonths = saveData.ServiceMonths;
+                TotalPoints = saveData.TotalPoints;
+                TotalMinigameSuccessCount = saveData.TotalMinigameSuccessCount;
+                TotalMinigameFailureCount = saveData.TotalMinigameFailureCount;
+                HasSavedProgress = true;
+                return true;
+            }
+            catch (Exception exception)
+            {
+                Debug.LogWarning($"진행도 저장 데이터를 불러오지 못해 새 게임으로 시작합니다. {exception.Message}", this);
+                PlayerPrefs.DeleteKey(ProgressSaveKey);
+                PlayerPrefs.Save();
+                HasSavedProgress = false;
+                return false;
+            }
+        }
+
+        private void SaveProgress()
+        {
+            var saveData = new SaveData
+            {
+                Version = CurrentSaveVersion,
+                Rank = (int)CurrentRank,
+                ServiceMonths = ServiceMonths,
+                TotalPoints = TotalPoints,
+                TotalMinigameSuccessCount = TotalMinigameSuccessCount,
+                TotalMinigameFailureCount = TotalMinigameFailureCount
+            };
+
+            PlayerPrefs.SetString(ProgressSaveKey, JsonUtility.ToJson(saveData));
+            PlayerPrefs.Save();
+            HasSavedProgress = true;
+        }
+
+        private static bool IsValidSaveData(SaveData saveData)
+        {
+            return saveData != null
+                && saveData.Version == CurrentSaveVersion
+                && saveData.Rank >= (int)MilitaryRank.PrivateSecondClass
+                && saveData.Rank <= (int)MilitaryRank.Sergeant
+                && saveData.ServiceMonths >= 0
+                && saveData.TotalPoints >= 0
+                && saveData.TotalMinigameSuccessCount >= 0
+                && saveData.TotalMinigameFailureCount >= 0;
         }
 
 #if UNITY_EDITOR

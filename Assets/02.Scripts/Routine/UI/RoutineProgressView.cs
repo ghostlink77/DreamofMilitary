@@ -1,3 +1,4 @@
+using DG.Tweening;
 using DreamOfMilitary.Progression;
 using DreamOfMilitary.Routine;
 using TMPro;
@@ -15,14 +16,23 @@ public sealed class RoutineProgressView : MonoBehaviour
     [SerializeField] private Image[] progressSlots;
     [SerializeField] private Color successColor = new(1f, 0.8772222f, 0f, 0.5686275f);
     [SerializeField] private Color failureColor = new(1f, 0.08246528f, 0f, 0.5686275f);
+    [SerializeField, Min(0f)] private float feedbackTextScaleDuration = 0.3f;
+    [SerializeField] private Ease feedbackTextScaleEase = Ease.OutBack;
+    [SerializeField, Min(0f)] private float progressFillDuration = 0.4f;
+    [SerializeField] private Ease progressFillEase = Ease.OutCubic;
     [SerializeField] private GameObject examProgressRoot;
     [SerializeField] private TextMeshProUGUI examProgressText;
 
     private RoutineRunState _previousState = RoutineRunState.Idle;
+    private Vector3 _successTextDefaultScale;
+    private Vector3 _failureTextDefaultScale;
+    private Vector3[] _progressSlotDefaultScales;
     private int _examSuccessCount;
 
     private void Awake()
     {
+        InitializeFeedbackTextScales();
+        InitializeProgressSlots();
         SetActive(feedbackRoot, false);
         SetActive(calendarRoot, false);
         SetActive(examProgressRoot, false);
@@ -44,6 +54,9 @@ public sealed class RoutineProgressView : MonoBehaviour
 
     private void OnDisable()
     {
+        ResetFeedbackTextTweens();
+        CompleteProgressSlotTweens();
+
         if (routineRunner == null)
         {
             return;
@@ -64,6 +77,7 @@ public sealed class RoutineProgressView : MonoBehaviour
 
         if (state != RoutineRunState.ShowingFeedback)
         {
+            ResetFeedbackTextTweens();
             SetActive(feedbackRoot, false);
         }
 
@@ -78,17 +92,7 @@ public sealed class RoutineProgressView : MonoBehaviour
 
     private void OnFeedbackShown(MinigameJudgement judgement, int score)
     {
-        SetActive(feedbackRoot, true);
-
-        if (successText != null)
-        {
-            successText.gameObject.SetActive(judgement == MinigameJudgement.Success);
-        }
-
-        if (failureText != null)
-        {
-            failureText.gameObject.SetActive(judgement == MinigameJudgement.Failure);
-        }
+        ShowAnimatedFeedbackText(judgement);
 
         if (routineRunner.CurrentRunMode == RoutineRunMode.Exam && judgement == MinigameJudgement.Success)
         {
@@ -114,8 +118,21 @@ public sealed class RoutineProgressView : MonoBehaviour
         }
 
         var slot = progressSlots[slotIndex];
-        slot.gameObject.SetActive(true);
+        var slotRectTransform = slot.rectTransform;
+        var targetScale = GetProgressSlotDefaultScale(slotIndex, slotRectTransform);
+
+        slotRectTransform.DOKill();
+        slotRectTransform.localScale = new Vector3(0f, targetScale.y, targetScale.z);
         slot.color = judgement == MinigameJudgement.Success ? successColor : failureColor;
+        slot.gameObject.SetActive(true);
+
+        if (progressFillDuration <= 0f)
+        {
+            slotRectTransform.localScale = targetScale;
+            return;
+        }
+
+        slotRectTransform.DOScaleX(targetScale.x, progressFillDuration).SetEase(progressFillEase);
     }
 
     private void ShowExamProgress(int current, int total)
@@ -135,7 +152,114 @@ public sealed class RoutineProgressView : MonoBehaviour
         examProgressText.text = $"{goalText} {_examSuccessCount}/{requiredSuccessCount}\n남은 종목 : {remaining}";
     }
 
+    private void InitializeFeedbackTextScales()
+    {
+        _successTextDefaultScale = successText != null ? successText.rectTransform.localScale : Vector3.one;
+        _failureTextDefaultScale = failureText != null ? failureText.rectTransform.localScale : Vector3.one;
+    }
+
+    private void ShowAnimatedFeedbackText(MinigameJudgement judgement)
+    {
+        if (successText != null)
+        {
+            successText.gameObject.SetActive(false);
+        }
+
+        if (failureText != null)
+        {
+            failureText.gameObject.SetActive(false);
+        }
+
+        var isSuccess = judgement == MinigameJudgement.Success;
+        var feedbackText = isSuccess ? successText : failureText;
+        var targetScale = isSuccess ? _successTextDefaultScale : _failureTextDefaultScale;
+
+        if (feedbackText == null)
+        {
+            SetActive(feedbackRoot, true);
+            return;
+        }
+
+        var textRectTransform = feedbackText.rectTransform;
+
+        textRectTransform.DOKill();
+        textRectTransform.localScale = Vector3.zero;
+        feedbackText.gameObject.SetActive(true);
+        SetActive(feedbackRoot, true);
+
+        if (feedbackTextScaleDuration <= 0f)
+        {
+            textRectTransform.localScale = targetScale;
+            return;
+        }
+
+        textRectTransform.DOScale(targetScale, feedbackTextScaleDuration)
+            .SetEase(feedbackTextScaleEase)
+            .SetUpdate(true);
+    }
+
+    private void ResetFeedbackTextTweens()
+    {
+        ResetFeedbackText(successText, _successTextDefaultScale);
+        ResetFeedbackText(failureText, _failureTextDefaultScale);
+    }
+
+    private static void ResetFeedbackText(TextMeshProUGUI feedbackText, Vector3 defaultScale)
+    {
+        if (feedbackText == null)
+        {
+            return;
+        }
+
+        feedbackText.rectTransform.DOKill();
+        feedbackText.rectTransform.localScale = defaultScale;
+    }
+
+    private void InitializeProgressSlots()
+    {
+        if (progressSlots == null)
+        {
+            return;
+        }
+
+        _progressSlotDefaultScales = new Vector3[progressSlots.Length];
+
+        for (var index = 0; index < progressSlots.Length; index++)
+        {
+            if (progressSlots[index] == null)
+            {
+                continue;
+            }
+
+            var slotRectTransform = progressSlots[index].rectTransform;
+            _progressSlotDefaultScales[index] = slotRectTransform.localScale;
+            SetHorizontalPivotWithoutMoving(slotRectTransform, 0f);
+        }
+    }
+
     private void ResetSlots()
+    {
+        if (progressSlots == null)
+        {
+            return;
+        }
+
+        for (var index = 0; index < progressSlots.Length; index++)
+        {
+            var slot = progressSlots[index];
+
+            if (slot == null)
+            {
+                continue;
+            }
+
+            slot.rectTransform.DOKill();
+            slot.rectTransform.localScale = GetProgressSlotDefaultScale(index, slot.rectTransform);
+            slot.gameObject.SetActive(false);
+        }
+    }
+
+    private void CompleteProgressSlotTweens()
     {
         if (progressSlots == null)
         {
@@ -146,9 +270,34 @@ public sealed class RoutineProgressView : MonoBehaviour
         {
             if (progressSlots[index] != null)
             {
-                progressSlots[index].gameObject.SetActive(false);
+                progressSlots[index].rectTransform.DOKill(true);
             }
         }
+    }
+
+    private Vector3 GetProgressSlotDefaultScale(int slotIndex, RectTransform slotRectTransform)
+    {
+        if (_progressSlotDefaultScales == null || slotIndex >= _progressSlotDefaultScales.Length)
+        {
+            return slotRectTransform.localScale;
+        }
+
+        return _progressSlotDefaultScales[slotIndex];
+    }
+
+    private static void SetHorizontalPivotWithoutMoving(RectTransform rectTransform, float pivotX)
+    {
+        if (Mathf.Approximately(rectTransform.pivot.x, pivotX))
+        {
+            return;
+        }
+
+        var pivot = rectTransform.pivot;
+        var anchoredPosition = rectTransform.anchoredPosition;
+        anchoredPosition.x += (pivotX - pivot.x) * rectTransform.rect.width * rectTransform.localScale.x;
+
+        rectTransform.pivot = new Vector2(pivotX, pivot.y);
+        rectTransform.anchoredPosition = anchoredPosition;
     }
 
     private static void SetActive(GameObject target, bool active)

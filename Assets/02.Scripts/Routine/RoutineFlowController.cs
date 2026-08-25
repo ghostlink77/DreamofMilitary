@@ -215,7 +215,8 @@ namespace DreamOfMilitary.Routine
                 _activeRunner.FeedbackShown += OnExamFeedbackShown;
             }
 
-            _activeRunner.StartRoutine(_selectedRoutine, _sessionSeed, _runMode);
+            var countdownSeconds = routineConfig.GetNextMinigameCountdownSeconds(GameState.Instance.CurrentRank);
+            _activeRunner.StartRoutine(_selectedRoutine, _sessionSeed, _runMode, countdownSeconds);
         }
 
         private void OnExamFeedbackShown(MinigameJudgement judgement, int score)
