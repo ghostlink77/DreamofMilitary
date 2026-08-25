@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: Repair
   _commandText: "\uB098\uC0AC\uB97C \uD480\uC5B4\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: fad802b50d7450146804c5dd230664f4, type: 3}
-  _availableStages: -1
+  _availableStages: 8
   _difficultyTier: 2
   _timeLimitSeconds: 7
   _timeLimitRule: 0

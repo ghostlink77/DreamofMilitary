@@ -2891,6 +2891,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4292491691018702929, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+      propertyPath: m_text
+      value: "\uAC00\uAC00\uAC00\uC544\uAC00"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d2eb408dadd8d0340b4da1bb624ddccb, type: 2}
+    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 744039884021793562, guid: d2eb408dadd8d0340b4da1bb624ddccb, type: 2}
+    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}

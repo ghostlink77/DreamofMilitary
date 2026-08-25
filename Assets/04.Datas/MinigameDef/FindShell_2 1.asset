@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: FindShell
   _commandText: "\uD0C4\uD53C\uB97C \uC138\uC5B4\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 54372587b0f882b45858bac20ab60e1c, type: 3}
-  _availableStages: -1
+  _availableStages: 12
   _difficultyTier: 2
   _timeLimitSeconds: 6
   _timeLimitRule: 0
