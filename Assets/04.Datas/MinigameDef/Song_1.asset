@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: Song
   _commandText: "\uAD70\uAC00\uB97C \uBD88\uB7EC\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 03b86a1f5bfcd254196ca93601e41eb4, type: 3}
-  _availableStages: 14
+  _availableStages: 1
   _difficultyTier: 1
   _timeLimitSeconds: 10
   _timeLimitRule: 0
