@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: DangZik_2
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: Dang_Zik
+  _id: Dang_Zik2
   _commandText: "\uB208\uCE58\uAECF \uC878\uC544\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 2ea58930ac47c0447adc4d92af8adadf, type: 3}
   _availableStages: 8

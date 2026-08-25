@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: PushUp_2
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: push-up
+  _id: push-up2
   _commandText: "\uAC1C\uC218\uB97C \uCC44\uC6CC\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 852b98cfc21c9384e879caf2f82f4636, type: 3}
   _availableStages: 12

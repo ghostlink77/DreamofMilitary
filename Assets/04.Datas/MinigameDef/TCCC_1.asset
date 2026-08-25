@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: TCCC_1
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: TCCC
+  _id: TCCC1
   _commandText: "\uC9C0\uD608\uD574\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 1bb6ee7a1e02ac04a9c9568b21aecad4, type: 3}
   _availableStages: 1
-  _isExamMinigame: 0
-  _basePoints: 1
   _difficultyTier: 1
   _timeLimitSeconds: 5
   _timeLimitRule: 0

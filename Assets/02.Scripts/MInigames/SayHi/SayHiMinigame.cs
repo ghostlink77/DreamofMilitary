@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DreamOfMilitary.Routine;
+using DreamOfMilitary.Audio;
 using TMPro;
 using UnityEngine;
 
@@ -182,7 +183,8 @@ public sealed class SayHiMinigame : MonoBehaviour, IMinigame
     {
         // 현재 캐릭터의 Success 모션 켜기
         character.SetSuccessVisible(true);
-
+       
+        GameAudioController.Instance?.Playsuccess();
         // 말풍선 켜기
         if (successTextBubble != null)
         {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: Shoot_1
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: Shoot
+  _id: Shoot1
   _commandText: "\uBAA8\uB4E0 \uD45C\uC801\uC744 \uB9DE\uCDB0\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 22518421607dcb442a5764ff4b559f4f, type: 3}
   _availableStages: 2

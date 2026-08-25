@@ -1,3 +1,4 @@
+using DreamOfMilitary.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,6 +53,7 @@ public sealed class SongPhraseButton : MonoBehaviour
     {
         if (button != null)
         {
+            GameAudioController.Instance?.Playbutton();
             button.interactable = false;
         }
     }

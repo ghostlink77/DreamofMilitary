@@ -1,5 +1,6 @@
 using System;
 using DreamOfMilitary.Routine;
+using DreamOfMilitary.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -86,6 +87,7 @@ public sealed class ChkCountMinigame : MonoBehaviour, IMinigame
 
     private void HandleKey(ChkCountKeypadButton key)
     {
+        GameAudioController.Instance?.PlayclickEffect();
         switch (key.Type)
         {
             case ChkCountKeypadButton.KeyType.Digit:

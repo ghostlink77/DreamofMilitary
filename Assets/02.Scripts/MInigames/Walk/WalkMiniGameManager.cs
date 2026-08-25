@@ -1,5 +1,6 @@
 using System;
 using DreamOfMilitary.Routine;
+using DreamOfMilitary.Audio;
 using TMPro;
 using UnityEngine;
 
@@ -521,11 +522,16 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         {
             playerLeftFoot.SetActive(leftFootDown);
         }
-
+ 
         if (playerRightFoot != null)
         {
             playerRightFoot.SetActive(!leftFootDown);
         }
+
+        if (leftFootDown)
+            GameAudioController.Instance?.PlayplayerLeft();
+        else
+            GameAudioController.Instance?.PlayplayerRight();
     }
 
 

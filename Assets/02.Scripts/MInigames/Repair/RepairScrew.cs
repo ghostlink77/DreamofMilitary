@@ -1,3 +1,4 @@
+using DreamOfMilitary.Audio;
 using UnityEngine;
 
 public class RepairScrew : MonoBehaviour
@@ -24,6 +25,7 @@ public class RepairScrew : MonoBehaviour
     public void Remove()
     {
         IsRemoved = true;
+        GameAudioController.Instance?.Playdriver();
         gameObject.SetActive(false);
     }
 }

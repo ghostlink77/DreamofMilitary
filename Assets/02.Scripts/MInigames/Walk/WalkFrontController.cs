@@ -1,3 +1,4 @@
+using DreamOfMilitary.Audio;
 using UnityEngine;
 
 /// <summary>
@@ -89,7 +90,8 @@ public sealed class WalkFrontController : MonoBehaviour
     {
         SetActive(frontLeft, true);
         SetActive(frontRight, false);
-
+        GameAudioController.Instance?.PlayfrontLeft();
+      
         // 카운트다운 중의 호출은 WalkMiniGameManager가 판정하지 않는다.
         if (manager != null)
         {
@@ -101,6 +103,7 @@ public sealed class WalkFrontController : MonoBehaviour
     {
         SetActive(frontLeft, false);
         SetActive(frontRight, true);
+        GameAudioController.Instance?.PlayfrontRight();
     }
 
     private void HideAllPoses()

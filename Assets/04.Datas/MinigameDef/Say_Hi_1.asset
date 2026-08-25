@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: Say_Hi_1
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: Say_Hi
+  _id: Say_Hi1
   _commandText: "\uAC04\uBD80\uC5D0\uAC8C\uB9CC \uACBD\uB840\uD574\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: d1802e78ab5ea194a9ffc734cf072a97, type: 3}
   _availableStages: 2
