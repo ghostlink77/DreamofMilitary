@@ -33,6 +33,7 @@ namespace DreamOfMilitary.Routine
         private GameObject _activeInstance;
         private IMinigame _activeMinigame;
         private MinigameJudgement _pendingJudgement;
+        private float _nextMinigameCountdownSeconds;
         private bool _isRunning;
         private bool _acceptingCompletion;
         private bool _hasOutcome;
@@ -50,7 +51,7 @@ namespace DreamOfMilitary.Routine
         public event Action<MinigameJudgement, int, int> ProgressShown;
         public event Action<RoutineReport> RoutineCompleted;
 
-        public void StartRoutine(IReadOnlyList<MinigameDef> sequence, int sessionSeed, RoutineRunMode runMode = RoutineRunMode.Routine)
+        public void StartRoutine(IReadOnlyList<MinigameDef> sequence, int sessionSeed, RoutineRunMode runMode = RoutineRunMode.Routine, float? nextMinigameCountdownSeconds = null)
         {
             if (_isRunning)
             {
@@ -90,6 +91,7 @@ namespace DreamOfMilitary.Routine
             _isRunning = true;
             CurrentRunMode = runMode;
             _earlyStopRequested = false;
+            _nextMinigameCountdownSeconds = Mathf.Max(0f, nextMinigameCountdownSeconds ?? _config.NextMinigameCountdownSeconds);
             _routineCoroutine = StartCoroutine(RunRoutine(copiedSequence, sessionSeed, _runToken, runMode));
         }
 
@@ -323,7 +325,7 @@ namespace DreamOfMilitary.Routine
 
         private IEnumerator RunNextMinigameCountdown(int runToken)
         {
-            var duration = _config.NextMinigameCountdownSeconds;
+            var duration = _nextMinigameCountdownSeconds;
 
             if (duration <= 0f)
             {

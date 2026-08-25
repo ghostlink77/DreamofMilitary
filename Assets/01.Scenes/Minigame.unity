@@ -559,6 +559,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 243673297}
   m_CullTransparentMesh: 1
+--- !u!1 &260209028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 260209029}
+  - component: {fileID: 260209031}
+  - component: {fileID: 260209030}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &260209029
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260209028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 707674465}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &260209030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260209028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &260209031
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260209028}
+  m_CullTransparentMesh: 1
 --- !u!1001 &321867430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1824,7 +1899,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &707674465
 RectTransform:
@@ -1838,6 +1913,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 260209029}
   - {fileID: 704762666}
   - {fileID: 1013907211}
   m_Father: {fileID: 0}
@@ -1860,7 +1936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.RoutineResultView
   resultRoot: {fileID: 704762665}
-  resultTitleText: {fileID: 0}
+  resultTitleText: {fileID: 1975050602}
   successFailureGroup: {fileID: 1941395015}
   successCountText: {fileID: 6456706586507152471}
   failureCountText: {fileID: 321867432}
@@ -2105,6 +2181,76 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &771234566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 771234567}
+  - component: {fileID: 771234568}
+  m_Layer: 0
+  m_Name: GameAudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &771234567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771234566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &771234568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771234566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6057312cd14a0a9fd54d91b145ff68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Audio.GameAudioController
+  titleMusic: {fileID: 8300000, guid: ad80608a55017a2408802c6fb3ffc349, type: 3}
+  lobbyMusic: {fileID: 8300000, guid: 1afb5b02bda0d944eb32637df4ca6196, type: 3}
+  minigameMusic: {fileID: 8300000, guid: 3e7823c9df8bf5e47ad59d82f7563700, type: 3}
+  intermissionMusic: {fileID: 8300000, guid: ac6e51332e92f424195f17fd720d9742, type: 3}
+  successMusic: {fileID: 8300000, guid: 0486f2f3c726dd843a4a2132cbeb011d, type: 3}
+  failureMusic: {fileID: 8300000, guid: c3962163611ab524794002a55d92a820, type: 3}
+  endingMusic: {fileID: 8300000, guid: 2cf31a52e7cd403418b566b6ca544aa9, type: 3}
+  footstepEffect: {fileID: 8300000, guid: 07c12bb7ff44e9b4cb427eb9d1949b26, type: 3}
+  clothEffect: {fileID: 8300000, guid: 5f5f6407a3c48ca41842c2c0707f08a0, type: 3}
+  lockerEffect: {fileID: 8300000, guid: 070779cdcfbe3ff4688691fb33bc3e4e, type: 3}
+  metalEffect: {fileID: 8300000, guid: 958408b32ccf3714ea02821877b0870c, type: 3}
+  gunshotEffect: {fileID: 8300000, guid: a764377339b869e459f5e53fb9258f73, type: 3}
+  gunshotVolumeScale: 0.35
+  targetHitEffect: {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
+  tcccBleedRevealEffect: {fileID: 0}
+  tcccTourniquetEffect: {fileID: 0}
+  tcccSuccessScreamEffect: {fileID: 0}
+  breathEffect: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
+  sleepEffect: {fileID: 8300000, guid: aa967a280457c054bb646d57611f5bd0, type: 3}
+  surpriseEffect: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
+  textRevealEffect: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
+  continueEffect: {fileID: 8300000, guid: 276f3be781f0d4346b9049ec44a030c0, type: 3}
+  titleSceneName: Title
+  lobbySceneName: Lobby
+  minigameSceneName: Minigame
+  endingSceneName: Ending
 --- !u!1 &773796947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,8 +2405,10 @@ MonoBehaviour:
   - {fileID: 8264564019609989769}
   - {fileID: 8264564019609989768}
   - {fileID: 8264564019609989767}
-  successColor: {r: 1, g: 0.8772222, b: 0, a: 0.5686275}
+  successColor: {r: 0, g: 0.6132076, b: 0.14624716, a: 0.5686275}
   failureColor: {r: 1, g: 0.08246528, b: 0, a: 0.5686275}
+  progressFillDuration: 0.55
+  progressFillEase: 9
   examProgressRoot: {fileID: 240654066}
   examProgressText: {fileID: 972762248351817132}
 --- !u!1 &856716394
@@ -2821,6 +2969,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4292491691018702929, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+      propertyPath: m_text
+      value: "\uAC00\uAC00\uAC00\uC544\uAC00"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d2eb408dadd8d0340b4da1bb624ddccb, type: 2}
+    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 744039884021793562, guid: d2eb408dadd8d0340b4da1bb624ddccb, type: 2}
+    - target: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
@@ -3591,6 +3755,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4816798390037973732, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
   m_PrefabInstance: {fileID: 1975050600}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1975050602 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4772203793598661023, guid: a0d3ea95db1fedf4e82e26aa45283088, type: 3}
+  m_PrefabInstance: {fileID: 1975050600}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1989349071
 GameObject:
   m_ObjectHideFlags: 0
@@ -4051,15 +4226,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538244865121202905, guid: c75aba6c21868744ba2ef7f3a9fd6c59, type: 3}
       propertyPath: m_fontColor.b
-      value: 0
+      value: 0.14509805
       objectReference: {fileID: 0}
     - target: {fileID: 7538244865121202905, guid: c75aba6c21868744ba2ef7f3a9fd6c59, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.9607843
+      value: 0.6117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538244865121202905, guid: c75aba6c21868744ba2ef7f3a9fd6c59, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7538244865121202905, guid: c75aba6c21868744ba2ef7f3a9fd6c59, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4278253055
+      value: 4280654848
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4457,69 +4636,3 @@ SceneRoots:
   - {fileID: 707674465}
   - {fileID: 544839412}
   - {fileID: 771234567}
---- !u!1 &771234566
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 771234567}
-  - component: {fileID: 771234568}
-  m_Layer: 0
-  m_Name: GameAudioController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &771234567
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771234566}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &771234568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771234566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a6057312cd14a0a9fd54d91b145ff68, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Audio.GameAudioController
-  titleMusic: {fileID: 8300000, guid: ad80608a55017a2408802c6fb3ffc349, type: 3}
-  lobbyMusic: {fileID: 8300000, guid: 1afb5b02bda0d944eb32637df4ca6196, type: 3}
-  minigameMusic: {fileID: 8300000, guid: 3e7823c9df8bf5e47ad59d82f7563700, type: 3}
-  intermissionMusic: {fileID: 8300000, guid: ac6e51332e92f424195f17fd720d9742, type: 3}
-  successMusic: {fileID: 8300000, guid: 0486f2f3c726dd843a4a2132cbeb011d, type: 3}
-  failureMusic: {fileID: 8300000, guid: c3962163611ab524794002a55d92a820, type: 3}
-  endingMusic: {fileID: 8300000, guid: 2cf31a52e7cd403418b566b6ca544aa9, type: 3}
-  footstepEffect: {fileID: 8300000, guid: 07c12bb7ff44e9b4cb427eb9d1949b26, type: 3}
-  clothEffect: {fileID: 8300000, guid: 5f5f6407a3c48ca41842c2c0707f08a0, type: 3}
-  lockerEffect: {fileID: 8300000, guid: 070779cdcfbe3ff4688691fb33bc3e4e, type: 3}
-  metalEffect: {fileID: 8300000, guid: 958408b32ccf3714ea02821877b0870c, type: 3}
-  gunshotEffect: {fileID: 8300000, guid: a764377339b869e459f5e53fb9258f73, type: 3}
-  targetHitEffect: {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
-  breathEffect: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
-  sleepEffect: {fileID: 8300000, guid: aa967a280457c054bb646d57611f5bd0, type: 3}
-  surpriseEffect: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
-  textRevealEffect: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
-  continueEffect: {fileID: 8300000, guid: 276f3be781f0d4346b9049ec44a030c0, type: 3}
-  titleSceneName: Title
-  lobbySceneName: Lobby
-  minigameSceneName: Minigame
-  endingSceneName: Ending

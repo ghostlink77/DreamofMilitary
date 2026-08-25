@@ -15,6 +15,9 @@ MonoBehaviour:
   _minigameCount: 9
   _commandDisplaySeconds: 0.8
   _feedbackDisplaySeconds: 1
-  _nextMinigameCountdownSeconds: 2
+  _privateSecondClassNextMinigameCountdownSeconds: 2
+  _privateFirstClassNextMinigameCountdownSeconds: 1.7
+  _corporalNextMinigameCountdownSeconds: 1.3
+  _sergeantNextMinigameCountdownSeconds: 1
   _abortCleanupGraceSeconds: 0.5
   _allSuccessBonusPoints: 2

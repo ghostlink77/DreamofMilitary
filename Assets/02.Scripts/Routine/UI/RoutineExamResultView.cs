@@ -21,6 +21,7 @@ namespace DreamOfMilitary.Routine
         private void Awake()
         {
             ValidateReferences();
+            ContinueButtonHoverAnimation.Ensure(continueButton);
 
             continueButton.onClick.AddListener(OnContinueClicked);
             continueButton.interactable = false;

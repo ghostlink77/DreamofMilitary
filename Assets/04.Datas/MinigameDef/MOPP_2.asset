@@ -16,8 +16,6 @@ MonoBehaviour:
   _commandText: "\uB2E8\uACC4\uC5D0 \uB9DE\uAC8C \uCC29\uC6A9\uD574\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 2b8bd9c53c3dd8c48bb0e883ade073ec, type: 3}
   _availableStages: 8
-  _isExamMinigame: 0
-  _basePoints: 1
   _difficultyTier: 2
-  _timeLimitSeconds: 5
+  _timeLimitSeconds: 4.5
   _timeLimitRule: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: Say_Hi
   _commandText: "\uAC04\uBD80\uC5D0\uAC8C\uB9CC \uACBD\uB840\uD574\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: d1802e78ab5ea194a9ffc734cf072a97, type: 3}
-  _availableStages: -1
+  _availableStages: 12
   _difficultyTier: 2
   _timeLimitSeconds: 10
   _timeLimitRule: 0

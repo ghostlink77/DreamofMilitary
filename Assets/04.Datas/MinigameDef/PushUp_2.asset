@@ -16,6 +16,6 @@ MonoBehaviour:
   _commandText: "\uAC1C\uC218\uB97C \uCC44\uC6CC\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 852b98cfc21c9384e879caf2f82f4636, type: 3}
   _availableStages: 12
-  _difficultyTier: 1
-  _timeLimitSeconds: 4.3
+  _difficultyTier: 2
+  _timeLimitSeconds: 4.5
   _timeLimitRule: 0
