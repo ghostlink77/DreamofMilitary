@@ -25,9 +25,11 @@ public sealed class TitleNewGameController : MonoBehaviour
 
     private static void ResetGameState()
     {
-        if (GameState.Instance != null)
+        var gameState = GameState.Instance;
+
+        if (gameState != null && !gameState.HasSavedProgress)
         {
-            GameState.Instance.ResetForNewGame();
+            gameState.ResetForNewGame();
         }
     }
 }
