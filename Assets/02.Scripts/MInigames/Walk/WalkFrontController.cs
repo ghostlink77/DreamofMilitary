@@ -63,17 +63,6 @@ public sealed class WalkFrontController : MonoBehaviour
         ShowLeftFoot();
     }
 
-    /// <summary>
-    /// 카운트다운과 실플레이 사이의 정지 자세.
-    /// Front Standing을 비워 두면 좌우 발을 모두 숨긴 상태로 멈춘다.
-    /// </summary>
-    public void PauseWalking()
-    {
-        isWalking = false;
-        stepTimer = 0f;
-        ShowStandingPose();
-    }
-
     /// <summary>미니게임 종료 시 전우 스프라이트를 모두 숨긴다.</summary>
     public void StopWalking()
     {
@@ -100,7 +89,6 @@ public sealed class WalkFrontController : MonoBehaviour
     {
         SetActive(frontLeft, true);
         SetActive(frontRight, false);
-        SetActive(frontStanding, false);
 
         // 카운트다운 중의 호출은 WalkMiniGameManager가 판정하지 않는다.
         if (manager != null)
@@ -113,21 +101,12 @@ public sealed class WalkFrontController : MonoBehaviour
     {
         SetActive(frontLeft, false);
         SetActive(frontRight, true);
-        SetActive(frontStanding, false);
-    }
-
-    private void ShowStandingPose()
-    {
-        SetActive(frontLeft, false);
-        SetActive(frontRight, false);
-        SetActive(frontStanding, true);
     }
 
     private void HideAllPoses()
     {
         SetActive(frontLeft, false);
         SetActive(frontRight, false);
-        SetActive(frontStanding, false);
     }
 
     private static void SetActive(GameObject target, bool active)

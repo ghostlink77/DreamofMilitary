@@ -1,8 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// 경례하기 미니게임에 등장하는 인물의 계급을 정의한다.
-/// 각 인물 오브젝트(또는 그 부모)에 붙여 SaluteMinigame의 characters 배열에 등록한다.
+/// 인사/경례 미니게임에 등장하는 인물
 /// </summary>
 public sealed class SayHiCharacter : MonoBehaviour
 {
@@ -14,6 +13,23 @@ public sealed class SayHiCharacter : MonoBehaviour
 
     [SerializeField] private Rank rank;
 
-    public Rank CharacterRank => rank;
-}
+    [Header("성공 모션 오브젝트")]
+    [SerializeField] private GameObject successObject;
 
+    public Rank CharacterRank => rank;
+
+    /// <summary>
+    /// 성공 모션을 켜거나 끈다.
+    /// </summary>
+    public void SetSuccessVisible(bool visible)
+    {
+        // 기본 캐릭터
+        gameObject.SetActive(!visible);
+
+        // 성공 캐릭터
+        if (successObject != null)
+        {
+            successObject.SetActive(visible);
+        }
+    }
+}
