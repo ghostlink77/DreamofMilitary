@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: Check_1
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: Check
+  _id: Check1
   _commandText: "\uC778\uC6D0\uC744 \uACC4\uC0B0\uD558\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 76c594bfb00eebf47a721fe3471c2cce, type: 3}
-  _availableStages: 4
+  _availableStages: -1
   _difficultyTier: 1
   _timeLimitSeconds: 10
   _timeLimitRule: 0

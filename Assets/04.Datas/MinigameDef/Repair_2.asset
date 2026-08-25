@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: Repair_2
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: Repair
+  _id: Repair2
   _commandText: "\uB098\uC0AC\uB97C \uD480\uC5B4\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: fad802b50d7450146804c5dd230664f4, type: 3}
-  _availableStages: 8
+  _availableStages: 14
   _difficultyTier: 2
   _timeLimitSeconds: 7
   _timeLimitRule: 0

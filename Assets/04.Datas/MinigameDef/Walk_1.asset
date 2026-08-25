@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: Walk_1
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: Walk
+  _id: Walk1
   _commandText: "\uC67C\uBC1C\uC744 \uB9DE\uCDB0\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 682b7a6960a493c4f9388d3314ba84bd, type: 3}
   _availableStages: 14

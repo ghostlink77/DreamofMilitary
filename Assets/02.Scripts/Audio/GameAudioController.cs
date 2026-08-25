@@ -49,6 +49,24 @@ namespace DreamOfMilitary.Audio
         [SerializeField] private AudioClip sleepEffect;
         [SerializeField] private AudioClip surpriseEffect;
 
+        [Header("노래 게임 -  버튼 클릭")]
+        [SerializeField] private AudioClip buttonEffect;
+
+        [Header("나사 게임 -  드라이버 소리")]
+        [SerializeField] private AudioClip driverEffect;
+
+        [Header("제식 게임 -  걸음 걸이 소리")]
+        [SerializeField] private AudioClip frontLeftEffect;
+        [SerializeField] private AudioClip frontRightEffect;
+        [SerializeField] private AudioClip playerLeftEffect;
+        [SerializeField] private AudioClip playerRightEffect;
+
+        [Header("인사 게임 -  성공 소리")]
+        [SerializeField] private AudioClip successEffect;
+
+        [Header("인원 수 계산 게임 -  계산기 클릭 소리")]
+        [SerializeField] private AudioClip clickEffect;
+
         [Header("일과 결과 / 로비 버튼")]
         [SerializeField] private AudioClip textRevealEffect;
         [SerializeField] private AudioClip continueEffect;
@@ -159,7 +177,15 @@ namespace DreamOfMilitary.Audio
         public void PlayContinue() => PlayEffect(continueEffect);
         public void PlayUiClick() => PlayEffect(textRevealEffect);
         public void PlayScream() => PlayEffect(surpriseEffect);
-
+        public void Playbutton() => PlayEffect(buttonEffect);
+        public void Playdriver() => PlayEffect(driverEffect);
+        public void PlayfrontLeft() => PlayEffect(frontLeftEffect);
+        public void PlayfrontRight() => PlayEffect(frontRightEffect);
+        public void PlayplayerLeft() => PlayEffect(playerLeftEffect);
+        public void PlayplayerRight() => PlayEffect(playerRightEffect);
+        public void Playsuccess() => PlayEffect(successEffect);
+        public void PlayclickEffect() => PlayEffect(clickEffect);
+      
         private AudioSource CreateAudioSource(string sourceName, bool loop)
         {
             var sourceObject = new GameObject(sourceName);

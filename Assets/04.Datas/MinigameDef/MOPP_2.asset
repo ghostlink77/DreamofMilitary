@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: MOPP_2
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: MOPP
+  _id: MOPP2
   _commandText: "\uB2E8\uACC4\uC5D0 \uB9DE\uAC8C \uCC29\uC6A9\uD574\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 2b8bd9c53c3dd8c48bb0e883ade073ec, type: 3}
   _availableStages: 8

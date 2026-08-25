@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: CleanUp_2
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: Clean_Up
+  _id: Clean_Up2
   _commandText: "\uC815\uB9AC\uC815\uB3C8\uD574\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: c7fc26350169f4249a7b3a71ee84de2c, type: 3}
   _availableStages: 10

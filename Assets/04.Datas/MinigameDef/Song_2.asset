@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: Song_2
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: Song
+  _id: Song2
   _commandText: "\uAD70\uAC00\uB97C \uBD88\uB7EC\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 03b86a1f5bfcd254196ca93601e41eb4, type: 3}
   _availableStages: 10

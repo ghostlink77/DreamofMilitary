@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d83a672365894f9f499fee8ab82c2, type: 3}
   m_Name: FindShell_1
   m_EditorClassIdentifier: Assembly-CSharp::DreamOfMilitary.Routine.MinigameDef
-  _id: FindShell
+  _id: FindShell1
   _commandText: "\uD0C4\uD53C\uB97C \uC138\uC5B4\uB77C!"
   _prefab: {fileID: 7013333293897079636, guid: 54372587b0f882b45858bac20ab60e1c, type: 3}
   _availableStages: 2
