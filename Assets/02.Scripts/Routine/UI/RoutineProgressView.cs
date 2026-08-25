@@ -16,17 +16,22 @@ public sealed class RoutineProgressView : MonoBehaviour
     [SerializeField] private Image[] progressSlots;
     [SerializeField] private Color successColor = new(1f, 0.8772222f, 0f, 0.5686275f);
     [SerializeField] private Color failureColor = new(1f, 0.08246528f, 0f, 0.5686275f);
+    [SerializeField, Min(0f)] private float feedbackTextScaleDuration = 0.3f;
+    [SerializeField] private Ease feedbackTextScaleEase = Ease.OutBack;
     [SerializeField, Min(0f)] private float progressFillDuration = 0.4f;
     [SerializeField] private Ease progressFillEase = Ease.OutCubic;
     [SerializeField] private GameObject examProgressRoot;
     [SerializeField] private TextMeshProUGUI examProgressText;
 
     private RoutineRunState _previousState = RoutineRunState.Idle;
+    private Vector3 _successTextDefaultScale;
+    private Vector3 _failureTextDefaultScale;
     private Vector3[] _progressSlotDefaultScales;
     private int _examSuccessCount;
 
     private void Awake()
     {
+        InitializeFeedbackTextScales();
         InitializeProgressSlots();
         SetActive(feedbackRoot, false);
         SetActive(calendarRoot, false);
@@ -49,6 +54,7 @@ public sealed class RoutineProgressView : MonoBehaviour
 
     private void OnDisable()
     {
+        ResetFeedbackTextTweens();
         CompleteProgressSlotTweens();
 
         if (routineRunner == null)
@@ -71,6 +77,7 @@ public sealed class RoutineProgressView : MonoBehaviour
 
         if (state != RoutineRunState.ShowingFeedback)
         {
+            ResetFeedbackTextTweens();
             SetActive(feedbackRoot, false);
         }
 
@@ -85,17 +92,7 @@ public sealed class RoutineProgressView : MonoBehaviour
 
     private void OnFeedbackShown(MinigameJudgement judgement, int score)
     {
-        SetActive(feedbackRoot, true);
-
-        if (successText != null)
-        {
-            successText.gameObject.SetActive(judgement == MinigameJudgement.Success);
-        }
-
-        if (failureText != null)
-        {
-            failureText.gameObject.SetActive(judgement == MinigameJudgement.Failure);
-        }
+        ShowAnimatedFeedbackText(judgement);
 
         if (routineRunner.CurrentRunMode == RoutineRunMode.Exam && judgement == MinigameJudgement.Success)
         {
@@ -153,6 +150,69 @@ public sealed class RoutineProgressView : MonoBehaviour
         var goalText = progressionConfig.IsDischargeExam(snapshot) ? "전역까지" : "승급까지";
 
         examProgressText.text = $"{goalText} {_examSuccessCount}/{requiredSuccessCount}\n남은 종목 : {remaining}";
+    }
+
+    private void InitializeFeedbackTextScales()
+    {
+        _successTextDefaultScale = successText != null ? successText.rectTransform.localScale : Vector3.one;
+        _failureTextDefaultScale = failureText != null ? failureText.rectTransform.localScale : Vector3.one;
+    }
+
+    private void ShowAnimatedFeedbackText(MinigameJudgement judgement)
+    {
+        if (successText != null)
+        {
+            successText.gameObject.SetActive(false);
+        }
+
+        if (failureText != null)
+        {
+            failureText.gameObject.SetActive(false);
+        }
+
+        var isSuccess = judgement == MinigameJudgement.Success;
+        var feedbackText = isSuccess ? successText : failureText;
+        var targetScale = isSuccess ? _successTextDefaultScale : _failureTextDefaultScale;
+
+        if (feedbackText == null)
+        {
+            SetActive(feedbackRoot, true);
+            return;
+        }
+
+        var textRectTransform = feedbackText.rectTransform;
+
+        textRectTransform.DOKill();
+        textRectTransform.localScale = Vector3.zero;
+        feedbackText.gameObject.SetActive(true);
+        SetActive(feedbackRoot, true);
+
+        if (feedbackTextScaleDuration <= 0f)
+        {
+            textRectTransform.localScale = targetScale;
+            return;
+        }
+
+        textRectTransform.DOScale(targetScale, feedbackTextScaleDuration)
+            .SetEase(feedbackTextScaleEase)
+            .SetUpdate(true);
+    }
+
+    private void ResetFeedbackTextTweens()
+    {
+        ResetFeedbackText(successText, _successTextDefaultScale);
+        ResetFeedbackText(failureText, _failureTextDefaultScale);
+    }
+
+    private static void ResetFeedbackText(TextMeshProUGUI feedbackText, Vector3 defaultScale)
+    {
+        if (feedbackText == null)
+        {
+            return;
+        }
+
+        feedbackText.rectTransform.DOKill();
+        feedbackText.rectTransform.localScale = defaultScale;
     }
 
     private void InitializeProgressSlots()
