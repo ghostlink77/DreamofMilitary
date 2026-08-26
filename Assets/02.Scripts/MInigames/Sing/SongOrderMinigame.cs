@@ -86,6 +86,9 @@ public sealed class SongOrderMinigame : MonoBehaviour, IMinigame
     private int nextRequiredOrder;
     private bool isRunning;
 
+    private const int TierOnePhraseCount = 3;
+    private const int TierTwoPhraseCount = 4;
+
     public void Begin(MinigameContext context, Action<MinigameJudgement> completed)
     {
         if (completed == null)
@@ -100,7 +103,8 @@ public sealed class SongOrderMinigame : MonoBehaviour, IMinigame
             return;
         }
 
-        if (!PrepareButtons(song.Phrases.Length))
+        var phraseCount = GetPhraseCount(context.DifficultyTier, song.Phrases.Length);
+        if (!PrepareButtons(phraseCount))
         {
             Debug.LogError("[SongOrder] 버튼이 부족합니다. Button Prefab과 Button Container를 지정하세요.", this);
             completed(MinigameJudgement.Failure);
@@ -110,7 +114,7 @@ public sealed class SongOrderMinigame : MonoBehaviour, IMinigame
         onCompleted = completed;
         isRunning = true;
         nextRequiredOrder = 0;
-        ShowSong(song.Phrases);
+        ShowSong(song.Phrases, phraseCount);
     }
 
     private void Update()
@@ -236,10 +240,19 @@ public sealed class SongOrderMinigame : MonoBehaviour, IMinigame
         return true;
     }
 
-    private void ShowSong(string[] phrases)
+    private static int GetPhraseCount(int difficultyTier, int availablePhraseCount)
+    {
+        var requestedPhraseCount = difficultyTier <= 1
+            ? TierOnePhraseCount
+            : TierTwoPhraseCount;
+
+        return Mathf.Min(requestedPhraseCount, availablePhraseCount);
+    }
+
+    private void ShowSong(string[] phrases, int phraseCount)
     {
         var phraseOrders = new List<int>();
-        for (var index = 0; index < phrases.Length; index++)
+        for (var index = 0; index < phraseCount; index++)
         {
             phraseOrders.Add(index);
         }

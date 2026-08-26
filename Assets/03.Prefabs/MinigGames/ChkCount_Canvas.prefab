@@ -2561,9 +2561,9 @@ MonoBehaviour:
   - {fileID: 6872363275569645558}
   maximumInputDigits: 3
   minimumTotalCount: 40
-  maximumTotalCount: 80
+  maximumTotalCount: 50
   minimumAbsentCount: 1
-  maximumAbsentCount: 9
+  maximumAbsentCount: 5
 --- !u!1 &7089255344195426858
 GameObject:
   m_ObjectHideFlags: 0

@@ -162,6 +162,13 @@ namespace DreamOfMilitary.Progression
             StateChanged?.Invoke(CaptureSnapshot());
         }
 
+        public void ResetAfterPlayerPrefsClear()
+        {
+            InitializeFromStartingValues();
+            HasSavedProgress = false;
+            StateChanged?.Invoke(CaptureSnapshot());
+        }
+
         private void InitializeFromStartingValues()
         {
             CurrentRank = _startingRank;
