@@ -5,14 +5,14 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// Àü¿ìÀÇ º¸Çà ÅÛÆ÷¸¦ ÀÍÈù µÚ, Àü¿ìÀÇ ¿Þ¹ß Å¸ÀÌ¹Ö¿¡ ¸ÂÃç
-/// ¸¶¿ì½º¸¦ ´­·¯ ¿Þ¹ßÀ» ¸ÂÃß´Â ÀÌµ¿ Á¦½Ä ¹Ì´Ï°ÔÀÓÀÌ´Ù.
+/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ Å¸ï¿½Ì¹Ö¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+/// ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß´ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì´Ï°ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
 ///
-/// ¸¶¿ì½º ´©¸§ = ¿Þ¹ß
-/// ¸¶¿ì½º ¶À   = ¿À¸¥¹ß
+/// ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ = ï¿½Þ¹ï¿½
+/// ï¿½ï¿½ï¿½ì½º ï¿½ï¿½   = ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ///
-/// Àü¿ìÀÇ ¿Þ¹ßº¸´Ù Á¶±Ý ºü¸£°Å³ª ´Ê°Ô ÀÔ·ÂÇØµµ
-/// acceptWindow ¾ÈÀÌ¶ó¸é ¼º°øÀ¸·Î ÆÇÁ¤ÇÑ´Ù.
+/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ ï¿½Ê°ï¿½ ï¿½Ô·ï¿½ï¿½Øµï¿½
+/// acceptWindow ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 /// </summary>
 public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitResolver
 {
@@ -25,25 +25,25 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         Finished
     }
 
-    [Header("Å¸ÀÌ¹Ö Àâ±â")]
+    [Header("Å¸ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½")]
     [SerializeField, Min(0f)] private float countdownDuration = 3f;
     [SerializeField, Min(0f)] private float prePlayPauseDuration = 0.5f;
 
-    [Tooltip("Àü¿ìÀÇ ¿Þ¹ß ±âÁØ ¾Õ/µÚ·Î Çã¿ëÇÒ ½Ã°£")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½/ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½")]
     [SerializeField, Min(0.01f)] private float acceptWindow = 0.15f;
 
-    [Header("Àü¿ì")]
+    [Header("ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private WalkFrontController frontController;
 
-    [Header("Ä«¿îÆ®´Ù¿î Ç¥½Ã")]
+    [Header("Ä«ï¿½ï¿½Æ®ï¿½Ù¿ï¿½ Ç¥ï¿½ï¿½")]
     [SerializeField] private TextMeshProUGUI countdownText;
 
-    [Header("¼º°ø ÆÇÁ¤ Ç¥½Ã")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½")]
     [SerializeField] private GameObject judgementObject;
 
     [SerializeField, Min(0.1f)] private float judgementDisplayDuration = 0.5f;
 
-    [Header("ÇÃ·¹ÀÌ¾î ¹ß Ç¥½Ã")]
+    [Header("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ Ç¥ï¿½ï¿½")]
     [SerializeField] private GameObject playerLeftFoot;
     [SerializeField] private GameObject playerRightFoot;
 
@@ -54,22 +54,22 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
     private float countdownRemaining;
     private float prePlayPauseRemaining;
 
-    // °¡Àå ÃÖ±Ù Àü¿ìÀÇ ¿Þ¹ß ½ÃÀÛ ½Ã°£
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     private float lastFrontLeftTime;
 
-    // Àü¿ìÀÇ ¿Þ¹ßÀÌ ÇÑ ¹øÀÌ¶óµµ ³ª¿Â ÀûÀÌ ÀÖ´ÂÁö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½
     private bool hasFrontLeftStep;
 
-    // ÇöÀç Àü¿ì ¿Þ¹ßÀ» ÀÌ¹Ì ¼º°ø Ã³¸®Çß´ÂÁö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½
     private bool currentStepJudged;
 
-    // ´ÙÀ½ ¿Þ¹ßÀ» ¹Ì¸® ÀÔ·ÂÇßÀ» ¶§ ÀúÀå
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private float pendingEarlyPlayerStepTime;
     private bool hasPendingEarlyPlayerStep;
 
     private bool didFail;
 
-    // Good! Ç¥½Ã ½Ã°£
+    // Good! Ç¥ï¿½ï¿½ ï¿½Ã°ï¿½
     private float judgementObjectRemaining;
 
 
@@ -100,17 +100,17 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         judgementObjectRemaining = 0f;
 
         /*
-         * ³­ÀÌµµ ¼³Á¤
+         * ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
          */
         (acceptWindow, frontController.stepInterval) =
             context.DifficultyTier switch
             {
                 1 => (0.3f, 0.7f),
-                2 => (0.18f, 0.5f),
+                2 => (0.3f, 0.5f),
 
                 _ => throw new ArgumentOutOfRangeException(
                     nameof(context.DifficultyTier),
-                    "³­ÀÌµµ´Â 1, 2 Áß ÇÏ³ª¿©¾ß ÇÕ´Ï´Ù."
+                    "ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ 1, 2 ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Õ´Ï´ï¿½."
                 )
             };
 
@@ -121,8 +121,8 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         UpdateCountdownVisual();
 
         /*
-         * Ä«¿îÆ®´Ù¿î µ¿¾È Àü¿ì°¡ °ÉÀ¸¸é¼­
-         * ÇÃ·¹ÀÌ¾î¿¡°Ô º¸Çà ÅÛÆ÷¸¦ º¸¿©ÁØ´Ù.
+         * Ä«ï¿½ï¿½Æ®ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½é¼­
+         * ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
          */
         if (frontController != null)
         {
@@ -171,7 +171,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         }
 
         /*
-         * Ä«¿îÆ®´Ù¿î Á¾·á
+         * Ä«ï¿½ï¿½Æ®ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½
          */
         phase = Phase.ReadyPause;
 
@@ -191,7 +191,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         }
 
         /*
-         * ½ÇÁ¦ ÇÃ·¹ÀÌ ½ÃÀÛ
+         * ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
          */
         phase = Phase.Playing;
 
@@ -234,7 +234,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
     // =========================================================
-    // ÇÃ·¹ÀÌ¾î ÀÔ·Â
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ô·ï¿½
     // =========================================================
 
     private void UpdatePlayerFootVisual()
@@ -245,7 +245,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         }
 
         /*
-         * ¸¶¿ì½º¸¦ ´©¸£¸é ¿Þ¹ß
+         * ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½
          */
         if (MouseInputManager.Instance.IsClickDown())
         {
@@ -258,7 +258,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         }
 
         /*
-         * ¸¶¿ì½º¸¦ ¶¼¸é ¿À¸¥¹ß
+         * ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
          */
         if (MouseInputManager.Instance.IsClickUp())
         {
@@ -268,11 +268,11 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
     // =========================================================
-    // Àü¿ì ¿Þ¹ß
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½
     // =========================================================
 
     /// <summary>
-    /// WalkFrontController¿¡¼­ Àü¿ìÀÇ ¿Þ¹ßÀÌ ½ÃÀÛµÉ ¶§ È£ÃâµÈ´Ù.
+    /// WalkFrontControllerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½ È£ï¿½ï¿½È´ï¿½.
     /// </summary>
     public void OnFrontLeftStep()
     {
@@ -282,7 +282,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         }
 
         /*
-         * »õ·Î¿î Àü¿ì ¿Þ¹ß ½ÃÀÛ
+         * ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ ï¿½ï¿½ï¿½ï¿½
          */
         hasFrontLeftStep = true;
 
@@ -292,8 +292,8 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
         /*
-         * ÇÃ·¹ÀÌ¾î°¡ ´ÙÀ½ ¿Þ¹ßÀ» ¹Ì¸® ´­·¶´Ù¸é
-         * Áö±Ý µé¾î¿Â Àü¿ì ¿Þ¹ß°ú ºñ±³ÇÑ´Ù.
+         * ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½
+         * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ß°ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
          */
         if (hasPendingEarlyPlayerStep)
         {
@@ -306,7 +306,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
             hasPendingEarlyPlayerStep = false;
 
             /*
-             * ¹Ì¸® ´©¸¥ ½Ã°£ÀÌ Çã¿ë ¹üÀ§ ¾ÈÀÌ¸é ¼º°ø
+             * ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
              */
             if (timingDifference <= acceptWindow)
             {
@@ -323,16 +323,16 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
     // =========================================================
-    // ÇÃ·¹ÀÌ¾î ¿Þ¹ß
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Þ¹ï¿½
     // =========================================================
 
     private void OnPlayerLeftStep()
     {
         /*
-         * ¾ÆÁ÷ Àü¿ìÀÇ Ã¹ ¿Þ¹ßÀÌ ³ª¿ÀÁö ¾Ê¾Ò´Ù¸é
-         * ³Ê¹« ºü¸£°Ô ´©¸¥ °Í.
+         * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½
+         * ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
          *
-         * Ã¹ ¿Þ¹ß ÀÌÀü¿¡´Â ¹Ì¸® ÀÔ·ÂÀ» Çã¿ëÇÏÁö ¾Ê´Â´Ù.
+         * Ã¹ ï¿½Þ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
          */
         if (!hasFrontLeftStep)
         {
@@ -342,8 +342,8 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
         /*
-         * ÇöÀç Àü¿ì ¿Þ¹ßÀ» ¾ÆÁ÷ ¼º°ø½ÃÅ°Áö ¾Ê¾Ò´Ù¸é
-         * ÇöÀç ¿Þ¹ß°ú ºñ±³ÇÑ´Ù.
+         * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½
+         * ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ß°ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
          */
         if (!currentStepJudged)
         {
@@ -354,7 +354,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
                 );
 
             /*
-             * ÇöÀç ¿Þ¹ßº¸´Ù ³Ê¹« ´Ê°Ô ´­·¶´Ù¸é ½ÇÆÐ
+             * ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ßºï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½
              */
             if (timingDifference > acceptWindow)
             {
@@ -363,7 +363,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
             }
 
             /*
-             * ÇöÀç ¿Þ¹ß Å¸ÀÌ¹Ö¿¡ ¼º°ø
+             * ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ Å¸ï¿½Ì¹Ö¿ï¿½ ï¿½ï¿½ï¿½ï¿½
              */
             currentStepJudged = true;
 
@@ -374,10 +374,10 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
         /*
-         * ÇöÀç ¿Þ¹ßÀº ÀÌ¹Ì ¼º°øÇß´Ù.
+         * ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½.
          *
-         * ÀÌ¹ø ÀÔ·ÂÀº ´ÙÀ½ ¿Þ¹ßÀ» À§ÇÑ
-         * ¹Ì¸® ÀÔ·ÂÀ¸·Î Ãë±ÞÇÑ´Ù.
+         * ï¿½Ì¹ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+         * ï¿½Ì¸ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
          */
 
         if (frontController == null)
@@ -388,11 +388,11 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
         /*
-         * ´ÙÀ½ ¿Þ¹ßÀº
+         * ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½
          *
-         * ¿Þ¹ß ¡æ ¿À¸¥¹ß ¡æ ¿Þ¹ß
+         * ï¿½Þ¹ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Þ¹ï¿½
          *
-         * ÀÌ¹Ç·Î stepInterval * 2 ¸¸Å­ µÚ¿¡ ÀÖ´Ù.
+         * ï¿½Ì¹Ç·ï¿½ stepInterval * 2 ï¿½ï¿½Å­ ï¿½Ú¿ï¿½ ï¿½Ö´ï¿½.
          */
         float nextLeftStepTime =
             lastFrontLeftTime +
@@ -407,8 +407,8 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
         /*
-         * ´ÙÀ½ ¿Þ¹ß Å¸ÀÌ¹Ö°ú ³Ê¹« Â÷ÀÌ°¡ Å©¸é
-         * Àß¸øµÈ ÀÔ·Â
+         * ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ Å¸ï¿½Ì¹Ö°ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ Å©ï¿½ï¿½
+         * ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
          */
         if (differenceToNext > acceptWindow)
         {
@@ -418,7 +418,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
         /*
-         * ´ÙÀ½ ¿Þ¹ßÀ» ¹Ì¸® ÀÔ·ÂÇÑ °ÍÀ¸·Î ÀúÀå
+         * ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
          */
         pendingEarlyPlayerStepTime = Time.time;
 
@@ -427,7 +427,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
     // =========================================================
-    // ³õÄ£ ¿Þ¹ß °Ë»ç
+    // ï¿½ï¿½Ä£ ï¿½Þ¹ï¿½ ï¿½Ë»ï¿½
     // =========================================================
 
     private void CheckMissedStep()
@@ -438,7 +438,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         }
 
         /*
-         * ÀÌ¹Ì ¼º°øÇß´Ù¸é °Ë»çÇÒ ÇÊ¿ä ¾øÀ½
+         * ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´Ù¸ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½
          */
         if (currentStepJudged)
         {
@@ -446,8 +446,8 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
         }
 
         /*
-         * Àü¿ì ¿Þ¹ß ÀÌÈÄ acceptWindow ¾È¿¡
-         * ÀÔ·ÂÇÏÁö ¾ÊÀ¸¸é ½ÇÆÐ
+         * ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ acceptWindow ï¿½È¿ï¿½
+         * ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
          */
         if (Time.time - lastFrontLeftTime > acceptWindow)
         {
@@ -457,7 +457,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
     // =========================================================
-    // Good! Ç¥½Ã
+    // Good! Ç¥ï¿½ï¿½
     // =========================================================
 
     private void ShowGood()
@@ -513,7 +513,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
     // =========================================================
-    // ÇÃ·¹ÀÌ¾î ¹ß Ç¥½Ã
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ Ç¥ï¿½ï¿½
     // =========================================================
 
     private void SetPlayerFoot(bool leftFootDown)
@@ -536,7 +536,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
 
 
     // =========================================================
-    // Á¦ÇÑ½Ã°£ Á¾·á
+    // ï¿½ï¿½ï¿½Ñ½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
     // =========================================================
 
     public MinigameJudgement ResolveAtTimeLimit()
