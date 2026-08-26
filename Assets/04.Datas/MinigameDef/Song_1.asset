@@ -17,5 +17,5 @@ MonoBehaviour:
   _prefab: {fileID: 7013333293897079636, guid: 03b86a1f5bfcd254196ca93601e41eb4, type: 3}
   _availableStages: 1
   _difficultyTier: 1
-  _timeLimitSeconds: 10
+  _timeLimitSeconds: 5
   _timeLimitRule: 0
