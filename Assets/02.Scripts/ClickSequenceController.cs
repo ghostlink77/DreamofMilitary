@@ -66,13 +66,11 @@ public sealed class ClickSequenceController : MonoBehaviour, IPointerClickHandle
                 continue;
             }
 
-            graphic.raycastTarget = false;
             graphic.gameObject.SetActive(false);
         }
 
         if (openingGraphic != null)
         {
-            openingGraphic.raycastTarget = true;
             SetAlpha(openingGraphic, 0f);
         }
 
@@ -155,6 +153,11 @@ public sealed class ClickSequenceController : MonoBehaviour, IPointerClickHandle
             {
                 graphic.gameObject.SetActive(true);
                 StartFade(graphic, cutFadeDuration);
+            }
+
+            if (isSkipped && nextCutIndex == cuts.Length)
+            {
+                MarkAsViewed();
             }
 
             return;
