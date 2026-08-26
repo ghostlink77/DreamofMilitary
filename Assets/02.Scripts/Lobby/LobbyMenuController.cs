@@ -1,5 +1,6 @@
 using DreamOfMilitary.Progression;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DreamOfMilitary.Audio;
 
@@ -17,6 +18,7 @@ public sealed class LobbyMenuController : MonoBehaviour
     [SerializeField] private Button stageButton;
     [SerializeField] private Button settingButton;
     [SerializeField] private Button exitButton;
+    [SerializeField] private Button resetPlayerPrefsButton;
     [SerializeField] private GameObject settingBlackBack;
     [SerializeField] private Slider bgmVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
@@ -34,6 +36,7 @@ public sealed class LobbyMenuController : MonoBehaviour
         stageButton.onClick.AddListener(OnStageButtonClicked);
         settingButton.onClick.AddListener(OpenSettings);
         exitButton.onClick.AddListener(CloseSettings);
+        resetPlayerPrefsButton.onClick.AddListener(ResetPlayerPrefs);
     }
 
     private void Start()
@@ -59,6 +62,7 @@ public sealed class LobbyMenuController : MonoBehaviour
         stageButton.onClick.RemoveListener(OnStageButtonClicked);
         settingButton.onClick.RemoveListener(OpenSettings);
         exitButton.onClick.RemoveListener(CloseSettings);
+        resetPlayerPrefsButton.onClick.RemoveListener(ResetPlayerPrefs);
     }
 
     private void RefreshRankUI(MilitaryRank rank)
@@ -96,5 +100,14 @@ public sealed class LobbyMenuController : MonoBehaviour
     {
         GameAudioController.Instance?.PlayUiClick();
         settingBlackBack.SetActive(false);
+    }
+
+    private void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+
+        GameState.Instance.ResetAfterPlayerPrefsClear();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
