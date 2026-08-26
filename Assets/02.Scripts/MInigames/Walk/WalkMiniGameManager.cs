@@ -106,7 +106,7 @@ public sealed class WalkMiniGameManager : MonoBehaviour, IMinigame, ITimeLimitRe
             context.DifficultyTier switch
             {
                 1 => (0.3f, 0.7f),
-                2 => (0.3f, 0.5f),
+                2 => (0.25f, 0.5f),
 
                 _ => throw new ArgumentOutOfRangeException(
                     nameof(context.DifficultyTier),
