@@ -1311,6 +1311,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3236019966808166457, guid: b28186ca6dba304439ec468b3fadb7d8, type: 3}
+      propertyPath: clickEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 94323e558f72fae46a01c8e485958496, type: 3}
+    - target: {fileID: 3236019966808166457, guid: b28186ca6dba304439ec468b3fadb7d8, type: 3}
+      propertyPath: buttonEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 408bbe1e626d19e4bbc0a02d2a8d2c40, type: 3}
+    - target: {fileID: 3236019966808166457, guid: b28186ca6dba304439ec468b3fadb7d8, type: 3}
+      propertyPath: driverEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f4c13169288c8046a1c518c414a08a8, type: 3}
+    - target: {fileID: 3236019966808166457, guid: b28186ca6dba304439ec468b3fadb7d8, type: 3}
+      propertyPath: successEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 31f9d372ebafc2b488a87e166df780fb, type: 3}
+    - target: {fileID: 3236019966808166457, guid: b28186ca6dba304439ec468b3fadb7d8, type: 3}
+      propertyPath: frontLeftEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: b1c4ee15bbba23b4cbe40ea454a1f9ad, type: 3}
+    - target: {fileID: 3236019966808166457, guid: b28186ca6dba304439ec468b3fadb7d8, type: 3}
+      propertyPath: frontRightEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 446cea23758126b41b46b60e0a5a7bd6, type: 3}
+    - target: {fileID: 3236019966808166457, guid: b28186ca6dba304439ec468b3fadb7d8, type: 3}
+      propertyPath: playerLeftEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b7bb73be3bc930429216c4d8e80e902, type: 3}
+    - target: {fileID: 3236019966808166457, guid: b28186ca6dba304439ec468b3fadb7d8, type: 3}
+      propertyPath: playerRightEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ed4dc80c2fa6f047b3ad9d7e6666797, type: 3}
     - target: {fileID: 8018620960053228994, guid: b28186ca6dba304439ec468b3fadb7d8, type: 3}
       propertyPath: m_Name
       value: GameAudioController
